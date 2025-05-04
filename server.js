@@ -1,40 +1,32 @@
-// 🟦 Importation des modules nécessaires (ESM grâce à "type": "module" dans package.json)
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import { OpenAI } from 'openai';
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import { OpenAI } from "openai";
 
-// 🔧 Chargement du fichier .env pour les variables d'environnement (clé API, port, etc.)
 dotenv.config();
-
-// 🚀 Initialisation d'Express
 const app = express();
-
-// 📦 Middleware : CORS (autorise les appels frontend vers l'API backend)
 app.use(cors());
-
-// 📦 Middleware : JSON parser (pour traiter les données JSON des requêtes POST)
 app.use(express.json());
 
-// 🗂️ Middleware : sert les fichiers statiques du dossier 'public' (HTML, JSON, CSS...)
-app.use(express.static('public'));
+// Initialisation OpenAI
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-// 🔑 Initialisation de l’API OpenAI avec la clé depuis .env
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
-// 📬 Route POST /api/chat – Envoie un message à OpenAI et retourne la réponse
-app.post('/api/chat', async (req, res) => {
+// 📩 Route POST /api/chat
+app.post("/api/chat", async (req, res) => {
   const { userMessage, contexte } = req.body;
+
+  if (!userMessage) {
+    return res.status(400).json({ error: "Message utilisateur manquant" });
+  }
 
   try {
     const chatCompletion = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
+      model: "gpt-4", // ou "gpt-3.5-turbo"
       messages: [
-        { role: "system", content: contexte },
-        { role: "user", content: userMessage }
-      ]
+        { role: "system", content: "Tu es un assistant pédagogique symbolique." },
+        { role: "user", content: `${contexte}\n\n${userMessage}` }
+      ],
+      temperature: 0.7,
     });
 
     const reply = chatCompletion.choices?.[0]?.message?.content || "Pas de réponse générée.";
@@ -45,23 +37,25 @@ app.post('/api/chat', async (req, res) => {
   }
 });
 
-// 🔍 Route GET /test-openai – Pour vérifier que la clé fonctionne
-app.get('/test-openai', async (req, res) => {
+// 🔍 Route GET /test-openai – pour tester rapidement si l’API fonctionne
+app.get("/test-openai", async (req, res) => {
   try {
     const test = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: "Dis-moi bonjour comme un robot joyeux." }]
+      model: "gpt-4",
+      messages: [{ role: "user", content: "Dis simplement bonjour." }],
+      temperature: 0.5,
     });
-    res.json({ success: true, reply: test.choices[0].message.content });
+
+    res.json({ test: test.choices?.[0]?.message?.content });
   } catch (err) {
-    console.error("❌ Erreur OpenAI (test) :", err);
-    res.status(500).json({ success: false, error: err.message });
+    console.error("🔧 Erreur test OpenAI :", err.message);
+    res.status(500).json({ error: "Test échoué : " + err.message });
   }
 });
 
-// 🌐 Lancement du serveur sur le port défini (ou 3000 par défaut)
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`✅ Serveur lancé sur http://localhost:${port}`);
+// ▶️ Lancement du serveur
+const PORT = process.env.PORT || 10000;
+app.listen(PORT, () => {
+  console.log(`✅ Serveur lancé sur le port ${PORT}`);
 });
 
