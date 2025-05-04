@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Prototype Prompt Ultime</title>
+  <style>
+    body { font-family: sans-serif; margin: 2em; background: #fefefe; color: #222; }
+    #log { background: #f4f4f4; padding: 1em; border: 1px solid #ccc; margin-top: 2em; white-space: pre-wrap; }
+    textarea { width: 100%; max-width: 600px; }
+    button { margin: 1em 0.5em; }
+    .error { color: red; }
+  </style>
+</head>
+<body>
+  <h1>🧪 Prototype Prompt Ultime – Version améliorée avec logs pédagogiques</h1>
+
+  <div>
+    <label>🎛️ Choisissez votre mode :</label>
+    <select id="mode">
+      <option value="logique">Logique / Littéral</option>
+      <option value="creatif">Créatif / Métaphorique</option>
+      <option value="mixte">Mixte guidé</option>
+    </select>
+    <button onclick="initExperience()">Démarrer</button>
+  </div>
+
+  <hr>
+
+  <div id="etape-container"></div>
+
+  <div id="log">
+    <h3>📘 Journal pédagogique</h3>
+    <div id="log-content">Choisissez un mode pour démarrer.</div>
+    <button onclick="exporterLog()">💾 Exporter le journal</button>
+  </div>
+
+  <script>
+    let currentStepIndex = 0;
+    let steps = [];
+    let mode = "";
+    let log = [];
+
+    async function initExperience() {
+      mode = document.getElementById("mode").value;
+      log = [];
+      addLog(`Mode choisi : ${mode}`);
+
+      try {
+        const structure = await fetch("structure.json").then(res => res.json());
+        steps = structure.etapes;
+        if (!steps || steps.length === 0) throw new Error("Aucune étape détectée.");
+        currentStepIndex = 0;
+        loadStep();
+      } catch (err) {
+        document.getElementById("etape-container").innerHTML = `<p class='error'>Erreur lors du chargement de structure.json : ${err.message}</p>`;
+        addLog("❌ Erreur de chargement de structure.json");
+      }
+    }
+
+    async function loadStep() {
+      if (currentStepIndex >= steps.length) {
+        document.getElementById("etape-container").innerHTML = '<p>✅ Expérience terminée.</p>';
+        addLog("Fin de l'expérience. Merci !");
+        return;
+      }
+
+      const etapeFile = steps[currentStepIndex];
+      try {
+        const etapeData = await fetch(etapeFile).then(res => res.json());
+
+        let content = `<h2>Étape ${currentStepIndex + 1} – ${etapeData.nom || 'Sans nom'}</h2>`;
+        if (etapeData.intro) content += `<p><em>${etapeData.intro}</em></p>`;
+        if (etapeData.objectif) content += `<p><strong>Objectif :</strong> ${etapeData.objectif}</p>`;
+
+        let consigne = etapeData.consigne?.[mode] || etapeData.consigne?.default || "Pas de consigne spécifique.";
+        content += `<p><strong>Consigne (${mode}) :</strong> ${consigne}</p>`;
+
+        content += `
+          <textarea id="reponse" rows="5" placeholder="Votre réponse..."></textarea><br>
+          <button onclick="validerEtape()">Valider</button>
+          ${currentStepIndex > 0 ? '<button onclick="precedenteEtape()">⬅️ Revenir à l'étape précédente</button>' : ''}
+        `;
+
+        document.getElementById("etape-container").innerHTML = content;
+      } catch (err) {
+        document.getElementById("etape-container").innerHTML = `<p class='error'>Erreur de chargement de ${etapeFile} : ${err.message}</p>`;
+        addLog(`❌ Erreur de chargement du fichier : ${etapeFile}`);
+      }
+    }
+
+    function validerEtape() {
+      const reponse = document.getElementById("reponse").value.trim();
+      addLog(`Étape ${currentStepIndex + 1} - Réponse : ${reponse}`);
+      currentStepIndex++;
+      loadStep();
+    }
+
+    function precedenteEtape() {
+      if (currentStepIndex > 0) {
+        currentStepIndex--;
+        addLog(`↩️ Retour à l'étape ${currentStepIndex + 1}`);
+        loadStep();
+      }
+    }
+
+    function addLog(message) {
+      const timestamp = new Date().toLocaleTimeString();
+      log.push(`[${timestamp}] ${message}`);
+      document.getElementById("log-content").textContent = log.join("\n");
+    }
+
+    function exporterLog() {
+      const blob = new Blob([log.join("\n")], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `journal_prompt_${new Date().toISOString().slice(0,10)}.txt`;
+      link.click();
+    }
+  </script>
+</body>
+</html>
+

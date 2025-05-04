@@ -1,0 +1,57 @@
+{
+  "titre_section": "Étape 1 — Observation de terrain neurotypique",
+  "sous_titre": "Une scène anodine à regarder autrement",
+  "description": "Tu vas décrire une situation réelle ou banale. Un moment où un comportement social ‘normal’ t’a semblé étrange, automatique ou absurde.",
+  "consigne_principale": "📌 Décris librement une scène qui t’a surpris·e : un geste, une parole, une habitude que tout le monde semble trouver normale… sauf toi.",
+  "note_methodologique": "🪞 Utilise des phrases simples. Imagine une photo ou une petite scène de théâtre. Reste concret·e, sensoriel·le, curieux·se.",
+  "champs": [
+    {
+      "champ": "📍 Lieu d’observation",
+      "aide": "Où se passe la scène ? (Exemple : ascenseur, réunion Zoom, repas de famille, café, rue…)"
+    },
+    {
+      "champ": "🧍‍♂️ Comportement observé",
+      "aide": "Quel geste, parole ou habitude t’a interpellé·e ? (Exemple : dire 'ça va ?' sans écouter la réponse, sortir son téléphone dès qu’il y a un silence…)"
+    },
+    {
+      "champ": "🔒 Fonction sociale apparente",
+      "aide": "À quoi semble servir ce comportement dans le groupe ? (Exemple : éviter un malaise, créer un lien automatique, se conformer à une norme, meubler le vide…)"
+    },
+    {
+      "champ": "💬 Émotion masquée",
+      "aide": "Quelle émotion silencieuse semble se cacher derrière ce comportement ? (Exemple : gêne, ennui, solitude, peur de déranger, anxiété douce…)"
+    },
+    {
+      "champ": "🎭 Ton d’analyse préféré",
+      "aide": "Dans quel ton aimerais-tu relire la scène ? (Exemple : ironie douce, poésie, simplicité FALC, regard d’ethnologue…)."
+    }
+  ],
+  "exercice_complementaire": {
+    "titre": "🧠 Double regard",
+    "consigne": "Décris deux versions de ta scène.",
+    "versions": [
+      {
+        "type": "neutre",
+        "description": "Version neutre : juste les faits. Comme un·e ethnologue sans opinion."
+      },
+      {
+        "type": "interprétée",
+        "description": "Version symbolique : fais parler un compagnon imaginaire. Laisse-le interpréter la scène à sa manière poétique, critique ou absurde."
+      }
+    ]
+  },
+  "questions_de_guidage": [
+    "Que se passerait-il si ce comportement ne se produisait pas ?",
+    "Ce geste masque-t-il une peur, un inconfort ou un besoin de conformité ?",
+    "Est-ce un réflexe ou un rituel ?",
+    "Ce comportement est-il naturel ou socialement programmé ?"
+  ],
+  "feedbacks_attendus": [
+    "Une description simple et concrète",
+    "Une hypothèse sur le rôle du comportement",
+    "Une interprétation symbolique",
+    "Une question finale qui dérange doucement"
+  ],
+  "rappel_final": "Ce n’est pas une critique. C’est une exploration curieuse. Observe comme un·e ethnologue poétique : lucide, tendre, un peu à côté."
+}
+

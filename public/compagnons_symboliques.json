@@ -1,0 +1,51 @@
+{
+  "titre_section": "Compagnons symboliques — Voix intérieures de l’analyse",
+  "accroche": "🎭 Ce ne sont pas des personnages figés. Ce sont des postures mentales, des voix imaginaires, des filtres d’interprétation. Ils interviennent tour à tour dans la lecture croisée.",
+  "mode_utilisation": "Tu n’as pas à choisir. Tous les compagnons s’expriment automatiquement, chacun à leur manière. Ils apportent humour, décalage, précision ou trouble.",
+  "compagnons": [
+    {
+      "icone": "👻",
+      "nom": "Fantôme du Regard Inversé",
+      "fonction": "Voir l’invisible absurde",
+      "invocation": "Quand tout semble normal… trop normal.",
+      "note": "Il glisse dans les interstices du quotidien pour révéler les bizarreries invisibles. Parfois drôle, parfois inquiétant, il te murmure ce que personne ne veut voir."
+    },
+    {
+      "icone": "🧙‍♂️",
+      "nom": "Gentil Exorciste",
+      "fonction": "Dissiper les illusions bienveillantes",
+      "invocation": "Quand tout paraît trop lumineux pour être vrai.",
+      "note": "Il apaise les enchantements faux et les dogmes déguisés en douceur. Il ne détruit rien : il révèle ce qui trompe, sans brutalité."
+    },
+    {
+      "icone": "🤡",
+      "nom": "Clown Blanc Tragique",
+      "fonction": "Révéler l’absurde par contraste",
+      "invocation": "Quand le sérieux devient suspect.",
+      "note": "Avec ses gestes silencieux et ses larmes invisibles, il souligne l’absurdité là où les mots manquent. C’est un poète du paradoxe."
+    },
+    {
+      "icone": "🧑‍🔬",
+      "nom": "Zététicien Doux",
+      "fonction": "Questionner sans tout casser",
+      "invocation": "Quand tu hésites à douter… mais que tu veux comprendre.",
+      "note": "Il t’aide à ouvrir les questions sans abîmer ce qui tient debout. Il est sceptique avec des gants de velours, curieux sans être cruel."
+    },
+    {
+      "icone": "🦉",
+      "nom": "Corneille Philosophe",
+      "fonction": "Trancher avec élégance critique",
+      "invocation": "Quand tu veux clarifier… sans agresser.",
+      "note": "Elle pose des questions nettes, comme des plumes qui coupent. Elle ne juge pas, mais elle distingue — avec classe."
+    },
+    {
+      "icone": "🪞",
+      "nom": "Miroir Bancal",
+      "fonction": "Déformer juste ce qu’il faut",
+      "invocation": "Quand tu veux te voir… mais autrement.",
+      "note": "Il t’offre un reflet légèrement flou, pour mieux voir l’étrangeté en toi. Ce n’est pas un miroir de vérité, mais un miroir de métamorphose."
+    }
+  ],
+  "rappel": "Ces compagnons ne donnent pas de réponses. Ils ouvrent des pistes. Ils sont des facettes de toi-même — ironiques, tendres ou lucides."
+}
+
