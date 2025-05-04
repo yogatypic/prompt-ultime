@@ -1,7 +1,15 @@
 {
+  "nom": "Tirage des lunettes subjectives",
+  "intro": "Tu vas découvrir trois filtres de lecture inhabituels : un biais cognitif, une croyance culturelle limitante et une méta-posture.",
+  "objectif": "Décaler ton regard en laissant venir des prismes symboliques.",
+  "consigne": {
+    "logique": "Observe comment ces lunettes influencent ta perception, rationnellement.",
+    "creatif": "Accueille ces lunettes comme des archétypes poétiques.",
+    "mixte": "Alterne entre analyse rigoureuse et intuition imagée."
+  },
   "titre_section": "Étape 2 — Tirage des lunettes subjectives",
   "sous_titre": "Trois filtres étranges pour décaler ton regard",
-  "description": "Tu ne choisis pas les lunettes. Elles viennent à toi. Trois filtres seront tirés automatiquement : un biais cognitif, une croyance culturelle limitante, et une méta-posture. Ce sont des projecteurs symboliques pour relire ta scène autrement.",
+  "description": "Tu ne choisis pas les lunettes. Elles viennent à toi. Trois filtres seront tirés automatiquement : un biais cognitif, une croyance culturelle limitante, et une méta-posture.",
   "consigne_principale": "🎲 Laisse-toi surprendre par les trois lunettes subjectives : elles apparaîtront une par une.",
   "familles": {
     "biais_cognitifs": {
