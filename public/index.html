@@ -34,27 +34,37 @@
     <button onclick="exporterLog()">💾 Exporter le journal</button>
   </div>
 
-  <script>
-    let currentStepIndex = 0;
-    let steps = [];
-    let mode = "";
-    let log = [];
+ async function initExperience() {
+  mode = document.getElementById("mode").value;
+  log = [];
+  addLog(`Mode choisi : ${mode}`);
 
-    async function initExperience() {
-      mode = document.getElementById("mode").value;
-      log = [];
-      addLog(`Mode choisi : ${mode}`);
+  try {
+    const structure = await fetch("structure.json").then(res => {
+      if (!res.ok) throw new Error("structure.json introuvable (HTTP " + res.status + ")");
+      return res.json();
+    });
 
-      try {
-        const structure = await fetch("structure.json").then(res => res.json());
-        steps = structure.etapes;
-        if (!steps || steps.length === 0) throw new Error("Aucune étape détectée.");
-        currentStepIndex = 0;
-        loadStep();
-      } catch (err) {
-        document.getElementById("etape-container").innerHTML = `<p class='error'>Erreur lors du chargement de structure.json : ${err.message}</p>`;
-        addLog("❌ Erreur de chargement de structure.json");
-      }
+    console.log("✅ structure.json chargé :", structure);
+
+    steps = structure.etapes;
+    console.log("📚 Étapes trouvées :", steps);
+
+    if (!Array.isArray(steps) || steps.length === 0) {
+      throw new Error("Aucune étape détectée dans structure.json");
+    }
+
+    currentStepIndex = 0;
+    loadStep();
+
+  } catch (err) {
+    document.getElementById("etape-container").innerHTML =
+      `<p class='error'>Erreur : ${err.message}</p>`;
+    addLog(`❌ Erreur lors du démarrage : ${err.message}`);
+    console.error("🛑 Détail de l'erreur dans initExperience():", err);
+  }
+}
+
     }
 
     async function loadStep() {
