@@ -4,24 +4,35 @@
   <meta charset="UTF-8">
   <title>Prototype Prompt Ultime</title>
   <style>
-    body { font-family: sans-serif; margin: 2em; background: #fefefe; color: #222; }
+    body { font-family: sans-serif; margin: 2em; background: #fefefe; color: #222; transition: all 0.5s ease; }
     #log { background: #f4f4f4; padding: 1em; border: 1px solid #ccc; margin-top: 2em; white-space: pre-wrap; }
+    #narration-intro { background: #eef; padding: 1em; border-left: 5px solid #88f; margin-bottom: 2em; animation: fadeIn 1s ease-in-out; }
     textarea { width: 100%; max-width: 600px; }
     button { margin: 1em 0.5em; }
     .error { color: red; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
-  <h1>🧪 Prototype Prompt Ultime – Version améliorée avec logs pédagogiques</h1>
+  <h1>🧪 Prototype Prompt Ultime – Version immersive</h1>
 
-  <div>
+  <div id="narration-intro">
+    <p><strong>🎭 Narrateur symbolique :</strong> Bienvenue, explorateur. Ici, nous observons la norme à travers le regard de l’exception. Prépare-toi à porter des masques symboliques, à chausser des lunettes subjectives, et à franchir les étapes du discernement sensible.</p>
+    <p>💡 Choisis ton mode pour commencer cette exploration :</p>
+  </div>
+
+  <div id="choix-mode">
     <label>🎛️ Choisissez votre mode :</label>
     <select id="mode">
       <option value="logique">Logique / Littéral</option>
       <option value="creatif">Créatif / Métaphorique</option>
       <option value="mixte">Mixte guidé</option>
     </select>
-    <button onclick="initExperience()">Démarrer</button>
+    <button onclick="initExperience()">🚀 Démarrer</button>
   </div>
 
   <hr>
@@ -41,6 +52,10 @@
     let log = [];
 
     async function initExperience() {
+      // Disparition de l’intro + choix
+      document.getElementById("narration-intro").style.display = "none";
+      document.getElementById("choix-mode").style.display = "none";
+
       mode = document.getElementById("mode").value;
       log = [];
       addLog(`Mode choisi : ${mode}`);
