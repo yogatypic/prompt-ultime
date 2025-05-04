@@ -35,8 +35,12 @@ res.status(500).json({ error: err?.response?.data?.error?.message || "Erreur lor
   }
 });
 
-const port = process.env.PORT || 10000;
+const port = process.env.PORT;
+if (!port) {
+  throw new Error("🚨 PORT non défini dans les variables d’environnement");
+}
 app.listen(port, () => {
-  console.log(`✅ Serveur en ligne sur http://localhost:${port}`);
+  console.log(`✅ Serveur en ligne sur le port ${port}`);
 });
+
 
