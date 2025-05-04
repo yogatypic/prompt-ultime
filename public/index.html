@@ -88,12 +88,36 @@
       }
     }
 
-    function validerEtape() {
-      const reponse = document.getElementById("reponse").value.trim();
-      addLog(`Étape ${currentStepIndex + 1} - Réponse : ${reponse}`);
-      currentStepIndex++;
-      loadStep();
+   async function validerEtape() {
+  const reponse = document.getElementById("reponse").value.trim();
+  const etapeNom = steps[currentStepIndex]?.fichier || `Étape ${currentStepIndex + 1}`;
+  addLog(`📝 Étape ${currentStepIndex + 1} - Réponse utilisateur : ${reponse}`);
+
+  try {
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        userMessage: reponse,
+        contexte: `Fichier : ${etapeNom}`
+      })
+    });
+
+    const data = await res.json();
+
+    if (data.reply) {
+      addLog(`🤖 Réponse IA : ${data.reply}`);
+    } else {
+      addLog(`⚠️ Aucune réponse IA reçue.`);
     }
+  } catch (error) {
+    addLog(`❌ Erreur lors de l'appel IA : ${error.message}`);
+  }
+
+  currentStepIndex++;
+  loadStep();
+}
+
 
     function precedenteEtape() {
       if (currentStepIndex > 0) {
