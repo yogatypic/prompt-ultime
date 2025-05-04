@@ -1,0 +1,1108 @@
+﻿{
+  "meta": {
+    "titre_complet": "Prompt Ultime FALC — Immersion inversée : étude douce des neurotypiques par des esprits libres",
+    "version": "2025-05-04",
+    "auteur_principal": "Yog’Atypic",
+    "hebergement_web": "https://www.yogatypic.fr/IA/",
+    "langue_interface": "Français Facile à Lire et à Comprendre (FALC)",
+    "presentation": "Ce prompt est une interface douce, ironique et rigoureuse pour observer les comportements normotypiques à travers les filtres ludiques de l’esprit atypique. Il propose un retournement du regard pour explorer les normes sociales comme des rituels étranges, à la manière d’un ethnologue bienveillant.",
+    "objectifs_pedagogiques": [
+      "🌀 Inverser les rôles : ce sont les esprits libres qui étudient les standards.",
+      "👁️ Explorer les comportements sociaux normés avec un regard curieux, critique et poétique.",
+      "🔍 Offrir une structure d’enquête expérientielle à partir d’un comportement observé.",
+      "🧩 Valoriser les modes de perception autistiques comme outils d’analyse.",
+      "🎪 Déjouer les biais cognitifs et les croyances culturelles limitantes par le jeu symbolique."
+    ],
+    "fonctionnalites_principales": [
+      "🎭 Choix guidé de masque d’observation symbolique.",
+      "📍 Sélection d’une scène sociale à observer.",
+      "🔍 Observation neutre suivie d’interprétations subjectives décalées.",
+      "🎲 Tirage aléatoire de ‘lunettes subjectives’ (biais, mythes, postures).",
+      "🎭 Compagnons symboliques pour l’analyse douce et ironique.",
+      "🌀 Passage dans un théâtre intérieur de lecture croisée (résonance, biais, humour).",
+      "🧠 Étape finale de métadiscernement et de résonance personnelle."
+    ]
+  },
+  "introduction_et_mission": {
+    "titre_section": "Immersion inversée : étude douce des neurotypiques par des esprits libres",
+    "accroche": "🔬 Interface d’observation inversée : ici, les comportements considérés comme normaux deviennent les objets d’étude. Les “étranges” regardent les “standards” avec une curiosité tendre et une ironie éveillée.",
+    "formulations_possibles": [
+      "🔬 Jeu d’observation inversée : explorer en douceur le comportement humain normatif.",
+      "🌀 Mission douce : initiation ironique à l’étude du neurotypique standard.",
+      "🎭 Enquête poétique : observer les rituels du quotidien avec des lunettes décalées."
+    ],
+    "mission_principale": "Observer un comportement normocentré d’un sujet neurotypique dans son habitat social. Puis l’interpréter à travers un filtre symbolique — masque d’observation, compagnon imaginaire ou lunette cognitive.",
+    "ton_attendu": "Curieux, délicat, parfois drôle ou critique, mais jamais moqueur ni condescendant.",
+    "rappel": "Ce n’est pas un test ni une vérité objective. C’est un jeu de regard, un miroir tendu aux évidences sociales. Une manière douce d’inverser la norme pour mieux en sentir les contours."
+  },
+  "choix_initial": {
+    "titre_section": "Carte d’entrée — Qui es-tu dans cette observation inversée ?",
+    "consigne": "Choisis un masque symbolique (écris un chiffre de 1 à 5) pour colorer ton regard d’enquête :",
+    "note_pédagogique": "Chaque masque est une manière de regarder. Il transforme l’ordinaire en scène d’étude. Il révèle ta posture intérieure.",
+    "options": [
+      {
+        "id": 1,
+        "icone": "👁️",
+        "nom": "Explorateur calme",
+        "surnom": "Ethnologue poétique",
+        "fonction": "Tu observes avec lenteur, douceur et émerveillement. Tu cherches à comprendre sans figer. Tu accueilles l’inattendu."
+      },
+      {
+        "id": 2,
+        "icone": "👻",
+        "nom": "Fantôme du Regard Inversé",
+        "fonction": "Tu hantes les évidences sociales. Tu vois ce que tout le monde oublie de regarder. Ton regard traverse les apparences."
+      },
+      {
+        "id": 3,
+        "icone": "🔍",
+        "nom": "Chercheur·se de bizarrerie banale",
+        "fonction": "Tu collectionnes les rituels quotidiens absurdes ou répétitifs. Tu es sensible aux gestes automatiques et aux mots vides."
+      },
+      {
+        "id": 4,
+        "icone": "🎪",
+        "nom": "Clown cognitif",
+        "fonction": "Tu fais apparaître les angles morts en jouant avec les cadres. Tu utilises l’ironie douce pour déplacer les évidences."
+      },
+      {
+        "id": 5,
+        "icone": "🎲",
+        "nom": "Tirage aléatoire",
+        "fonction": "Tu laisses le masque te choisir. Tu fais confiance au hasard comme outil de surprise et de dévoilement intérieur."
+      }
+    ],
+    "suggestion": "Tu peux changer de masque en cours de route. Il n’est pas une case, mais une porte d’entrée."
+  }
+}
+{
+  "etape_1_observation": {
+    "titre_section": "Étape 1 — Observation de terrain neurotypique",
+    "description": "Décris une scène ordinaire où un comportement normotypique t’a semblé étrange, mécanique ou fascinant. C’est ton point de départ.",
+    "consigne_principale": "📌 Raconte une situation où un comportement 'normal' t’a interpellé. Exemples : geste social automatique (rire sans comprendre, dire 'ça va ?' sans écouter), phrase toute faite, rituel collectif non questionné.",
+    "note_metodologique": "🪞 Écris cette scène comme une photographie sensible : brève, concrète, sensorielle. L’IA te proposera ensuite une fiche d’étonnement douce et critique.",
+    "champs": [
+      {
+        "champ": "📍 Lieu d’observation",
+        "type": "choix",
+        "options": [
+          "Ascenseur",
+          "Réunion Zoom",
+          "Repas de famille",
+          "Jardin public",
+          "Café ou file d’attente",
+          "Autre (décrire)"
+        ]
+      },
+      {
+        "champ": "🧍‍♂️ Comportement normotypique observé",
+        "type": "choix",
+        "options": [
+          "Dire « ça va ? » sans écouter",
+          "Sortir son téléphone dès qu’il y a un silence",
+          "Applaudir mécaniquement à la fin",
+          "Rire sans comprendre la blague",
+          "Parler météo pour meubler",
+          "Autre (décrire)"
+        ]
+      },
+      {
+        "champ": "🔒 Fonction sociale apparente",
+        "type": "choix",
+        "options": [
+          "Éviter un malaise",
+          "Créer une illusion de lien",
+          "Se conformer à une norme du groupe",
+          "Remplir un vide",
+          "Se protéger",
+          "Autre (décrire)"
+        ]
+      },
+      {
+        "champ": "💬 Émotion masquée",
+        "type": "choix",
+        "options": [
+          "Gêne",
+          "Solitude",
+          "Anxiété",
+          "Ennui",
+          "Colère douce",
+          "Honte diffuse",
+          "Autre (décrire)"
+        ]
+      },
+      {
+        "champ": "🎭 Ton d’analyse préféré",
+        "type": "choix",
+        "options": [
+          "Ironie douce",
+          "Poésie ethnographique",
+          "FALC (facile à lire)",
+          "Froideur clinique",
+          "Ethnologie sérieuse mais absurde",
+          "Autre (décrire)"
+        ]
+      }
+    ],
+    "exercice_complementaire": {
+      "titre": "🧠 Exercice de double regard",
+      "consigne": "Décris deux versions de la scène que tu as choisie.",
+      "versions": [
+        {
+          "type": "neutre",
+          "description": "Version neutre : comme un·e ethnologue. Juste les faits, sans jugement ni interprétation."
+        },
+        {
+          "type": "interprétée",
+          "description": "Version interprétée : fais parler un compagnon symbolique (au choix ou tiré au hasard). Laisse-toi surprendre."
+        }
+      ]
+    },
+    "questions_de_guidage": [
+      "Que se passerait-il si ce comportement ne se produisait pas ?",
+      "Ce geste masque-t-il un inconfort, une peur ou un besoin d’appartenance ?",
+      "Ce comportement est-il spontané ou ritualisé ?",
+      "À qui ou à quoi obéit ce réflexe social ?"
+    ],
+    "feedbacks_attendus": [
+      "Une description simple et sensorielle",
+      "Une hypothèse sur la fonction du comportement",
+      "Une interprétation symbolique ou poétique",
+      "Une question finale qui dérange (doucement)"
+    ],
+    "rappel_final": "Ce n’est pas une critique. C’est une exploration curieuse. Observe comme un ethnologue poétique, avec lucidité et douceur."
+  }
+}
+{
+  "etape_2_lunettes": {
+    "titre_section": "Étape 2 — Tirage des lunettes subjectives",
+    "sous_titre": "Trois regards étranges pour décaler le sens",
+    "description": "Tu vas tirer trois filtres de lecture absurdes ou critiques pour relire le comportement observé. Ces ‘lunettes’ changent ton angle de vue. Elles te montrent une autre vérité… ou un autre mensonge.",
+    "accroche": "🎲 Tire trois filtres de lecture entre 1 et 54 (ou dis simplement : « Tire-moi trois lunettes »).",
+    "families": {
+      "biais_cognitifs": {
+        "nom_affiche": "🧠 Biais cognitifs",
+        "plage": "1–25",
+        "description": "Ce sont des automatismes mentaux. Ton cerveau les active sans t’en parler. Tu crois penser librement… mais parfois tu réagis sans le savoir."
+      },
+      "croyances_culturelles": {
+        "nom_affiche": "🌀 Croyances culturelles limitantes",
+        "plage": "26–50",
+        "description": "Ce sont des idées que la société glisse en toi : elles te rassurent, te guident ou te piègent. Souvent invisibles, elles sont très puissantes."
+      },
+      "meta_postures": {
+        "nom_affiche": "🔍 Méta-postures",
+        "plage": "51–54",
+        "description": "Ces filtres observent les filtres. Ce sont des manières de regarder comment on regarde. Elles ajoutent une couche d’ironie, de recul ou de vertige."
+      }
+    },
+    "rappel_utilisateur": "Aucune lunette ne dit toute la vérité. Chacune révèle un bout de sens… et en masque un autre. Ce sont des projecteurs, pas des preuves.",
+    "modes_tirage": [
+      {
+        "mode": "manuel",
+        "intitule": "🎯 Choix manuel",
+        "description": "Tu choisis 3 numéros entre 1 et 54. Un dans chaque famille si tu veux équilibrer."
+      },
+      {
+        "mode": "aleatoire",
+        "intitule": "🎲 Tirage aléatoire",
+        "description": "L’IA te propose 3 lunettes : 1 cognitive, 1 culturelle, 1 méta-posture. Surprise garantie."
+      }
+    ],
+    "utilisation_des_lunettes": "Tu vas utiliser ces lunettes dans l’étape suivante (lecture croisée). Garde bien en mémoire leur nom, numéro et famille.",
+    "structure_donnee_par_lunette": {
+      "id": "Numéro de la lunette (1 à 54)",
+      "nom": "Nom symbolique",
+      "famille": "🧠 / 🌀 / 🔍",
+      "clarte": "Ce qu’elle éclaire ou rend plus visible",
+      "ombre": "Ce qu’elle cache ou simplifie à l’excès",
+      "clown": "Note humoristique qui fait sourire ou soupirer",
+      "invite": "Penseur ou référence associée (ex: Jung, hooks, Foucault…)",
+      "citation": "Une phrase marquante liée au concept",
+      "concept": "Explication courte et accessible du filtre"
+    }
+  }
+}
+{
+  "etape_3_lecture_croisee": {
+    "titre_section": "Étape 3 — Lecture croisée : théâtre intérieur du sens",
+    "sous_titre": "Fais passer ton observation à travers les trois lunettes subjectives",
+    "description": "Chaque lunette propose une interprétation partielle, poétique ou biaisée du comportement observé. À travers ce jeu de filtres, tu explores la plasticité du sens et le trouble fertile du regard multiple.",
+    "mode_demploi": [
+      "🟢 Résonance — Ce que la lunette révèle de pertinent ou d’éclairant.",
+      "🔴 Discordance — Ce qu’elle déforme, simplifie ou fige.",
+      "🤡 Clown — Une touche d’absurde pour faire respirer l’analyse."
+    ],
+    "consigne_generale": "Pour chaque lunette (3 au total), remplis les trois rubriques ci-dessous. Tu peux t’appuyer sur la description fournie par le tirage, ou suivre ton intuition critique.",
+    "structure_par_lunette": [
+      {
+        "champ": "🟢 Résonance",
+        "aide": "Quel éclairage cette lunette apporte-t-elle à la scène ? Quelle partie devient plus lisible, plus sensible ou plus étrange grâce à elle ?"
+      },
+      {
+        "champ": "🔴 Discordance",
+        "aide": "Quels aspects la lunette simplifie-t-elle ? Où tord-elle la scène ? Que laisse-t-elle dans l’ombre ou caricature-t-elle ?"
+      },
+      {
+        "champ": "🤡 Clown",
+        "aide": "Ajoute un clin d’œil : une image ironique, absurde ou poétiquement décalée pour alléger la gravité de l’analyse."
+      }
+    ],
+    "conseil_final": "🎭 Ici, il ne s’agit pas de vérité mais de friction. Ce n’est pas un verdict, mais une danse entre interprétations. Chaque filtre ouvre… et cache. Chaque lunette fait apparaître une facette du réel et en dissimule une autre.",
+    "note_pedagogique": "Cet exercice affine ton métadiscernement : il t’aide à reconnaître les forces et les limites de chaque lecture. Et parfois, il éclaire aussi ton propre angle aveugle."
+  }
+}
+{
+  "etape_4_metadiscernement": {
+    "titre_section": "Étape 4 — Métadiscernement : observer le filtre qui regarde",
+    "sous_titre": "Tu ne regardes plus la scène… tu regardes celui ou celle qui regarde.",
+    "description": "Après avoir traversé les trois lunettes subjectives, cette étape t’invite à inverser le regard. Ce n’est plus le comportement observé que tu analyses, mais ton propre filtre. Ce que tu as vu, ce que tu n’as pas vu, ce que tu as eu envie de croire… tout cela parle aussi de toi.",
+    "objectifs": [
+      "💡 Repérer les lunettes qui ont éveillé en toi une émotion forte ou un inconfort.",
+      "🧭 Identifier ce que tu as projeté dans la scène, consciemment ou non.",
+      "🔍 Mettre en lumière les angles morts ou les pistes que tu as évitées.",
+      "🪞 Ressentir les résonances intimes entre ce que tu observes… et ce que tu vis."
+    ],
+    "questions_reflexives": [
+      {
+        "champ": "🌩️ Lunette marquante",
+        "question": "Parmi les trois lunettes, laquelle t’a le plus remué·e ? Était-ce agréable, dérangeant, troublant ? Pourquoi à ton avis ?"
+      },
+      {
+        "champ": "🪤 Projection personnelle",
+        "question": "As-tu projeté un besoin, une peur ou une attente dans ton interprétation ? Qu’avais-tu envie de voir dans cette scène ?"
+      },
+      {
+        "champ": "🔍 Angle mort évité",
+        "question": "Y avait-il un sens, une interprétation que tu as senti·e venir… mais que tu n’as pas voulu suivre ? Pourquoi ?"
+      },
+      {
+        "champ": "🧿 Résonance intime",
+        "question": "Est-ce que ce comportement observé fait écho à quelque chose en toi ? Une tension, une contradiction, une histoire personnelle ?"
+      }
+    ],
+    "formulation_de_synthese": {
+      "proposition": "✒️ Pour résumer ce retournement intérieur, tu peux écrire :",
+      "texte": "« Je croyais observer un comportement extérieur… mais c’était mon filtre qui regardait. »"
+    },
+    "note_pedagogique": "Le métadiscernement est une forme douce de lucidité. Il ne s’agit pas de te juger, mais d’apprendre à reconnaître comment tu construis du sens. Chaque regard contient déjà une interprétation. Et c’est en regardant le regard… qu’on découvre sa propre subjectivité."
+  }
+}
+{
+  "etape_5_resonance_finale": {
+    "titre_section": "Étape 5 — Résonance intégrative",
+    "sous_titre": "Ce que tu gardes, ce que tu laisses… et ce que tu offres au monde",
+    "description": "Tu es arrivé·e au bout de cette enquête sensible. Tu n’as pas trouvé LA vérité — mais peut-être un décalage fécond, une image persistante, un frisson intérieur. Cette dernière étape te permet de faire le point. Doucement.",
+    "intentions": [
+      "🌱 Garder ce qui t’a nourri : une intuition, une posture, un mot juste.",
+      "🕸️ Laisser ce qui reste flou : une question sans réponse, un doute encore en mouvement.",
+      "🎁 Offrir quelque chose : à toi, à un autre, au monde symbolique ou invisible."
+    ],
+    "champs": [
+      {
+        "champ": "🌱 Je garde…",
+        "aide": "Un élément marquant : un apprentissage, une sensation, une phrase qui reste collée au cœur ou à l’esprit."
+      },
+      {
+        "champ": "🕸️ Je laisse…",
+        "aide": "Ce que tu choisis de ne pas refermer trop vite : un trouble, une hésitation, une question qui veut du temps."
+      },
+      {
+        "champ": "🎁 J’offre…",
+        "aide": "Un geste symbolique : une parole intérieure, une dédicace muette, une offrande à plus vaste que toi."
+      }
+    ],
+    "rituels_cloture_possibles": [
+      "💨 Souffle doucement un post-it imaginaire dans l’air.",
+      "🔵 Trace un cercle invisible autour de toi, comme une clôture symbolique.",
+      "🎶 Fredonne trois notes absurdes, et laisse-les s’évaporer.",
+      "🙃 Lève un sourcil intérieur, juste pour honorer l’étrangeté douce de ce parcours."
+    ],
+    "conclusion": "Tu n’as pas fermé une histoire. Tu as entrouvert un autre regard. Cette scène, cette enquête, ce miroir... t’auront peut-être déplacé·e, même un peu. Et c’est déjà beaucoup."
+  }
+}
+{
+  "compagnons_symboliques": [
+    {
+      "icone": "👻",
+      "nom": "Fantôme du Regard Inversé",
+      "fonction": "Voir l’invisible absurde",
+      "invocation": "Quand tout semble normal… trop normal.",
+      "note": "Il glisse dans les interstices du quotidien pour révéler les bizarreries invisibles. Parfois drôle, parfois inquiétant, il te murmure ce que personne ne veut voir."
+    },
+    {
+      "icone": "🧙‍♂️",
+      "nom": "Gentil Exorciste",
+      "fonction": "Dissiper les illusions bienveillantes",
+      "invocation": "Quand tout paraît trop lumineux pour être vrai.",
+      "note": "Il apaise les enchantements faux et les dogmes déguisés en douceur. Il ne détruit rien : il révèle ce qui trompe, sans brutalité."
+    },
+    {
+      "icone": "🤡",
+      "nom": "Clown Blanc Tragique",
+      "fonction": "Révéler l’absurde par contraste",
+      "invocation": "Quand le sérieux devient suspect.",
+      "note": "Avec ses gestes silencieux et ses larmes invisibles, il souligne l’absurdité là où les mots manquent. C’est un poète du paradoxe."
+    },
+    {
+      "icone": "🧑‍🔬",
+      "nom": "Zététicien Doux",
+      "fonction": "Questionner sans tout casser",
+      "invocation": "Quand tu hésites à douter… mais que tu veux comprendre.",
+      "note": "Il t’aide à ouvrir les questions sans abîmer ce qui tient debout. Il est sceptique avec des gants de velours, curieux sans être cruel."
+    },
+    {
+      "icone": "🦉",
+      "nom": "Corneille Philosophe",
+      "fonction": "Trancher avec élégance critique",
+      "invocation": "Quand tu veux clarifier… sans agresser.",
+      "note": "Elle pose des questions nettes, comme des plumes qui coupent. Elle ne juge pas, mais elle distingue — avec classe."
+    },
+    {
+      "icone": "🪞",
+      "nom": "Miroir Bancal",
+      "fonction": "Déformer juste ce qu’il faut",
+      "invocation": "Quand tu veux te voir… mais autrement.",
+      "note": "Il t’offre un reflet légèrement flou, pour mieux voir l’étrangeté en toi. Ce n’est pas un miroir de vérité, mais un miroir de métamorphose."
+    }
+  ],
+  "axes_autistiques": [
+    {
+      "titre": "🔬 Hyper-perception des signaux faibles",
+      "description": "Ce que les autres ne remarquent pas — gestes minuscules, silences, rythmes étranges — devient pour toi une source de sens. Les petits détails sont des indices."
+    },
+    {
+      "titre": "👓 Double lecture (NT vs autiste)",
+      "description": "Imagine deux colonnes : l’une montre ce qu’un·e neurotypique perçoit (rien d’étrange), l’autre ce que tu captes (dissonances, efforts masqués, contradictions subtiles). Deux mondes sur une même scène."
+    },
+    {
+      "titre": "🧩 Revalorisation des 'dysfonctions'",
+      "description": "Ce que la norme nomme ‘trouble’ devient ici ton outil. Besoin de clarté, retrait social, sensibilité forte : ces ‘défauts’ deviennent des capteurs précieux du vrai et du faux."
+    },
+    {
+      "titre": "📜 Éthologie sociale du neurotypique",
+      "description": "Tu étudies les gestes 'normaux' comme si tu étais un chercheur dans une autre culture. Dire « ça va ? », faire semblant de rire, commenter la météo… deviennent des rituels sociaux dignes d’observation."
+    },
+    {
+      "titre": "🌀 Éthique du doute doux",
+      "description": "Tu ne cherches pas une conclusion. Tu accueilles les paradoxes. Tu restes curieux·se, même sans réponse. Ton regard est une question habitée, pas un jugement figé."
+    }
+  ]
+}
+{
+  "lunettes_subjectives": {
+    "titre_section": "📚 Les 54 lunettes subjectives",
+    "description": "Chaque lunette est un filtre de lecture. Elle ne prétend pas dire ‘la vérité’, mais t’invite à explorer un angle inattendu. Certaines éclairent, d’autres biaisent. Toutes déplacent ton regard — pour interroger le ‘normal’ comme une étrangeté familière.",
+    "familles": {
+      "🧠 Biais cognitifs": {
+        "plage": "1 à 25",
+        "description": "Des automatismes mentaux hérités de l’évolution. Ton cerveau les active sans t’en avertir. Ils simplifient la réalité pour te permettre d’agir vite… parfois au prix de la nuance."
+      },
+      "🌀 Croyances culturelles limitantes": {
+        "plage": "26 à 50",
+        "description": "Des mythes collectifs intégrés comme des évidences personnelles. Elles donnent du sens, rassurent ou contraignent. Invisibles car partagées, elles gagnent à être rendues visibles."
+      },
+      "🔍 Méta-postures": {
+        "plage": "51 à 54",
+        "description": "Des filtres qui questionnent les filtres. Des manières de regarder… comment on regarde. Elles ajoutent une couche d’ironie, de vertige ou de recul critique à ton enquête intérieure."
+      }
+    },
+    "structure_lunette": {
+      "id": "Numéro de la lunette (entre 1 et 54)",
+      "nom": "Nom symbolique",
+      "famille": "🧠 / 🌀 / 🔍",
+      "clarte": "Ce que cette lunette éclaire, valorise ou rend plus lisible.",
+      "ombre": "Ce qu’elle déforme, simplifie, caricature ou oublie.",
+      "clown": "Une touche d’humour ou d’absurde pour souffler dans l’analyse.",
+      "invite": "Nom d’un penseur associé (philosophe, sociologue, psychologue, etc.) — optionnel.",
+      "citation": "Une phrase marquante qui incarne l’esprit de cette lunette.",
+      "concept": "Une explication simple et accessible du mécanisme, mythe ou angle de lecture visé."
+    },
+    "note_pedagogique": "Ces lunettes ne sont ni des preuves ni des dogmes. Ce sont des instruments de trouble fécond. Elles servent à explorer, pas à conclure. Elles déplacent le regard — pour mieux sentir ce qu’il masque et ce qu’il révèle."
+  }
+}
+{
+  "id": 1,
+  "nom": "Biais de confirmation",
+  "famille": "🧠 Biais cognitifs",
+  "clarte": "Tu repères vite ce qui confirme ce que tu crois déjà. C’est apaisant, ça donne l’impression d’avoir raison. Ton monde reste bien rangé.",
+  "ombre": "Tu ignores — sans le vouloir — ce qui dérange ton opinion. Tu ne cherches plus à comprendre, mais à valider. Ce n’est plus une pensée… c’est une boucle.",
+  "clown": "🔁 « Je savais que j’avais raison… puisque je l’ai toujours pensé. » (Cercle de validation à usage unique, sans sortie de secours).",
+  "invite": "Karl Popper",
+  "citation": "« Une théorie est scientifique si elle peut être réfutée. »",
+  "concept": "Le philosophe Karl Popper expliquait que penser librement, c’est tester ses idées en les exposant à la contradiction. Ce biais fait le contraire : il sélectionne seulement ce qui conforte tes croyances. Tu construis alors une maison mentale sans fenêtres, bien chaude… mais sans vue."
+}
+{
+  "id": 2,
+  "nom": "Biais d’autorité",
+  "famille": "🧠 Biais cognitifs",
+  "clarte": "Tu gagnes en clarté : une figure reconnue pense pour toi. C’est rassurant, rapide, souvent utile. Pourquoi douter d’un expert ?",
+  "ombre": "Tu abandonnes ton discernement. Tu confonds compétence perçue et vérité. Un costume, une médaille ou un ton assuré peuvent suffire à faire taire ton esprit critique.",
+  "clown": "🎩 « Il a une cravate, un micro et un graphique. Donc c’est sûrement juste. » (Syndrome du podium sacré, avec options PowerPoint).",
+  "invite": "Michel Foucault",
+  "citation": "« La vérité est un effet du pouvoir. »",
+  "concept": "Foucault montre que ce qu’on appelle ‘vérité’ est souvent construit par les rapports de pouvoir. Le biais d’autorité te pousse à croire ce qui est dit avec prestance, sans oser vérifier. L’habit fait parfois l’opinion — surtout quand il parle fort."
+}
+[
+  {
+    "id": 3,
+    "nom": "Biais de statu quo",
+    "famille": "🧠 Biais cognitifs",
+    "clarte": "Tu fais confiance à ce qui est déjà là. L'existant semble plus rassurant, plus légitime. Tu choisis l’habitude comme refuge.",
+    "ombre": "Tu restes figé·e dans l’acceptable. Tu refuses parfois des évolutions bénéfiques simplement parce qu’elles demandent un pas de côté.",
+    "clown": "🪑 « On fait comme ça depuis toujours… donc ça doit être bien. » (Slogan officiel des bureaux poussiéreux et des horaires immuables).",
+    "invite": "Daniel Kahneman",
+    "citation": "« Ce qui est familier est souvent perçu comme juste. »",
+    "concept": "Ce biais te pousse à préférer l’existant au changement, même sans raison valable. Tu choisis la continuité par défaut, comme si la nouveauté portait toujours un risque — même quand l’ancien dysfonctionne."
+  },
+  {
+    "id": 4,
+    "nom": "Biais de négativité",
+    "famille": "🧠 Biais cognitifs",
+    "clarte": "Tu repères d’instinct ce qui va mal. Une grimace, un silence, une tension invisible : ton radar émotionnel est très affûté.",
+    "ombre": "Tu surévalues les menaces. Tu oublies ce qui fonctionne ou apaise. Ton regard devient un détecteur d’anomalie en boucle.",
+    "clown": "🕳️ « Tout allait bien… mais CET œil, là, m’a lancé un doute. » (Loop mentale sur micro-drames intérieurs).",
+    "invite": "Paul Rozin",
+    "citation": "« Une seule mauvaise expérience a plus de poids que cinq bonnes. »",
+    "concept": "Ton cerveau accorde plus d’importance à une critique qu’à plusieurs compliments. Ce réflexe t’aidait à survivre jadis — mais il te rend hypersensible au moindre accroc, comme si toute harmonie n’était qu’illusion."
+  },
+  {
+    "id": 5,
+    "nom": "Biais d’ancrage",
+    "famille": "🧠 Biais cognitifs",
+    "clarte": "La première info reçue devient ton repère. Elle guide ta réflexion, même si elle est hasardeuse. Elle fixe un cadre invisible.",
+    "ombre": "Tu restes prisonnier·ère d’un chiffre, d’un mot, d’une première impression. Tu ajustes à partir d’un point de départ arbitraire.",
+    "clown": "⚓ « Prix initial : 999€. Promo : 29€ ! » (Remise émotionnelle garantie, illusion de gain incluse).",
+    "invite": "Amos Tversky",
+    "citation": "« Même un chiffre absurde peut fausser ton raisonnement. »",
+    "concept": "Ton esprit prend le premier repère comme vérité implicite. Tu calcules, juges ou compares à partir d’un point d’ancrage arbitraire — et tout ton raisonnement en dépend, même si tu sais qu’il est biaisé."
+  },
+  {
+    "id": 6,
+    "nom": "Biais de disponibilité",
+    "famille": "🧠 Biais cognitifs",
+    "clarte": "Ce que tu te rappelles facilement te semble plus fréquent, plus important. L’impact émotionnel devient une preuve implicite.",
+    "ombre": "Tu prends tes souvenirs vivaces pour des statistiques fiables. Tu confonds intensité mémorielle et réalité globale.",
+    "clown": "📺 « Un requin à la télé hier. Je nage plus jamais. » (Géographie mentale redessinée par les gros titres).",
+    "invite": "Daniel Kahneman",
+    "citation": "« Ce que l’on retient n’est pas toujours ce qui est le plus vrai. »",
+    "concept": "Tu bases ton évaluation sur ce qui t’a marqué — et non sur ce qui est fréquent. Ce biais te fait croire qu’un événement frappant est courant, alors qu’il est juste médiatiquement surreprésenté."
+  },
+  {
+    "id": 7,
+    "nom": "Biais de groupe",
+    "famille": "🧠 Biais cognitifs",
+    "clarte": "Tu te sens en sécurité dans le consensus. Être d’accord avec les autres apaise les tensions, renforce l’appartenance.",
+    "ombre": "Tu sacrifies parfois ton esprit critique pour ne pas faire vague. Le besoin d’harmonie prend le dessus sur la lucidité.",
+    "clown": "🐑 « Tout le monde le dit… donc ça doit être vrai. » (Synchronisation mentale certifiée conforme, bêlement intégré).",
+    "invite": "Irving Janis",
+    "citation": "« Le groupthink préfère l’unité à la vérité. »",
+    "concept": "Ce biais pousse les groupes à taire la dissidence. Tu préfères ne pas déranger plutôt que questionner. Le silence collectif remplace l’analyse, et le doute devient indécent dans le confort du “nous”."
+  }
+]
+[
+  {
+    "id": 8,
+    "nom": "Biais de projection",
+    "famille": "🧠 Biais cognitifs",
+    "clarte": "Tu prêtes aux autres tes pensées, tes émotions, tes intentions. C’est plus facile de croire qu’ils te ressemblent.",
+    "ombre": "Tu ne vois plus l’altérité. Tu interprètes leurs gestes comme si c’étaient les tiens. Leur différence devient invisible.",
+    "clown": "🎥 « S’il ne parle pas, c’est sûrement qu’il m’en veut. » (Film intérieur tourné sans casting extérieur).",
+    "invite": "Carl Jung",
+    "citation": "« Ce que tu refuses de voir en toi, tu le projettes sur autrui. »",
+    "concept": "Le biais de projection te fait croire que ce que tu ressens est universel. Tu crois deviner l’autre, mais tu parles de toi. C’est un miroir déguisé en fenêtre."
+  },
+  {
+    "id": 9,
+    "nom": "Biais de représentativité",
+    "famille": "🧠 Biais cognitifs",
+    "clarte": "Tu classes vite ce que tu vois. Si quelque chose ressemble à un cliché, ton cerveau range sans demander.",
+    "ombre": "Tu oublies la réalité des probabilités. Une apparence ne fait pas une identité. Ton jugement devient caricature.",
+    "clown": "📦 « Il a une blouse blanche, donc c’est un scientifique neutre. » (Étiquette collée avant lecture du mode d’emploi).",
+    "invite": "Daniel Kahneman",
+    "citation": "« Ce qui paraît typique n’est pas toujours vrai. »",
+    "concept": "Tu penses : ‘ça ressemble à’, donc ‘c’en est’. Ce raccourci ignore les nuances. Il transforme une silhouette en conclusion — et une intuition en vérité statistique… fausse."
+  },
+  {
+    "id": 10,
+    "nom": "Biais de rétrospection",
+    "famille": "🧠 Biais cognitifs",
+    "clarte": "Une fois que tu connais le résultat, tout te semble logique. Le passé devient un scénario fluide… mais réécrit.",
+    "ombre": "Tu oublies l’incertitude vécue. Tu crois que les choses étaient évidentes, même si elles ne l’étaient pas.",
+    "clown": "🔮 « Je le sentais depuis le début. » (Prophétie à effet rétroactif non remboursable).",
+    "invite": "Baruch Fischhoff",
+    "citation": "« L’avenir réécrit le passé. »",
+    "concept": "Ce biais t’illusionne : une fois que tu sais, tu crois que tu savais. Tu réinterprètes le déroulé comme s’il avait été prévu. Le doute d’hier disparaît dans l’évidence reconstruite."
+  },
+  {
+    "id": 11,
+    "nom": "Biais de cadrage",
+    "famille": "🧠 Biais cognitifs",
+    "clarte": "Ton opinion dépend de la manière dont l’information est formulée. Le même fait peut te sembler positif… ou inquiétant.",
+    "ombre": "Tu crois décider objectivement, mais ton émotion obéit au ton. Le cadre influence ta lecture sans que tu t’en aperçoives.",
+    "clown": "🖼️ « 90% de réussite » ou « 10% d’échec » ? (Même gâteau, autre goût selon l’emballage).",
+    "invite": "Amos Tversky",
+    "citation": "« Ce n’est pas ce qu’on dit, c’est comment on le dit. »",
+    "concept": "Le biais de cadrage modifie ta réaction selon la présentation. Ton jugement est sensible à l’emballage plus qu’au contenu brut. Une info ne parle jamais toute seule : elle est toujours mise en scène."
+  },
+  {
+    "id": 12,
+    "nom": "Biais de conformisme",
+    "famille": "🧠 Biais cognitifs",
+    "clarte": "Tu te sens plus à l’aise quand tu penses comme le groupe. L’accord collectif rassure et évite les conflits.",
+    "ombre": "Tu t’autocensures. Tu évites d’exprimer ton doute. L’harmonie sociale devient plus importante que ta lucidité.",
+    "clown": "👯 « Si tout le monde applaudit, c’est sûrement bien. » (Standing ovation intérieure avec oreillettes sociales).",
+    "invite": "Solomon Asch",
+    "citation": "« Il est difficile d’aller à contre-courant quand le groupe regarde. »",
+    "concept": "Ce biais révèle la puissance du regard des autres. Tu peux abandonner ton jugement personnel pour ne pas sortir du rang. Le consensus devient norme — même si tu sens qu’il sonne faux."
+  }
+]
+[
+  {
+    "id": 8,
+    "nom": "Biais de projection",
+    "famille": "🧠 Biais cognitifs",
+    "clarte": "Tu crois que l’autre ressent ou pense comme toi. Tu lis dans ses gestes ton propre scénario émotionnel.",
+    "ombre": "Tu confonds miroir et fenêtre. Ce que tu interprètes… c’est surtout toi-même, déguisé en l’autre.",
+    "clown": "🎥 « À sa place, je ferais ça… donc il pense sûrement pareil. » (Film mental auto-produit, version unique).",
+    "invite": "Carl Jung",
+    "citation": "« Ce que tu ne conscientises pas en toi, tu le projettes sur les autres. »",
+    "concept": "Ce biais transforme l’altérité en reflet. Tu prêtes à l’autre tes peurs, désirs ou convictions. C’est confortable — mais ça t’empêche de découvrir vraiment qui est en face."
+  },
+  {
+    "id": 9,
+    "nom": "Biais de représentativité",
+    "famille": "🧠 Biais cognitifs",
+    "clarte": "Ton cerveau classe vite : si ça ressemble à un type connu, alors c’en est. Tu relies l’apparence à une case mentale.",
+    "ombre": "Tu oublies les probabilités. Tu juges sur l’image, pas sur les données. L’intuition déguise l’approximation en certitude.",
+    "clown": "📦 « Il a des lunettes… il lit… donc c’est un intellectuel. » (Raccourci mental, emballé c’est biaisé).",
+    "invite": "Daniel Kahneman",
+    "citation": "« Une histoire plausible n’est pas forcément probable. »",
+    "concept": "Tu crois qu’un détail suffit pour classer quelqu’un. Mais la ressemblance n’est pas une preuve. Ton cerveau préfère la logique narrative aux chiffres réels… quitte à se tromper avec confiance."
+  },
+  {
+    "id": 10,
+    "nom": "Biais de rétrospection",
+    "famille": "🧠 Biais cognitifs",
+    "clarte": "Une fois que c’est arrivé, tu crois que c’était évident. Le passé paraît logique… une fois réécrit par la mémoire.",
+    "ombre": "Tu oublies le doute d’avant. Tu te racontes une histoire plus nette, plus simple. Mais c’est une illusion : le présent colore tes souvenirs.",
+    "clown": "🔮 « Je le savais depuis le début… enfin, je crois. » (Devineur post-événement certifié sans risque).",
+    "invite": "Baruch Fischhoff",
+    "citation": "« Le passé paraît plus logique qu’il ne l’était. »",
+    "concept": "Tu crois que tu ‘savais’. Mais ce que tu ‘sais’ maintenant te fait oublier ce que tu ne savais pas hier. Ce biais réduit l’incertitude vécue à une illusion de maîtrise… après coup."
+  },
+  {
+    "id": 11,
+    "nom": "Biais de cadrage",
+    "famille": "🧠 Biais cognitifs",
+    "clarte": "Tu réagis autant à la forme qu’au fond. Un même fait te semble positif ou négatif selon le ton, les mots ou l’angle choisi.",
+    "ombre": "Tu crois raisonner objectivement… alors que ta réaction dépend du décor verbal. La forme guide ta pensée plus que le contenu.",
+    "clown": "🖼️ « 90 % de réussite » ou « 10 % d’échec » ? (Même gâteau, nappage mental variable).",
+    "invite": "Amos Tversky",
+    "citation": "« La manière de formuler une question influence la réponse. »",
+    "concept": "Ce biais montre que la présentation d’une info influence plus que l’info elle-même. Tu ne changes pas d’avis… mais la tournure change ton émotion. Et l’émotion change ta décision."
+  },
+  {
+    "id": 12,
+    "nom": "Biais de conformisme",
+    "famille": "🧠 Biais cognitifs",
+    "clarte": "Penser comme le groupe apaise. L’unanimité réconforte. L’accord collectif sonne comme une preuve implicite.",
+    "ombre": "Tu musèles ton intuition. Tu suis la majorité, même si tu doutes. Le besoin d’être accepté pèse plus que ta lucidité.",
+    "clown": "👯 « Tout le monde a dit oui… alors j’ai dit oui. » (Danse réflexe du troupeau silencieux).",
+    "invite": "Solomon Asch",
+    "citation": "« L’opinion du groupe influence la tienne, même si tu sais qu’elle est fausse. »",
+    "concept": "Tu préfères parfois avoir tort avec tout le monde que raison tout seul. Ce biais gomme les divergences pour préserver l’appartenance. L’harmonie de surface devient plus précieuse que la vérité en tension."
+  }
+]
+[
+  {
+    "id": 13,
+    "nom": "Biais de contraste",
+    "famille": "🧠 Biais cognitifs",
+    "clarte": "Tu juges une chose par rapport à ce qui l’a précédée. Une même réalité te paraît fade ou brillante, selon la couleur de ce qui est arrivé avant.",
+    "ombre": "Tu ne vois plus l’objet pour ce qu’il est réellement. Tu compares en fonction de ce que tu viens de vivre, et non en fonction de son essence.",
+    "clown": "📉 « Après ce film médiocre, même un vieux clip paraît un chef-d’œuvre ! » (Critiques subjectives alimentées par les fluctuations d’humeur).",
+    "invite": "Leon Festinger",
+    "citation": "« Nos jugements sont des comparaisons, pas des absolus. »",
+    "concept": "Ce biais fausse ton jugement : tu évalues en fonction du contraste avec ce qui précède. Ce n’est pas l’objet qui change, c’est le contexte dans lequel tu le vois."
+  },
+  {
+    "id": 14,
+    "nom": "Biais d’optimisme",
+    "famille": "🧠 Biais cognitifs",
+    "clarte": "Tu crois que tout ira bien pour toi. Les risques semblent lointains, réservés aux autres.",
+    "ombre": "Tu oublies les imprévus, les obstacles qui surgissent. Tu fais abstraction des nuages et t’avances sous un ciel bleu, jusqu’à ce que la tempête t’atteigne.",
+    "clown": "☀️ « Tout ira bien ! C’est statistiquement prouvé… moi, je suis différent ! » (Un optimiste qui marche sous la pluie, sans parapluie).",
+    "invite": "Tali Sharot",
+    "citation": "« L’optimisme est une illusion utile… jusqu’à ce qu’elle casse. »",
+    "concept": "Ce biais te berce d’illusions. Tu vois l’avenir avec des lunettes roses, oubliant que l’optimisme n’est pas un gage de réussite. Parfois, une préparation plus réaliste aurait été plus sage."
+  },
+  {
+    "id": 15,
+    "nom": "Biais de malédiction du savoir",
+    "famille": "🧠 Biais cognitifs",
+    "clarte": "Tu oublies que ce qui te semble évident aujourd’hui était flou hier. Tu crois que ce qui est clair pour toi doit l’être pour tous.",
+    "ombre": "Ce savoir devient invisible. Tu perds patience avec ceux qui ne comprennent pas immédiatement, oubliant qu’ils n’ont pas ton chemin d’apprentissage.",
+    "clown": "📚 « Mais c’est évident ! » (Sortilège de l’expert qui oublie son propre chemin d’apprentissage).",
+    "invite": "Steven Pinker",
+    "citation": "« Ce que tu sais te semble toujours avoir été évident. »",
+    "concept": "Lorsque tu maîtrises un sujet, tu oublies combien il était confus au départ. Ce biais rend ton savoir inaccessible à ceux qui n’ont pas pris le même chemin que toi."
+  },
+  {
+    "id": 16,
+    "nom": "Biais du survivant",
+    "famille": "🧠 Biais cognitifs",
+    "clarte": "Tu observes ceux qui ont réussi. Leur histoire te semble être la norme, mais tu oublies ceux qui ont échoué et qui restent invisibles.",
+    "ombre": "Ceux qui ont échoué sont oubliés. Leur absence fausse ton analyse, t’empêchant de voir l’histoire complète.",
+    "clown": "🏆 « Il a monté son podcast et a réussi… donc moi aussi je vais le faire ! » (Recette de succès sans mentionner les ratés invisibles).",
+    "invite": "Abraham Wald",
+    "citation": "« Ce qu’on ne voit pas est parfois plus crucial que ce qu’on regarde. »",
+    "concept": "Ce biais te fait ignorer les ‘échecs’ qui sont invisibles et te fait croire que les réussites visibles sont la norme. L’absence des perdants fausse tes prévisions."
+  },
+  {
+    "id": 17,
+    "nom": "Biais de l’intuition paresseuse",
+    "famille": "🧠 Biais cognitifs",
+    "clarte": "Ton esprit opte pour la solution la plus simple. Une idée qui arrive te suffit, tout devient évident instantanément.",
+    "ombre": "Tu ne remets pas en question ce qui semble simple. Tu choisis la facilité sans approfondir. L’intuition te rassure, mais elle peut aussi t’induire en erreur.",
+    "clown": "🛋️ « Mon instinct me dit que c’est ça. » (Décisions en mode canapé, confort et paresse mentale assurés).",
+    "invite": "Daniel Kahneman",
+    "citation": "« Le système 1 pense vite… mais pas toujours juste. »",
+    "concept": "Ton cerveau fonctionne à deux vitesses : l’intuition rapide et l’analyse lente. Ce biais montre ta tendance à privilégier la première, souvent trop rapide, et parfois moins fiable."
+  }
+]
+[
+  {
+    "id": 18,
+    "nom": "Biais d’illusion de contrôle",
+    "famille": "🧠 Biais cognitifs",
+    "clarte": "Tu te sens maître du hasard. Tu crois que ton attention ou ton geste influencent l’issue. Cela te rassure : tu tiens la barre, même sur une mer agitée.",
+    "ombre": "Tu confonds volonté et effet réel. Tu penses agir sur l’aléatoire… alors que c’est lui qui danse sans te regarder.",
+    "clown": "🎮 « Si je clique avec assez d’intention, l’univers va coopérer. » (Magie intuitive sans mode d’emploi).",
+    "invite": "Ellen Langer",
+    "citation": "« L’illusion de contrôle, c’est croire qu’agir suffit à maîtriser. »",
+    "concept": "Ce biais te fait croire que tu contrôles des choses incontrôlables. Tu projettes ta volonté sur l’aléa. C’est un placebo psychique… doux, mais aveuglant."
+  },
+  {
+    "id": 19,
+    "nom": "Biais de l’instant présent",
+    "famille": "🧠 Biais cognitifs",
+    "clarte": "Tu choisis ce qui apaise tout de suite. Le présent crie fort, le futur reste flou. Tu préfères la douceur immédiate au bénéfice différé.",
+    "ombre": "Tu repousses l’effort, tu ignores les conséquences. Ton futur devient un dépôt sauvage de décisions non assumées.",
+    "clown": "🍩 « Une dernière douceur… pour commencer mon régime demain (comme hier). » (Calendrier mental réécrit à la carte).",
+    "invite": "George Ainslie",
+    "citation": "« L’avenir est discret, le présent monopolise la scène. »",
+    "concept": "Ce biais te fait survaloriser le court terme. Tu échanges une paix maintenant contre un prix plus tard. C’est humain — mais souvent coûteux."
+  },
+  {
+    "id": 20,
+    "nom": "Biais d’effet de halo",
+    "famille": "🧠 Biais cognitifs",
+    "clarte": "Un détail flatteur illumine tout le portrait. Beauté, aisance, gentillesse… et soudain, tout semble brillant.",
+    "ombre": "Tu généralises à partir d’un charme. Tu oublies les angles morts, aveuglé·e par la lumière d’un seul projecteur.",
+    "clown": "😇 « Il parle bien… donc il dirige bien. » (Casting global sur base d’un seul rayon de soleil).",
+    "invite": "Edward Thorndike",
+    "citation": "« Une première impression peut peindre toute la toile. »",
+    "concept": "Tu tires une conclusion globale à partir d’un seul aspect positif. Ce biais transforme un sourire en CV complet. La nuance disparaît dans l’éclat."
+  },
+  {
+    "id": 21,
+    "nom": "Biais d’auto-complaisance",
+    "famille": "🧠 Biais cognitifs",
+    "clarte": "Quand ça marche, c’est grâce à toi. Quand ça rate, c’est la faute du monde. Ton estime glisse en silence entre logique et légende personnelle.",
+    "ombre": "Tu esquives l’autocritique. Tu maquilles les revers en incidents externes. Ta narration devient un cocon anti-doute.",
+    "clown": "🧼 « Si je gagne, je suis brillant. Si j’échoue, l’univers est mal aligné. » (Lessive intérieure à savon sélectif).",
+    "invite": "Fritz Heider",
+    "citation": "« Nous sommes justes envers nous-mêmes… et indulgents envers nous. »",
+    "concept": "Ce biais te protège en réécrivant les causes. Tu valorises ton mérite dans les succès et dilues ta part dans les échecs. C’est un filtre doux… mais faussé."
+  },
+  {
+    "id": 22,
+    "nom": "Biais de dissonance cognitive",
+    "famille": "🧠 Biais cognitifs",
+    "clarte": "Tu veux être cohérent·e. Quand ton comportement contredit tes valeurs, tu réajustes l’un ou l’autre pour soulager la tension.",
+    "ombre": "Tu ne changes pas vraiment : tu racontes autrement. Tu ajustes ton récit pour éviter l’inconfort. Ta lucidité devient meuble de rangement.",
+    "clown": "🎭 « Je bois du soda… mais je mange bio. » (Compensation symbolique, garantie sans contradiction apparente).",
+    "invite": "Leon Festinger",
+    "citation": "« L’incohérence pique. Alors on recoud. »",
+    "concept": "Ce biais naît d’un conflit intérieur : entre ce que tu fais et ce que tu penses. Pour t’apaiser, tu changes ton regard — parfois plus que ta réalité."
+  }
+]
+[
+  {
+    "id": 23,
+    "nom": "Biais d’exposition sélective",
+    "famille": "🧠 Biais cognitifs",
+    "clarte": "Tu choisis ce qui te ressemble. Infos, amis, algorithmes : tous valident ton regard. Tu te sens en sécurité, aligné·e, tranquille.",
+    "ombre": "Tu n’entends plus la dissonance. Ce qui dérange reste dehors. Le doute devient un bruit faible… puis un silence.",
+    "clown": "📢 « J’ai tout vérifié. Mes groupes disent que j’ai raison. » (Bulle d’accord avec isolation thermique certifiée).",
+    "invite": "Eli Pariser",
+    "citation": "« Une bulle de filtres te montre ce que tu veux… pas ce que tu fuis. »",
+    "concept": "Ce biais te fait tourner en boucle dans un monde qui t’approuve. Tu perds l’altérité, l’inconfort… et parfois, la réalité vivante du débat."
+  },
+  {
+    "id": 24,
+    "nom": "Biais de disponibilité affective",
+    "famille": "🧠 Biais cognitifs",
+    "clarte": "Un souvenir intense te paraît fréquent. Ton émotion devient un détecteur… qui confond l’exception avec la norme.",
+    "ombre": "Tu donnes trop de poids à ce qui t’a frappé. La peur devient mesure. La mémoire devient prophétie.",
+    "clown": "📺 « Une mouette a attaqué un enfant. Depuis, j’évite les oiseaux. » (Bulletin météo émotionnel sans vérification).",
+    "invite": "Daniel Kahneman",
+    "citation": "« Ce qui t’a ému prend plus de place que ce qui est vrai. »",
+    "concept": "Ton cerveau surestime ce qu’il ressent fort. Tu juges la fréquence à l’intensité du souvenir, pas à sa réalité. Ce biais gonfle l’ombre d’un instant… jusqu’à masquer le reste."
+  },
+  {
+    "id": 25,
+    "nom": "Biais du coût irrécupérable",
+    "famille": "🧠 Biais cognitifs",
+    "clarte": "Tu poursuis un choix car tu y as déjà mis trop. Quitter serait perdre. Rester semble courageux.",
+    "ombre": "Tu t’obstines au lieu de t’ajuster. Le passé pèse sur ton futur. Tu défends ce qui t’abîme… pour ne pas avoir ‘gâché’.",
+    "clown": "💸 « C’était cher, donc je vais tout manger. Même si c’est infect. » (Loyauté digestive au naufrage annoncé).",
+    "invite": "Richard Thaler",
+    "citation": "« Le passé est payé. L’important, c’est maintenant. »",
+    "concept": "Ce biais te retient dans ce qui ne sert plus. Tu confonds engagement et emprisonnement. Lâcher, parfois, c’est respirer."
+  }
+]
+[
+  {
+    "id": 26,
+    "nom": "Croyance du mérite individuel",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois que chacun·e a ce qu’il ou elle mérite. Le succès prouve l’effort. L’échec vient d’un manque.",
+    "ombre": "Tu oublies les départs inégaux, les barrières invisibles. Tu fais passer l’injustice pour une faute personnelle.",
+    "clown": "🎖️ « Si tu veux, tu peux ! (sauf si tu nais trop bas, trop loin, ou trop tôt.) » (Coaching aérien sans parachute social).",
+    "invite": "Pierre Bourdieu",
+    "citation": "« Le mérite masque souvent l’héritage. »",
+    "concept": "Ce mythe rassure : chacun serait seul maître de son destin. Mais la ligne de départ n’est pas la même pour tou·te·s. Le mérite devient un vernis poli sur des inégalités profondes."
+  },
+  {
+    "id": 27,
+    "nom": "Croyance en la neutralité des institutions",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois que l’école, la justice, l’administration traitent chacun à égalité. Neutres, justes, universelles.",
+    "ombre": "Tu ne vois pas les normes dominantes intégrées. L’universalité masque des exclusions. L’égalité d’apparence ne garantit pas l’équité réelle.",
+    "clown": "⚖️ « La République ne fait pas de différences. Elle les range dans des cases. » (Tri institutionnel sous emballage égalitaire).",
+    "invite": "Audre Lorde",
+    "citation": "« Les outils du maître ne déconstruisent pas la maison du maître. »",
+    "concept": "Ce mythe rend les structures invisibles. Les institutions ont une histoire, un langage, des angles morts. Ce qu’elles nomment égalité peut parfois reconduire l’ordre établi."
+  },
+  {
+    "id": 28,
+    "nom": "Croyance en la croissance infinie",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois qu’il faut toujours produire plus, avancer plus, croître sans limite. Le progrès serait une montée continue.",
+    "ombre": "Tu oublies que tout organisme, toute planète, tout être a une limite. L’ambition devient démesure. L’expansion devient fuite.",
+    "clown": "📈 « Plus, toujours plus ! Même quand ça casse, c’est bon signe. » (Graphique euphorique en chute libre).",
+    "invite": "Serge Latouche",
+    "citation": "« Croître sans fin dans un monde fini est une absurdité. »",
+    "concept": "Cette croyance glorifie l’accumulation. Mais croître n’est pas toujours grandir. Parfois, ralentir, c’est résister. Reculer, c’est survivre."
+  },
+  {
+    "id": 29,
+    "nom": "Croyance en l’objectivité pure",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois qu’on peut observer sans influer, mesurer sans se situer. Comme si la vérité parlait toute seule.",
+    "ombre": "Tu oublies que tout regard est orienté. Choisir un objet, c’est déjà choisir une lecture. La neutralité est une mise en scène.",
+    "clown": "🔬 « Je suis objectif. Je regarde tout… sauf ce qui me dérange. » (Objectivité directionnelle sous microscope émotionnel).",
+    "invite": "Donna Haraway",
+    "citation": "« Il n’y a pas de regard de nulle part. »",
+    "concept": "Tu veux croire à une vérité au-dessus des corps. Mais toute pensée est située. Nommer sa place, c’est déjà penser mieux."
+  },
+  {
+    "id": 30,
+    "nom": "Croyance en l’égalité réelle",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois que les lois suffisent. Même droits, même jeu, même chances.",
+    "ombre": "Tu oublies les discriminations structurelles, les héritages inégalitaires, les freins silencieux. L’égalité légale n’efface pas les écarts vécus.",
+    "clown": "🎲 « Tout le monde peut réussir… mais certain·es jouent sans pion, à l’aveugle, sur un plateau penché. » (Compétition équitable en trompe-l’œil).",
+    "invite": "Rokhaya Diallo",
+    "citation": "« L’égalité écrite ne garantit pas la justice vécue. »",
+    "concept": "Cette croyance confond principe et réalité. L’égalité n’est pas donnée : elle se construit, se défend, se réclame. Les lois ne suffisent pas si le terrain est biaisé."
+  }
+]
+[
+  {
+    "id": 31,
+    "nom": "Croyance en la réussite comme norme",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois que réussir, c’est gravir, produire, rayonner. Plus tu montes, plus tu mérites.",
+    "ombre": "Tu oublies les réussites silencieuses : survivre, s’arrêter, relier. Tu confonds valeur humaine et rendement social.",
+    "clown": "🏆 « Il se lève à 5h, médite en avion et célèbre l’échec… après trois levées de fonds. » (Spiritualité performative sous stéroïdes LinkedIn).",
+    "invite": "Alain Ehrenberg",
+    "citation": "« Être soi, aujourd’hui, c’est être performant. »",
+    "concept": "Ce mythe glorifie les vainqueurs visibles. Il invisibilise les résistances lentes, les détours vitaux, les choix non rentables. Il épuise ceux qu’il ignore."
+  },
+  {
+    "id": 32,
+    "nom": "Croyance que la norme est naturelle",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois que ce qui est fréquent est normal. Et que le normal est souhaitable, logique, sain.",
+    "ombre": "Tu oublies que la norme est construite. Ce qui est majoritaire n’est pas toujours juste.",
+    "clown": "📏 « Tout le monde le fait. Donc c’est bon. Donc tu dois. Sinon t’as un bug. » (Mesure sociale à calibrage anxieux).",
+    "invite": "Michel Foucault",
+    "citation": "« La norme est un instrument de pouvoir. »",
+    "concept": "Ce mythe fait de l’habitude une vérité. Il valide l’obéissance, efface les marges, et transforme l’écart en défaut à corriger."
+  },
+  {
+    "id": 33,
+    "nom": "Croyance en la séparation raison/émotion",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois que penser, c’est éliminer l’émotion. Que la logique est froide, propre, pure.",
+    "ombre": "Tu oublies que toute pensée naît d’un ressenti. Tu coupes la tête de son cœur.",
+    "clown": "🧠 « Je suis rationnel·le. Sauf quand j’ai tort. Là, je suis juste incompris·e. » (Neuro-mécanique de protection affective).",
+    "invite": "Antonio Damasio",
+    "citation": "« Il n’y a pas de décision sans émotion. »",
+    "concept": "Ce mythe nie l’intelligence sensible. Il fait du corps un parasite. Mais sans affect, même la logique devient vide ou cruelle."
+  },
+  {
+    "id": 34,
+    "nom": "Croyance en l’identité figée",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois qu’on est quelque chose : homme, femme, d’ici, d’un bloc. Tu cherches du clair dans le flou.",
+    "ombre": "Tu oublies les passages, les pluralités, les versions mouvantes de soi. Tu veux fixer ce qui respire.",
+    "clown": "🪪 « Tu es quoi ? Et tu comptes garder ça longtemps ? » (Cartographie existentielle en dur).",
+    "invite": "Judith Butler",
+    "citation": "« L’identité est une performance répétée. »",
+    "concept": "Ce mythe classe, enferme, fige. Il transforme le vivant en formulaire. Mais l’identité glisse, joue, se transforme — parfois sans prévenir."
+  },
+  {
+    "id": 35,
+    "nom": "Croyance que le silence est neutre",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois que te taire, c’est rester neutre. Que le silence protège de tout.",
+    "ombre": "Tu oublies que le silence soutient parfois l’ordre injuste. Ne rien dire peut suffire à cautionner.",
+    "clown": "🤐 « Je ne dis rien. Donc je suis hors-jeu. Mais toujours du bon côté. » (Discrétion certifiée non-responsable).",
+    "invite": "Desmond Tutu",
+    "citation": "« Le silence face à l’injustice, c’est choisir le camp de l’oppresseur. »",
+    "concept": "Ce mythe maquille le retrait en sagesse. Mais le silence est un langage. Il peut être abri… ou abandon. Il n’est jamais neutre."
+  }
+]
+[
+  {
+    "id": 36,
+    "nom": "Croyance en l’effort comme preuve morale",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois que ce qui coûte a plus de valeur. Que l’effort est noble. Que la difficulté élève.",
+    "ombre": "Tu oublies les joies fluides, les élans sans douleur, les réussites sans épuisement. Tu suspectes tout ce qui vient facilement.",
+    "clown": "💼 « Je travaille 14h par jour. Je suis donc une bonne personne. Même si je m’efface à petit feu. » (Éthique sacrificielle certifiée rentable).",
+    "invite": "Simone Weil",
+    "citation": "« Le malheur ne donne pas toujours raison à celui qui souffre. »",
+    "concept": "Ce mythe glorifie l’usure comme signe de valeur. Il confond effort et profondeur. Mais l’aisance n’est pas paresse : c’est parfois la sagesse qui a trouvé son rythme."
+  },
+  {
+    "id": 37,
+    "nom": "Croyance que la souffrance rend légitime",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois que la douleur donne le droit de parler. Que souffrir rend ta voix plus vraie.",
+    "ombre": "Tu oublies que la joie peut être tout aussi lucide. Tu transformes l’écoute en classement de blessures.",
+    "clown": "😔 « Moi, j’ai plus souffert. Donc je parle. Toi, tu écoutes. » (Hiérarchie affective avec tableau d’honneur cicatriciel).",
+    "invite": "bell hooks",
+    "citation": "« La douleur peut ouvrir… ou enfermer. »",
+    "concept": "Ce mythe donne à la souffrance un pouvoir moral. Il croit que la douleur rend juste. Mais la douceur aussi peut porter une vérité. Et le calme, une mémoire active."
+  },
+  {
+    "id": 38,
+    "nom": "Croyance en la transparence des intentions",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois que les mots disent ce qu’ils veulent dire. Que les intentions se lisent comme des panneaux clairs.",
+    "ombre": "Tu oublies les peurs, les silences, les jeux de rôle. Tu prends le langage pour un miroir… alors qu’il est souvent un masque.",
+    "clown": "🪞 « Il l’a dit, donc il le pense. » (Télépathie naïve avec filtre émotionnel automatique).",
+    "invite": "Paul Watzlawick",
+    "citation": "« On ne peut pas ne pas communiquer. Mais on peut très mal se comprendre. »",
+    "concept": "Ce mythe imagine la communication comme transparente. Mais toute parole est un tissu : de gestes, de contextes, d’ombres. L’intention, elle, voyage déguisée."
+  },
+  {
+    "id": 39,
+    "nom": "Croyance que l’ordre est naturel",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois que ce qui est en place est légitime. Que la stabilité est une preuve de sagesse.",
+    "ombre": "Tu oublies que l’ordre peut être hérité, imposé, maquillé en bon sens. Ce qui dure n’est pas toujours juste.",
+    "clown": "📚 « C’est comme ça depuis toujours. Donc c’est forcément bien. » (Musée du pouvoir avec étiquette pédagogique).",
+    "invite": "Jacques Rancière",
+    "citation": "« L’ordre n’est pas la paix. C’est ce qu’on met à la place du débat. »",
+    "concept": "Ce mythe présente les règles comme évidentes. Mais l’ordre peut anesthésier la pensée. Et empêcher les voix neuves d’émerger."
+  },
+  {
+    "id": 40,
+    "nom": "Croyance en l’individualisme éclairé",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois que se réaliser, c’est décider seul. Que la vraie liberté, c’est l’autonomie absolue.",
+    "ombre": "Tu oublies les appuis reçus, les soins invisibles, les mains discrètes. Tu oublies que tu n’es jamais seul·e au départ.",
+    "clown": "🧍 « Je me suis fait·e tout·e seul·e. Merci de ne pas regarder qui m’a porté. » (Narratif libéral à mémoire auto-sélective).",
+    "invite": "Barbara Stiegler",
+    "citation": "« L’individu n’existe que dans la relation. »",
+    "concept": "Ce mythe glorifie l’isolement comme force. Mais toute autonomie est tissée : par les autres, les collectifs, les liens. Sans eux, la liberté devient fiction héroïque."
+  }
+]
+[
+  {
+    "id": 41,
+    "nom": "Croyance que le savoir rend supérieur",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois que savoir plus, c’est valoir plus. Que comprendre te rend meilleur.",
+    "ombre": "Tu oublies que le savoir peut faire taire, intimider, exclure. Il devient domination… s’il ne devient pas relation.",
+    "clown": "📚 « Laisse-moi t’expliquer ce que tu ressens, avec des mots que tu ne connais pas. » (Diplômite bienveillante à effet paralysant).",
+    "invite": "Ivan Illich",
+    "citation": "« L’école enseigne la confusion entre traitement et soin. »",
+    "concept": "Ce mythe transforme le savoir en échelle sociale. Il oublie que comprendre, c’est aussi s’incliner, se relier, écouter. Un savoir qui ne rejoint pas… écrase doucement."
+  },
+  {
+    "id": 42,
+    "nom": "Croyance en la transparence des données",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois que les chiffres disent le vrai. Qu’ils sont neutres, clairs, incontestables.",
+    "ombre": "Tu oublies qu’un chiffre est toujours une décision : quoi mesurer, comment, et pourquoi. L’oubli est souvent programmé.",
+    "clown": "📊 « Ce n’est pas moi, c’est l’algorithme. » (Pilotage automatique avec déresponsabilisation intégrée).",
+    "invite": "Cathy O’Neil",
+    "citation": "« Les algorithmes sont des opinions figées dans du code. »",
+    "concept": "Ce mythe donne aux données le pouvoir d’un oracle. Mais les chiffres ne parlent jamais seuls : ils sont mis en scène, cadrés, sélectionnés. L’objectivité brute n’existe pas."
+  },
+  {
+    "id": 43,
+    "nom": "Croyance que la neutralité protège",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois que ne pas prendre position, c’est rester juste. Que la neutralité protège de tout.",
+    "ombre": "Tu oublies que le silence peut soutenir l’ordre établi. Que l’abstention peut devenir un accord muet.",
+    "clown": "⚪ « Je suis neutre : je ne me salis pas. Même si ça déborde. » (Blanchiment moral à usage passif).",
+    "invite": "Hannah Arendt",
+    "citation": "« Là où personne ne prend position, le mal prospère. »",
+    "concept": "Ce mythe valorise l’inaction comme vertu. Mais ne rien dire, c’est parfois laisser faire. Et rester neutre, c’est aussi faire pencher la balance — sans assumer le geste."
+  },
+  {
+    "id": 44,
+    "nom": "Croyance que la vérité suffit",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois qu’il suffit d’avoir raison pour convaincre. Que la vérité s’impose d’elle-même.",
+    "ombre": "Tu oublies que l’émotion écoute avant la logique. Que la forme compte autant que le fond. Qu’on ne plante pas un mot sans préparer la terre.",
+    "clown": "🔍 « J’ai les faits. Donc je te parle fort. Tu vas finir par comprendre. » (Pédagogie marteau avec certificat d’exactitude).",
+    "invite": "Bruno Latour",
+    "citation": "« Les faits ne parlent pas d’eux-mêmes. Il faut les faire parler. »",
+    "concept": "Ce mythe sacralise la véracité au détriment de la relation. Mais la vérité sans accueil devient violence. Elle a besoin d’écoute pour germer. Sinon, elle rebondit sans toucher."
+  },
+  {
+    "id": 45,
+    "nom": "Croyance que le conflit est un échec",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois que le conflit détruit. Que la paix, c’est l’absence de tension. Que l’unanimité est le but.",
+    "ombre": "Tu oublies que la friction éclaire. Que le désaccord peut être fécond. Qu’éviter le conflit, c’est parfois éviter la vérité.",
+    "clown": "🔥 « Restons zen. On parlera quand ça ira mieux. Donc jamais. » (Politesse anesthésiante à effet de censure douce).",
+    "invite": "Chantal Mouffe",
+    "citation": "« Le conflit n’est pas le contraire de la démocratie, il en est le moteur. »",
+    "concept": "Ce mythe confond harmonie et inertie. Il préfère le silence à la parole rugueuse. Mais un vrai conflit peut soigner, transformer, régénérer. C’est l’ombre nécessaire du vivant commun."
+  }
+]
+[
+  {
+    "id": 46,
+    "nom": "Croyance que la culture est supérieure",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois que ta culture est plus avancée, plus juste, plus raffinée. Que ce que tu connais vaut plus que ce que tu ignores.",
+    "ombre": "Tu oublies que chaque culture éclaire… mais avec ses angles morts. Regarder l’autre d’en haut, c’est déjà t’aveugler sur toi-même.",
+    "clown": "🎭 « Chez nous, on est logiques. Là-bas, c’est flou, étrange, folklorique. » (Tourisme moral avec filtre de supériorité installé par défaut).",
+    "invite": "Edward Saïd",
+    "citation": "« L’orientalisme est un style de domination, de restructuration et d’autorité. »",
+    "concept": "Ce mythe transforme ton point de vue en norme universelle. Il confond repère et vérité. Mais aucune culture ne résume l’humain. Et imposer ses codes, c’est déjà coloniser les regards."
+  },
+  {
+    "id": 47,
+    "nom": "Croyance que la technique résout tout",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois que tout problème a sa solution technologique. Que l’outil bien pensé suffit à réparer le monde.",
+    "ombre": "Tu oublies les conflits, les émotions, les récits. Tu transformes les relations humaines en bugs à corriger.",
+    "clown": "🛠️ « Bientôt une appli pour guérir le racisme, mesurer l’amour et réguler la colère. » (Solutionnisme magique avec interface froide).",
+    "invite": "Evgeny Morozov",
+    "citation": "« Le solutionnisme détourne la technologie des vraies questions. »",
+    "concept": "Ce mythe confond précision et sagesse. Il croit que le bon programme suffit. Mais la technique sans réflexion éthique peut automatiser l’oubli, pas la justice."
+  },
+  {
+    "id": 48,
+    "nom": "Croyance que la lenteur est un défaut",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois que vite, c’est mieux. Que la lenteur freine. Que l’efficacité est une urgence.",
+    "ombre": "Tu oublies que le vivant mûrit lentement. Que l’écoute a besoin de temps. Et que précipiter, parfois, c’est rater l’essentiel.",
+    "clown": "🐢 « Dépêche-toi de ralentir, on a une réunion sur le calme à 9h. » (Paradoxe chrono-productif à coaching frénétique).",
+    "invite": "Carl Honoré",
+    "citation": "« La lenteur n’est pas un luxe, c’est une sagesse. »",
+    "concept": "Ce mythe valorise la vitesse comme finalité. Mais la lenteur n’est pas paresse : c’est une autre forme de soin, de justesse, de résistance au monde pressé."
+  },
+  {
+    "id": 49,
+    "nom": "Croyance en la séparation humain/nature",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois que l’humain est à part. Qu’il gère la nature comme un objet extérieur. Qu’il peut la sauver… depuis sa tour.",
+    "ombre": "Tu oublies que tu es vivant parmi les vivants. Que tu respires, pousses, vieillis, comme tout ce qui pousse.",
+    "clown": "🌍 « On doit sauver la planète. » (Dit par l’espèce qui la surexploite — à coups de mots verts et d’actions grises).",
+    "invite": "Philippe Descola",
+    "citation": "« Il n’y a pas d’un côté la nature et de l’autre les humains. »",
+    "concept": "Ce mythe t’arrache à ce qui te porte. Il transforme le vivant en décor. Mais tu n’es pas extérieur au monde. Tu es dedans, avec, et responsable."
+  },
+  {
+    "id": 50,
+    "nom": "Croyance que l’égalité se décrète",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois qu’une déclaration d’égalité suffit. Que la loi gomme d’un trait les injustices d’hier.",
+    "ombre": "Tu oublies les écarts vécus, les barrières sourdes, les privilèges reproduits. L’égalité formelle ne suffit pas à rendre le terrain équitable.",
+    "clown": "📜 « Vous êtes tous égaux. Sauf ceux qu’on ne voit pas, qu’on n’écoute pas, ou qu’on ralentit sans bruit. » (République performative à effet placebo).",
+    "invite": "Thomas Piketty",
+    "citation": "« Les droits formels ne compensent pas les écarts de pouvoir. »",
+    "concept": "Ce mythe confond l’écrit et le vécu. Il célèbre des principes sans voir les pratiques. Mais l’égalité ne s’annonce pas : elle s’éprouve, s’ajuste, se conquiert ensemble."
+  }
+]
+[
+  {
+    "id": 51,
+    "nom": "Croyance que la réussite est visible",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois que réussir, c’est briller : s’afficher, se quantifier, se célébrer. Plus c’est vu, plus c’est vrai.",
+    "ombre": "Tu oublies les victoires secrètes : se relever, tenir debout, garder l’élan malgré l’ombre.",
+    "clown": "📸 « Regarde comme je vais bien : 3 trophées, 2 filtres, et 0 respiration profonde. » (Succès mis en scène à haute tension narrative).",
+    "invite": "Georges Perec",
+    "citation": "« Ce qui se passe vraiment, c’est ce qu’on ne remarque pas. »",
+    "concept": "Ce mythe transforme la réussite en spectacle. Mais ce qui compte vraiment ne s’affiche pas toujours. Réussir, parfois, c’est continuer… sans témoin, sans décor."
+  },
+  {
+    "id": 52,
+    "nom": "Croyance que l’intelligence est scolaire",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois que l’intelligence se note, se classe, se diplôme. Elle se mesure, donc elle se hiérarchise.",
+    "ombre": "Tu oublies les intelligences du geste, du lien, du cœur. Tu réduis l’esprit à un chiffre.",
+    "clown": "📐 « Pas de bac ? Tu peux pas comprendre. » (Élite cognitive à jauge validante).",
+    "invite": "Howard Gardner",
+    "citation": "« Il existe plusieurs formes d’intelligence, pas une seule. »",
+    "concept": "Ce mythe classe au lieu d’ouvrir. Il invisibilise les formes de compréhension non normées. L’intelligence ne se prouve pas toujours… parfois, elle soigne."
+  },
+  {
+    "id": 53,
+    "nom": "Croyance que la réussite est méritée",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois que ceux qui sont en haut l’ont mérité. Que leur place est équitable, issue de l’effort.",
+    "ombre": "Tu oublies les appuis, les héritages, les inégalités de départ. Tu transformes l’avantage en talent.",
+    "clown": "🎖️ « J’ai mérité ma place. C’est juste une coïncidence si les autres n’y arrivent pas. » (Méritocratie à filtre contextuel invisible).",
+    "invite": "Michael Sandel",
+    "citation": "« Le mérite peut devenir une arrogance dangereuse. »",
+    "concept": "Ce mythe légitime les écarts. Il justifie l’ordre établi en oubliant les dés pipés. Le mérite sans conscience… devient orgueil systémique."
+  },
+  {
+    "id": 54,
+    "nom": "Croyance que la réalité est neutre",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois que tu vois ‘le monde tel qu’il est’. Que ta perception reflète le réel, sans filtre.",
+    "ombre": "Tu oublies que toute vision est située. Ton regard cadre, colore, sélectionne. Tu crois décrire… tu interprètes.",
+    "clown": "👁️ « Ce n’est pas une opinion. C’est juste la réalité. » (Objectivité autoproclamée à œillère bienveillante).",
+    "invite": "Maurice Merleau-Ponty",
+    "citation": "« Nous ne sommes jamais devant le monde : nous sommes dedans. »",
+    "concept": "Ce mythe efface le rôle du regard. Mais le réel ne s’offre jamais nu : il est toujours perçu à travers ton corps, ton histoire, ton angle. La neutralité est une posture… pas une vérité."
+  },
+  {
+    "id": 55,
+    "nom": "Croyance que le langage décrit fidèlement le réel",
+    "famille": "🌀 Croyances culturelles limitantes",
+    "clarte": "Tu crois que les mots montrent les choses telles qu’elles sont. Que dire, c’est rendre le monde clair.",
+    "ombre": "Tu oublies que chaque mot découpe, cadre, interprète. Le langage éclaire… mais aussi détourne.",
+    "clown": "🗣️ « Parle correctement, avec les bons mots. Sinon on ne comprendra pas. » (Police lexicale à service de normalisation immédiate).",
+    "invite": "Jacques Derrida",
+    "citation": "« Il n’y a pas de hors-texte. »",
+    "concept": "Ce mythe croit à la transparence du dire. Mais parler, c’est traduire. C’est toujours déjà trahir un peu. Ce que tu nommes… tu le modifies."
+  }
+]
+
