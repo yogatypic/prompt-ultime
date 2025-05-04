@@ -1,47 +1,41 @@
-import express from "express";
-import cors from "cors";
-import dotenv from "dotenv";
-import { OpenAI } from "openai";
-import path from "path";
-import { fileURLToPath } from "url";
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import { OpenAI } from 'openai';
 
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 10000;
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static('public'));
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-app.post("/api/chat", async (req, res) => {
+app.post('/api/chat', async (req, res) => {
   const { userMessage, contexte } = req.body;
 
   try {
-    const completion = await openai.chat.completions.create({
-      model: "gpt-4",
+    const chatCompletion = await openai.chat.completions.create({
       messages: [
-        { role: "system", content: `Tu es une IA pédagogique dans une expérience interactive. Contexte : ${contexte}` },
-        { role: "user", content: userMessage },
+        { role: "system", content: contexte },
+        { role: "user", content: userMessage }
       ],
-      temperature: 0.7,
+      model: "gpt-3.5-turbo",
     });
 
-    const reply = completion.choices[0]?.message?.content;
+    const reply = chatCompletion.choices[0]?.message?.content || "Pas de réponse générée.";
     res.json({ reply });
   } catch (err) {
-    console.error("Erreur OpenAI:", err);
-    res.status(500).json({ error: "Erreur lors de la génération." });
+console.error("❌ Erreur OpenAI :", err?.response?.data || err.message || err);
+res.status(500).json({ error: err?.response?.data?.error?.message || "Erreur lors de la génération." });
+
   }
 });
 
+const port = process.env.PORT || 10000;
 app.listen(port, () => {
   console.log(`✅ Serveur en ligne sur http://localhost:${port}`);
 });
