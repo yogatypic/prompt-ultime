@@ -1,0 +1,27 @@
+{
+  "name": "ia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yogatypic/prompt-ultime.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yogatypic/prompt-ultime/issues"
+  },
+  "homepage": "https://github.com/yogatypic/prompt-ultime#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "openai": "^4.97.0"
+  }
+}
