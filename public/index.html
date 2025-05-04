@@ -192,6 +192,65 @@
         addLog(`↩️ Retour à l'étape ${currentStepIndex + 1}`);
         loadStep();
       }
+      <script>
+  // ... fonctions déjà présentes comme addLog(), initExperience(), etc.
+
+  async function loadStep() {
+    if (currentStepIndex >= steps.length) {
+      document.getElementById("etape-container").innerHTML = '<p>✅ Expérience terminée.</p>';
+      addLog("Fin de l'expérience. Merci !");
+      return;
+    }
+
+    const etapeFile = steps[currentStepIndex];
+    try {
+      const etapeData = await fetch(etapeFile).then(res => res.json());
+
+      // 💡 🔁 Ajoute ce bloc juste après fetch()
+      if (etapeData.titre_section?.includes("Tirage des lunettes")) {
+        addLog("🎲 Étape 2 détectée : tirage automatique des lunettes.");
+        tirerLunettesEtPasser();
+        return;
+      }
+
+      // traitement habituel...
+      let content = `<h2>${etapeData.titre_section}</h2>`;
+      if (etapeData.accroche) {
+        content += `<p><em>${etapeData.accroche}</em></p>`;
+      }
+      if (etapeData.description) {
+        content += `<p>${etapeData.description}</p>`;
+      }
+
+      content += `<button onclick="validerEtape()">→ Continuer</button>`;
+      document.getElementById("etape-container").innerHTML = content;
+
+    } catch (err) {
+      document.getElementById("etape-container").innerHTML =
+        `<p class='error'>Erreur : ${err.message}</p>`;
+      addLog(`❌ Erreur lors du chargement de ${etapeFile} : ${err.message}`);
+    }
+  }
+
+  // ⬇️ AJOUTE ICI la fonction de tirage
+  async function tirerLunettesEtPasser() {
+    const getRandom = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+    const lunettes = {
+      cognitive: getRandom(1, 25),
+      culturelle: getRandom(26, 50),
+      meta: getRandom(51, 54)
+    };
+
+    addLog(`🧠 Lunette cognitive tirée : ${lunettes.cognitive}`);
+    addLog(`🌀 Croyance culturelle tirée : ${lunettes.culturelle}`);
+    addLog(`🔍 Méta-posture tirée : ${lunettes.meta}`);
+
+    sessionStorage.setItem("lunettes", JSON.stringify(lunettes));
+    setTimeout(() => validerEtape(), 1000); // petite pause pour lisibilité
+  }
+</script>
+
     }
 
     function addLog(message) {
