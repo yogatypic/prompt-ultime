@@ -171,11 +171,13 @@
         });
 
         const data = await res.json();
-        if (data.reply) {
-          addLog(`🤖 Réponse IA : ${data.reply}`);
-        } else {
-          addLog(`⚠️ Aucune réponse IA reçue.`);
-        }
+       if (data.reply) {
+  addLog(`🤖 Réponse IA : ${data.reply}`);
+} else {
+  addLog(`⚠️ Aucune réponse IA reçue.`);
+  alert("⚠️ L'assistant n'a pas pu répondre. Vérifie ta clé API ou réessaie plus tard.");
+}
+
       } catch (error) {
         addLog(`❌ Erreur lors de l'appel IA : ${error.message}`);
       }

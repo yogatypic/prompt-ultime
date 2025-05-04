@@ -8,7 +8,7 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static('public')); // nécessaire si index.html est dans /public
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -23,24 +23,21 @@ app.post('/api/chat', async (req, res) => {
         { role: "system", content: contexte },
         { role: "user", content: userMessage }
       ],
-      model: "gpt-3.5-turbo",
+      model: "gpt-3.5-turbo"
     });
 
-    const reply = chatCompletion.choices[0]?.message?.content || "Pas de réponse générée.";
+    const reply = chatCompletion.choices?.[0]?.message?.content || "Pas de réponse générée.";
     res.json({ reply });
   } catch (err) {
-console.error("❌ Erreur OpenAI :", err?.response?.data || err.message || err);
-res.status(500).json({ error: err?.response?.data?.error?.message || "Erreur lors de la génération." });
-
+    console.error("Erreur API OpenAI :", err);
+    res.status(500).json({ error: "Erreur lors de la génération : " + err.message });
   }
 });
 
+// ✅ LIGNE ESSENTIELLE POUR RENDER :
 const port = process.env.PORT;
-if (!port) {
-  throw new Error("🚨 PORT non défini dans les variables d’environnement");
-}
+if (!port) throw new Error("⛔ PORT non défini dans Render");
 app.listen(port, () => {
   console.log(`✅ Serveur en ligne sur le port ${port}`);
 });
-
 
