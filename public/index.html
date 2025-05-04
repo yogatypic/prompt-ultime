@@ -95,6 +95,26 @@
       const etapeFile = steps[currentStepIndex];
       try {
         const etapeData = await fetch(etapeFile).then(res => res.json());
+    // 💡 Cas spécial : étape de type "narration immersive"
+    if (etapeData.titre_section && etapeData.accroche) {
+      let content = `<h2>${etapeData.titre_section}</h2>`;
+      content += `<p><em>${etapeData.accroche}</em></p>`;
+      content += `<p>${etapeData.presentation_symbolique}</p>`;
+
+      if (etapeData.consignes?.length) {
+        content += "<ul>";
+        etapeData.consignes.forEach(c => content += `<li>${c}</li>`);
+        content += "</ul>";
+      }
+
+      if (etapeData.invitation) {
+        content += `<p><strong>${etapeData.invitation}</strong></p>`;
+      }
+
+      content += `<button onclick="validerEtape()">Commencer</button>`;
+      document.getElementById("etape-container").innerHTML = content;
+      return;
+    }
 
         let content = `<h2>Étape ${currentStepIndex + 1} – ${etapeData.nom || 'Sans nom'}</h2>`;
         if (etapeData.intro) content += `<p><em>${etapeData.intro}</em></p>`;
