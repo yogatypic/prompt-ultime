@@ -37,6 +37,19 @@ app.post('/api/chat', async (req, res) => {
 // ✅ LIGNE ESSENTIELLE POUR RENDER :
 const port = process.env.PORT;
 if (!port) throw new Error("⛔ PORT non défini dans Render");
+app.get('/test-openai', async (req, res) => {
+  try {
+    const chatCompletion = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages: [{ role: "user", content: "Bonjour, qui es-tu ?" }]
+    });
+    res.json({ success: true, reply: chatCompletion.choices[0].message.content });
+  } catch (err) {
+    console.error("❌ Erreur OpenAI test :", err);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
 app.listen(port, () => {
   console.log(`✅ Serveur en ligne sur le port ${port}`);
 });
