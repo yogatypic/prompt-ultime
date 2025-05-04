@@ -97,7 +97,11 @@ const etapeNom = steps[currentStepIndex] || `Étape ${currentStepIndex + 1}`;
   addLog(`📝 Étape ${currentStepIndex + 1} - Réponse utilisateur : ${reponse}`);
 
   try {
-    const res = await fetch('/api/chat', {
+  const baseURL = window.location.hostname.includes("localhost")
+  ? "http://localhost:10000"
+  : "https://prompt-ultime.onrender.com";
+
+const res = await fetch(`${baseURL}/api/chat`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
