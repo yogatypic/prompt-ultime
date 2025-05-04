@@ -4,8 +4,22 @@
   <meta charset="UTF-8">
   <title>Prototype Prompt Ultime</title>
   <style>
-    body { font-family: sans-serif; margin: 2em; background: #fefefe; color: #222; transition: all 0.5s ease; }
-    #log { background: #f4f4f4; padding: 1em; border: 1px solid #ccc; margin-top: 2em; white-space: pre-wrap; max-height: 300px; overflow-y: auto; }
+    body {
+      font-family: sans-serif;
+      margin: 2em;
+      background: #fefefe;
+      color: #222;
+      transition: all 0.5s ease;
+    }
+    #log {
+      background: #f4f4f4;
+      padding: 1em;
+      border: 1px solid #ccc;
+      margin-top: 2em;
+      white-space: pre-wrap;
+      max-height: 300px;
+      overflow-y: auto;
+    }
     #narration-intro {
       background: #eef;
       padding: 1em;
@@ -13,9 +27,17 @@
       margin-bottom: 2em;
       animation: fadeIn 1s ease-in-out;
     }
-    textarea { width: 100%; max-width: 600px; }
-    button { margin: 1em 0.5em; padding: 0.5em 1em; }
-    .error { color: red; }
+    textarea {
+      width: 100%;
+      max-width: 600px;
+    }
+    button {
+      margin: 1em 0.5em;
+      padding: 0.5em 1em;
+    }
+    .error {
+      color: red;
+    }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
@@ -43,7 +65,7 @@
     <p><em>Curieux, délicat, parfois drôle ou critique, mais jamais moqueur ni condescendant.</em></p>
 
     <p><label for="mode">🎛️ Choisissez votre mode :</label>
-      <select id="mode" aria-label="Mode de réponse">
+      <select id="mode">
         <option value="logique">Logique / Littéral</option>
         <option value="creatif">Créatif / Métaphorique</option>
         <option value="mixte">Mixte guidé</option>
@@ -70,8 +92,9 @@
     let log = [];
 
     async function initExperience() {
-      document.getElementById("narration-intro").classList.add("fade-out");
-      setTimeout(() => document.getElementById("narration-intro").style.display = "none", 800);
+      const intro = document.getElementById("narration-intro");
+      intro.classList.add("fade-out");
+      setTimeout(() => { intro.style.display = "none"; }, 800);
       mode = document.getElementById("mode").value;
       log = [];
       addLog(`Mode choisi : ${mode}`);
