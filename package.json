@@ -1,19 +1,26 @@
 {
-  "name": "ia",
+  "name": "prompt-ultime",
   "version": "1.0.0",
-  "description": "",
+  "description": "Prototype interactif du Prompt Ultime avec OpenAI et interface immersive.",
+  "type": "module",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
+  "keywords": [
+    "openai",
+    "express",
+    "interaction",
+    "projet immersif",
+    "prototype"
+  ],
+  "author": "Yogatypic",
+  "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yogatypic/prompt-ultime.git"
+    "url": "https://github.com/yogatypic/prompt-ultime.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/yogatypic/prompt-ultime/issues"
   },
@@ -22,18 +29,10 @@
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
-    "openai": "^4.97.0"
-  }
-}
-{
-  "name": "ia",
-  "version": "1.0.0",
-  "type": "module",
-  "description": "",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
+    "openai": "^4.29.1"
   },
-  ...
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  }
 }
 
