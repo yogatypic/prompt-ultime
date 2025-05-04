@@ -1,32 +1,17 @@
 {
-  "titre_section": "Étape 5 — Résonance intégrative",
-  "sous_titre": "Ce que tu gardes, ce que tu laisses… et ce que tu offres au monde",
-  "description": "Tu arrives au bout de cette enquête. Ce n’est pas une conclusion, mais une résonance intérieure. Tu n’as pas trouvé LA vérité — mais peut-être un frisson, une image persistante, une posture nouvelle.",
-  "intentions": [
-    "🌱 Garder ce qui t’a nourri : une intuition, une posture, un mot juste.",
-    "🕸️ Laisser ce qui reste flou : une question sans réponse, un doute encore en mouvement.",
-    "🎁 Offrir quelque chose : à toi, à un autre, au monde symbolique ou invisible."
-  ],
-  "champs": [
-    {
-      "champ": "🌱 Je garde…",
-      "aide": "Un élément marquant : une sensation, une phrase, une posture qui te reste."
-    },
-    {
-      "champ": "🕸️ Je laisse…",
-      "aide": "Ce que tu choisis de ne pas refermer trop vite. Un trouble, une hésitation, un espace de questionnement."
-    },
-    {
-      "champ": "🎁 J’offre…",
-      "aide": "Un geste symbolique : une parole intérieure, une offrande, une trace douce à déposer."
-    }
-  ],
-  "rituels_cloture_possibles": [
-    "💨 Souffle doucement un post-it imaginaire dans l’air.",
-    "🔵 Trace un cercle invisible autour de toi, comme une clôture symbolique.",
-    "🎶 Fredonne trois notes absurdes, et laisse-les s’évaporer.",
-    "🙃 Lève un sourcil intérieur, juste pour honorer l’étrangeté douce de ce parcours."
-  ],
-  "conclusion": "Tu n’as pas fermé une histoire. Tu as entrouvert un autre regard. Cette scène, cette enquête, ce miroir... t’auront peut-être déplacé·e, même un peu. Et c’est déjà beaucoup."
+  "nom": "Résonance finale",
+  "intro": "Tu as traversé des masques, des filtres, des symboles. Chaque étape était une façon de regarder, pas une vérité.",
+  "objectif": "Proposer une mise en résonance personnelle de l’ensemble du parcours.",
+  "consigne": {
+    "logique": "Formule une hypothèse sur ce que tu as appris en observant les 'normaux'.",
+    "creatif": "Écris une métaphore ou une image qui résume ton voyage symbolique.",
+    "mixte": "Mêle une observation concrète et une intuition poétique de ce que tu retiens."
+  },
+  "titre_section": "Étape 5 — Résonance finale",
+  "sous_titre": "Synthèse personnelle de l’expérience inversée",
+  "description": "C’est ici que l’expérience devient apprentissage. Que gardes-tu de cette exploration ?",
+  "consigne_principale": "Exprime en quelques lignes ce qui a résonné, dérangé ou éclairé en toi.",
+  "invitation": "Rédige librement ta réponse. Elle est précieuse.",
+  "note_pedagogique": "La résonance est une forme de compréhension incarnée. Elle dépasse le jugement pour devenir transformation."
 }
 

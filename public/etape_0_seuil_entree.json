@@ -1,14 +1,17 @@
 {
-  "titre_section": "Seuil d’entrée — Changer le regard en douceur",
-  "accroche": "🎬 Tu entres dans un jeu d’enquête inversée. Ici, ce sont les esprits atypiques qui observent les comportements 'normaux' comme des rituels étranges. On ne juge pas. On regarde autrement.",
-  "presentation_symbolique": "Tu es un explorateur venu d’ailleurs. Tu découvres les habitudes humaines avec curiosité. Ce monde t’est familier… mais aussi étrange. Chaque geste banal peut cacher une vérité surprenante.",
-  "consignes": [
-    "🌱 Observe avec douceur, sans chercher de vérité unique.",
-    "🎭 Laisse les symboles, les masques et les compagnons t’accompagner dans l’analyse.",
-    "🔍 Tu ne choisis rien ici : les étapes se déroulent à ton rythme, automatiquement.",
-    "📘 Ton rôle est d’être curieux, critique et bienveillant.",
-    "🧭 Chaque étape éclaire un morceau du réel… et un bout de toi-même."
-  ],
-  "invitation": "Prends une inspiration douce. L’aventure intérieure commence. Prépare-toi à voir autrement ce que tout le monde croit évident."
+  "nom": "Seuil d’entrée — Immersion inversée",
+  "intro": "Interface d’observation inversée : ici, les comportements considérés comme normaux deviennent les objets d’étude. Les “étranges” regardent les “standards” avec une curiosité tendre et une ironie éveillée.",
+  "objectif": "Initier doucement un regard neuroatypique sur le monde normotypique.",
+  "consigne": {
+    "logique": "Lis cette introduction comme une hypothèse cognitive. Que peut-on observer sans juger ?",
+    "creatif": "Ferme les yeux. Imagine un alien bienveillant découvrant un monde étrange. C’est toi.",
+    "mixte": "Navigue entre distance analytique et regard imagé. Que découvres-tu à travers cette posture inversée ?"
+  },
+  "titre_section": "Étape 0 — Seuil narratif d’entrée",
+  "sous_titre": "Accueillir la perspective inversée",
+  "description": "Avant toute action, il faut se situer. Ce seuil pose les bases d’un changement de regard.",
+  "consigne_principale": "Lis attentivement cette entrée en matière. Respire. Tu es prêt·e.",
+  "invitation": "Clique sur « Commencer » pour initier l’expérience.",
+  "note_pedagogique": "Ce seuil narratif est conçu comme une transition douce. Il prépare le cerveau à accueillir une expérience inhabituelle sans jugement."
 }
 
