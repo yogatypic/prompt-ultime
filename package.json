@@ -25,3 +25,15 @@
     "openai": "^4.97.0"
   }
 }
+{
+  "name": "ia",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  ...
+}
+
