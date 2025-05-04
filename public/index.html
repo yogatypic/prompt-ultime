@@ -1,30 +1,212 @@
-<div id="narration-intro">
-  <h2>🧪 Prototype Prompt Ultime – Version immersive<br>
-  Seuil d’entrée — Changer le regard en douceur</h2>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Prototype Prompt Ultime</title>
+  <style>
+    body { font-family: sans-serif; margin: 2em; background: #fefefe; color: #222; transition: all 0.5s ease; }
+    #log { background: #f4f4f4; padding: 1em; border: 1px solid #ccc; margin-top: 2em; white-space: pre-wrap; }
+    #narration-intro {
+      background: #eef;
+      padding: 1em;
+      border-left: 5px solid #88f;
+      margin-bottom: 2em;
+      animation: fadeIn 1s ease-in-out;
+    }
+    textarea { width: 100%; max-width: 600px; }
+    button { margin: 1em 0.5em; }
+    .error { color: red; }
 
-  <p>🎬 Tu entres dans un jeu d’enquête inversée. Ici, ce sont les esprits atypiques qui observent les comportements 'normaux' comme des rituels étranges. On ne juge pas. On regarde autrement.</p>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-  <p>Tu es un explorateur venu d’ailleurs. Tu découvres les habitudes humaines avec curiosité. Ce monde t’est familier… mais aussi étrange. Chaque geste banal peut cacher une vérité surprenante.</p>
+    .fade-out {
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>🧪 Prototype Prompt Ultime – Version immersive</h1>
 
-  <ul>
-    <li>🌱 Observe avec douceur, sans chercher de vérité unique.</li>
-    <li>🎭 Laisse les symboles, les masques et les compagnons t’accompagner dans l’analyse.</li>
-    <li>🔍 Tu ne choisis rien ici : les étapes se déroulent à ton rythme, automatiquement.</li>
-    <li>📘 Ton rôle est d’être curieux, critique et bienveillant.</li>
-    <li>🧭 Chaque étape éclaire un morceau du réel… et un bout de toi-même.</li>
-  </ul>
+  <div id="narration-intro">
+    <h2>Seuil d’entrée — Changer le regard en douceur</h2>
+    <p>🎬 Tu entres dans un jeu d’enquête inversée. Ici, ce sont les esprits atypiques qui observent les comportements 'normaux' comme des rituels étranges. On ne juge pas. On regarde autrement.</p>
+    <p>Tu es un explorateur venu d’ailleurs. Tu découvres les habitudes humaines avec curiosité. Ce monde t’est familier… mais aussi étrange. Chaque geste banal peut cacher une vérité surprenante.</p>
+    <ul>
+      <li>🌱 Observe avec douceur, sans chercher de vérité unique.</li>
+      <li>🎭 Laisse les symboles, les masques et les compagnons t’accompagner dans l’analyse.</li>
+      <li>🔍 Tu ne choisis rien ici : les étapes se déroulent à ton rythme, automatiquement.</li>
+      <li>📘 Ton rôle est d’être curieux, critique et bienveillant.</li>
+      <li>🧭 Chaque étape éclaire un morceau du réel… et un bout de toi-même.</li>
+    </ul>
+    <p><em>Prends une inspiration douce. L’aventure intérieure commence. Prépare-toi à voir autrement ce que tout le monde croit évident.</em></p>
 
-  <p><em>Prends une inspiration douce. L’aventure intérieure commence. Prépare-toi à voir autrement ce que tout le monde croit évident.</em></p>
+    <label for="mode">🎛️ Choisissez votre mode :</label>
+    <select id="mode">
+      <option value="logique">Logique / Littéral</option>
+      <option value="creatif">Créatif / Métaphorique</option>
+      <option value="mixte">Mixte guidé</option>
+    </select>
 
-  <label for="mode">🎛️ Choisissez votre mode :</label>
-  <select id="mode">
-    <option value="logique">Logique / Littéral</option>
-    <option value="creatif">Créatif / Métaphorique</option>
-    <option value="mixte">Mixte guidé</option>
-  </select>
-
-  <div style="margin-top: 1.5em;">
-    <button onclick="initExperience()" style="padding: 0.7em 1.5em; font-size: 1.1em;">🚀 Commencer</button>
+    <div style="margin-top: 1.5em;">
+      <button onclick="initExperience()" style="padding: 0.7em 1.5em; font-size: 1.1em;">🚀 Commencer</button>
+    </div>
   </div>
-</div>
+
+  <div id="etape-container"></div>
+
+  <div id="log">
+    <h3>📘 Journal pédagogique</h3>
+    <div id="log-content">Choisissez un mode pour démarrer.</div>
+    <button onclick="exporterLog()">💾 Exporter le journal</button>
+  </div>
+
+  <script>
+    let currentStepIndex = 0;
+    let steps = [];
+    let mode = "";
+    let log = [];
+
+    async function initExperience() {
+      const intro = document.getElementById("narration-intro");
+      intro.classList.add("fade-out");
+      setTimeout(() => { intro.style.display = "none"; }, 800);
+
+      mode = document.getElementById("mode").value;
+      log = [];
+      addLog(`Mode choisi : ${mode}`);
+
+      try {
+        const structure = await fetch("structure.json").then(res => {
+          if (!res.ok) throw new Error("structure.json introuvable (HTTP " + res.status + ")");
+          return res.json();
+        });
+
+        console.log("✅ structure.json chargé :", structure);
+        steps = structure.etapes;
+        console.log("📚 Étapes trouvées :", steps);
+
+        if (!Array.isArray(steps) || steps.length === 0) {
+          throw new Error("Aucune étape détectée dans structure.json");
+        }
+
+        currentStepIndex = 0;
+        loadStep();
+      } catch (err) {
+        document.getElementById("etape-container").innerHTML =
+          `<p class='error'>Erreur : ${err.message}</p>`;
+        addLog(`❌ Erreur lors du démarrage : ${err.message}`);
+        console.error("🛑 Détail de l'erreur dans initExperience():", err);
+      }
+    }
+
+    async function loadStep() {
+      if (currentStepIndex >= steps.length) {
+        document.getElementById("etape-container").innerHTML = '<p>✅ Expérience terminée.</p>';
+        addLog("Fin de l'expérience. Merci !");
+        return;
+      }
+
+      const etapeFile = steps[currentStepIndex];
+      try {
+        const etapeData = await fetch(etapeFile).then(res => res.json());
+
+        // Étape narrative spéciale
+        if (etapeData.titre_section && etapeData.accroche) {
+          let content = `<h2>${etapeData.titre_section}</h2>`;
+          content += `<p><em>${etapeData.accroche}</em></p>`;
+          content += `<p>${etapeData.presentation_symbolique}</p>`;
+          if (etapeData.consignes?.length) {
+            content += "<ul>";
+            etapeData.consignes.forEach(c => content += `<li>${c}</li>`);
+            content += "</ul>";
+          }
+          if (etapeData.invitation) {
+            content += `<p><strong>${etapeData.invitation}</strong></p>`;
+          }
+          content += `<button onclick="validerEtape()">Commencer</button>`;
+          document.getElementById("etape-container").innerHTML = content;
+          return;
+        }
+
+        let content = `<h2>Étape ${currentStepIndex + 1} – ${etapeData.nom || 'Sans nom'}</h2>`;
+        if (etapeData.intro) content += `<p><em>${etapeData.intro}</em></p>`;
+        if (etapeData.objectif) content += `<p><strong>Objectif :</strong> ${etapeData.objectif}</p>`;
+        let consigne = etapeData.consigne?.[mode] || etapeData.consigne?.default || "Pas de consigne spécifique.";
+        content += `<p><strong>Consigne (${mode}) :</strong> ${consigne}</p>`;
+        content += `
+          <textarea id="reponse" rows="5" placeholder="Votre réponse..."></textarea><br>
+          <button onclick="validerEtape()">Valider</button>
+          ${currentStepIndex > 0 ? '<button onclick="precedenteEtape()">⬅️ Revenir à l\'étape précédente</button>' : ''}
+        `;
+        document.getElementById("etape-container").innerHTML = content;
+
+      } catch (err) {
+        document.getElementById("etape-container").innerHTML = `<p class='error'>Erreur de chargement de ${etapeFile} : ${err.message}</p>`;
+        addLog(`❌ Erreur de chargement du fichier : ${etapeFile}`);
+      }
+    }
+
+    async function validerEtape() {
+      const reponse = document.getElementById("reponse")?.value?.trim() || "";
+      const etapeNom = steps[currentStepIndex] || `Étape ${currentStepIndex + 1}`;
+      addLog(`📝 Étape ${currentStepIndex + 1} - Réponse utilisateur : ${reponse}`);
+
+      try {
+        const baseURL = window.location.hostname.includes("localhost")
+          ? "http://localhost:10000"
+          : "https://prompt-ultime.onrender.com";
+
+        const res = await fetch(`${baseURL}/api/chat`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            userMessage: reponse,
+            contexte: `Fichier : ${etapeNom}`
+          })
+        });
+
+        const data = await res.json();
+        if (data.reply) {
+          addLog(`🤖 Réponse IA : ${data.reply}`);
+        } else {
+          addLog(`⚠️ Aucune réponse IA reçue.`);
+        }
+      } catch (error) {
+        addLog(`❌ Erreur lors de l'appel IA : ${error.message}`);
+      }
+
+      currentStepIndex++;
+      loadStep();
+    }
+
+    function precedenteEtape() {
+      if (currentStepIndex > 0) {
+        currentStepIndex--;
+        addLog(`↩️ Retour à l'étape ${currentStepIndex + 1}`);
+        loadStep();
+      }
+    }
+
+    function addLog(message) {
+      const timestamp = new Date().toLocaleTimeString();
+      log.push(`[${timestamp}] ${message}`);
+      document.getElementById("log-content").textContent = log.join("\n");
+    }
+
+    function exporterLog() {
+      const blob = new Blob([log.join("\n")], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `journal_prompt_${new Date().toISOString().slice(0,10)}.txt`;
+      link.click();
+    }
+  </script>
+</body>
+</html>
 
