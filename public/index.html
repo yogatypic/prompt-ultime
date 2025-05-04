@@ -90,7 +90,9 @@
 
    async function validerEtape() {
   const reponse = document.getElementById("reponse").value.trim();
-  const etapeNom = steps[currentStepIndex]?.fichier || `Étape ${currentStepIndex + 1}`;
+const etapeNom = steps[currentStepIndex] || `Étape ${currentStepIndex + 1}`;
+
+
   addLog(`📝 Étape ${currentStepIndex + 1} - Réponse utilisateur : ${reponse}`);
 
   try {
