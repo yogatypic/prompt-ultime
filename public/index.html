@@ -92,7 +92,7 @@
         content += `
           <textarea id="reponse" rows="5" placeholder="Votre réponse..."></textarea><br>
           <button onclick="validerEtape()">Valider</button>
-          ${currentStepIndex > 0 ? '<button onclick="precedenteEtape()">⬅️ Revenir à l'étape précédente</button>' : ''}
+          ${currentStepIndex > 0 ? '<button onclick="precedenteEtape()">⬅️ Revenir à l\'étape précédente</button>' : ''}
         `;
         document.getElementById("etape-container").innerHTML = content;
       } catch (err) {
@@ -169,3 +169,4 @@
   </script>
 </body>
 </html>
+
