@@ -34,37 +34,40 @@
     <button onclick="exporterLog()">💾 Exporter le journal</button>
   </div>
 
- async function initExperience() {
-  mode = document.getElementById("mode").value;
-  log = [];
-  addLog(`Mode choisi : ${mode}`);
+  <script>
+    let currentStepIndex = 0;
+    let steps = [];
+    let mode = "";
+    let log = [];
 
-  try {
-    const structure = await fetch("structure.json").then(res => {
-      if (!res.ok) throw new Error("structure.json introuvable (HTTP " + res.status + ")");
-      return res.json();
-    });
+    async function initExperience() {
+      mode = document.getElementById("mode").value;
+      log = [];
+      addLog(`Mode choisi : ${mode}`);
 
-    console.log("✅ structure.json chargé :", structure);
+      try {
+        const structure = await fetch("structure.json").then(res => {
+          if (!res.ok) throw new Error("structure.json introuvable (HTTP " + res.status + ")");
+          return res.json();
+        });
 
-    steps = structure.etapes;
-    console.log("📚 Étapes trouvées :", steps);
+        console.log("✅ structure.json chargé :", structure);
+        steps = structure.etapes;
+        console.log("📚 Étapes trouvées :", steps);
 
-    if (!Array.isArray(steps) || steps.length === 0) {
-      throw new Error("Aucune étape détectée dans structure.json");
-    }
+        if (!Array.isArray(steps) || steps.length === 0) {
+          throw new Error("Aucune étape détectée dans structure.json");
+        }
 
-    currentStepIndex = 0;
-    loadStep();
+        currentStepIndex = 0;
+        loadStep();
 
-  } catch (err) {
-    document.getElementById("etape-container").innerHTML =
-      `<p class='error'>Erreur : ${err.message}</p>`;
-    addLog(`❌ Erreur lors du démarrage : ${err.message}`);
-    console.error("🛑 Détail de l'erreur dans initExperience():", err);
-  }
-}
-
+      } catch (err) {
+        document.getElementById("etape-container").innerHTML =
+          `<p class='error'>Erreur : ${err.message}</p>`;
+        addLog(`❌ Erreur lors du démarrage : ${err.message}`);
+        console.error("🛑 Détail de l'erreur dans initExperience():", err);
+      }
     }
 
     async function loadStep() {
@@ -88,7 +91,7 @@
         content += `
           <textarea id="reponse" rows="5" placeholder="Votre réponse..."></textarea><br>
           <button onclick="validerEtape()">Valider</button>
-          ${currentStepIndex > 0 ? '<button onclick="precedenteEtape()">⬅️ Revenir à l'étape précédente</button>' : ''}
+          ${currentStepIndex > 0 ? '<button onclick="precedenteEtape()">⬅️ Revenir à l\'étape précédente</button>' : ''}
         `;
 
         document.getElementById("etape-container").innerHTML = content;
@@ -98,43 +101,40 @@
       }
     }
 
-   async function validerEtape() {
-  const reponse = document.getElementById("reponse").value.trim();
-const etapeNom = steps[currentStepIndex] || `Étape ${currentStepIndex + 1}`;
+    async function validerEtape() {
+      const reponse = document.getElementById("reponse").value.trim();
+      const etapeNom = steps[currentStepIndex] || `Étape ${currentStepIndex + 1}`;
 
+      addLog(`📝 Étape ${currentStepIndex + 1} - Réponse utilisateur : ${reponse}`);
 
+      try {
+        const baseURL = window.location.hostname.includes("localhost")
+          ? "http://localhost:10000"
+          : "https://prompt-ultime.onrender.com";
 
-  addLog(`📝 Étape ${currentStepIndex + 1} - Réponse utilisateur : ${reponse}`);
+        const res = await fetch(`${baseURL}/api/chat`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            userMessage: reponse,
+            contexte: `Fichier : ${etapeNom}`
+          })
+        });
 
-  try {
-  const baseURL = window.location.hostname.includes("localhost")
-  ? "http://localhost:10000"
-  : "https://prompt-ultime.onrender.com";
+        const data = await res.json();
 
-const res = await fetch(`${baseURL}/api/chat`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        userMessage: reponse,
-        contexte: `Fichier : ${etapeNom}`
-      })
-    });
+        if (data.reply) {
+          addLog(`🤖 Réponse IA : ${data.reply}`);
+        } else {
+          addLog(`⚠️ Aucune réponse IA reçue.`);
+        }
+      } catch (error) {
+        addLog(`❌ Erreur lors de l'appel IA : ${error.message}`);
+      }
 
-    const data = await res.json();
-
-    if (data.reply) {
-      addLog(`🤖 Réponse IA : ${data.reply}`);
-    } else {
-      addLog(`⚠️ Aucune réponse IA reçue.`);
+      currentStepIndex++;
+      loadStep();
     }
-  } catch (error) {
-    addLog(`❌ Erreur lors de l'appel IA : ${error.message}`);
-  }
-
-  currentStepIndex++;
-  loadStep();
-}
-
 
     function precedenteEtape() {
       if (currentStepIndex > 0) {
