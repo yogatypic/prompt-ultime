@@ -13,6 +13,8 @@ app.use(express.json());
 
 // 📁 Sert les fichiers statiques du dossier 'public'
 app.use(express.static(path.join(__dirname, 'public')));
+const iaPath = path.join(__dirname, 'public', 'IA');
+console.log("📁 Dossier IA statique servi depuis :", iaPath);
 
 // 🏠 Sert index.html quand on accède à la racine
 app.get('/', (req, res) => {
