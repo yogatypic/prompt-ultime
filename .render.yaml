@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: prompt-ultime
+    env: node
+    buildCommand: npm install
+    startCommand: node server.js
+    staticPublishPath: public
+    envVars:
+      - key: NODE_ENV
+        value: production
+
