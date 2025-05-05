@@ -40,4 +40,10 @@ app.post('/api/chat', async (req, res) => {
 app.listen(PORT, () => {
   console.log(`✅ Serveur lancé sur http://localhost:${PORT}`);
 });
+const express = require('express');
+const morgan = require('morgan');
+const app = express();
+
+app.use(morgan('dev'));
+// ... autres configurations
 
