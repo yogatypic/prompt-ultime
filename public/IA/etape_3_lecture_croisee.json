@@ -12,15 +12,18 @@
     "reponse_par_lunette": [
       {
         "champ": "🟢 Résonance",
-        "aide": "Quel éclairage cette lunette apporte-t-elle ? Qu’est-ce qui devient plus lisible ou étrange ?"
+        "aide": "Quel éclairage cette lunette apporte-t-elle ? Qu’est-ce qui devient plus lisible ou étrange ?",
+        "consigne": "Note ce qui devient soudain évident ou fascinant grâce à cette lunette."
       },
       {
         "champ": "🔴 Discordance",
-        "aide": "Où la lunette déforme-t-elle le réel ? Quels angles morts produit-elle ?"
+        "aide": "Où la lunette déforme-t-elle le réel ? Quels angles morts produit-elle ?",
+        "consigne": "Souligne ce que la lunette exagère, simplifie ou masque."
       },
       {
         "champ": "🤡 Clown",
-        "aide": "Ajoute un clin d’œil absurde ou ironique. Cela soulage l’analyse et révèle autrement."
+        "aide": "Ajoute un clin d’œil absurde ou ironique. Cela soulage l’analyse et révèle autrement.",
+        "consigne": "Imagine ce que dirait un clown lucide en voyant cette scène à travers la lunette."
       }
     ]
   },

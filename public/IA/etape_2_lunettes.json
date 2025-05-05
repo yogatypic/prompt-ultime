@@ -14,21 +14,27 @@
   "familles": [
     {
       "cle": "biais_cognitifs",
+      "nom": "Biais cognitifs",
       "icone": "🧠",
       "plage": "1–25",
-      "description": "Automatismes mentaux : ton cerveau les active sans t’en parler. Ils colorent ta lecture sans prévenir."
+      "description": "Automatismes mentaux : ton cerveau les active sans t’en parler. Ils colorent ta lecture sans prévenir.",
+      "lunettes": []
     },
     {
       "cle": "croyances_culturelles",
+      "nom": "Croyances culturelles",
       "icone": "🌀",
       "plage": "26–50",
-      "description": "Mythes collectifs intégrés comme vérités. Ce sont les idées invisibles qui organisent le regard."
+      "description": "Mythes collectifs intégrés comme vérités. Ce sont les idées invisibles qui organisent le regard.",
+      "lunettes": []
     },
     {
       "cle": "meta_postures",
+      "nom": "Méta-postures",
       "icone": "🔍",
       "plage": "51–54",
-      "description": "Filtres qui observent… les filtres. Ils ajoutent du vertige, du recul ou de l’humour dans l’analyse."
+      "description": "Filtres qui observent… les filtres. Ils ajoutent du vertige, du recul ou de l’humour dans l’analyse.",
+      "lunettes": []
     }
   ],
   "structure_attendue": {
