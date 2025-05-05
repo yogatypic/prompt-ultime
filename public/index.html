@@ -101,7 +101,7 @@
       addLog(`Mode choisi : ${mode}`);
 
       try {
-        const structure = await fetch("/IA/structure.json", { cache: "no-store" });
+       const structure = await fetch("structure.json", { cache: "no-store" });
         if (!structure.ok) throw new Error(`structure.json introuvable (HTTP ${structure.status})`);
         const data = await structure.json();
         steps = data.etapes;
