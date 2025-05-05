@@ -100,7 +100,7 @@
       addLog(`Mode choisi : ${mode}`);
 
       try {
-        const structure = await fetch("structure.json");
+        const structure = await fetch("IA/structure.json");
         if (!structure.ok) throw new Error("structure.json introuvable");
         const data = await structure.json();
         steps = data.etapes;
@@ -122,7 +122,7 @@
 
       const etapeFile = steps[currentStepIndex];
       try {
-        const res = await fetch(etapeFile);
+        const res = await fetch("IA/" + etapeFile);
         if (!res.ok) throw new Error(`Fichier introuvable : ${etapeFile}`);
         const etapeData = await res.json();
 
