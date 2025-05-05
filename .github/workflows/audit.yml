@@ -1,0 +1,27 @@
+name: Audit JSON structure
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  audit-json:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Cloner le dépôt
+        uses: actions/checkout@v3
+
+      - name: 🟢 Installer Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: 📦 Installer les dépendances
+        run: npm install
+
+      - name: 🧪 Lancer le script d’audit
+        run: node audit_structure.js
+
