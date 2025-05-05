@@ -8,25 +8,11 @@ import addFormats from 'ajv-formats';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// ✅ Charger manuellement le schéma 2020-12 pour pouvoir le modifier
-const schemaPath = path.join(
-  __dirname,
-  'node_modules',
-  'ajv',
-  'dist',
-  'refs',
-  'json-schema-2020-12',
-  'schema.json'
-);
-const draft2020 = JSON.parse(fs.readFileSync(schemaPath, 'utf-8'));
-delete draft2020.$id;
-
-// 🧠 Initialisation d’AJV
+// ✅ Initialisation simple d’AJV avec formats
 const ajv = new Ajv({ allErrors: true, strict: false });
-ajv.addMetaSchema(draft2020);
 addFormats(ajv);
 
-// 📂 Dossiers
+// 📂 Répertoires
 const dossierIA = path.join(__dirname, 'public', 'IA');
 const dossierSchemas = path.join(__dirname, 'schemas');
 
@@ -87,7 +73,7 @@ for (const [fichier, schemaNom] of Object.entries(fichiers)) {
   }
 }
 
-// 🔗 Validation croisée via structure.json
+// 🔗 Vérification de la cohérence des étapes dans structure.json
 function verifierStructure() {
   const structure = fichiersValides['structure.json'];
   if (!structure || !Array.isArray(structure.etapes)) {
