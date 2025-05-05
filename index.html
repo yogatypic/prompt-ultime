@@ -92,7 +92,7 @@
     let log = [];
 
     async function initExperience() {
-      console.log("📡 Tentative de chargement de /IA/structure.json");
+      console.log("📡 Tentative de chargement de structure.json");
       const intro = document.getElementById("narration-intro");
       intro.classList.add("fade-out");
       setTimeout(() => { intro.style.display = "none"; }, 800);
@@ -101,7 +101,7 @@
       addLog(`Mode choisi : ${mode}`);
 
       try {
-       const structure = await fetch("structure.json", { cache: "no-store" });
+        const structure = await fetch("structure.json", { cache: "no-store" });
         if (!structure.ok) throw new Error(`structure.json introuvable (HTTP ${structure.status})`);
         const data = await structure.json();
         steps = data.etapes;
@@ -123,7 +123,7 @@
 
       const etapeFile = steps[currentStepIndex];
       try {
-        const res = await fetch(`/IA/${etapeFile}`);
+        const res = await fetch(`${etapeFile}`);
         if (!res.ok) throw new Error(`Fichier introuvable : ${etapeFile}`);
         const etapeData = await res.json();
 
@@ -142,5 +142,52 @@
           <label for="reponse">✍️ Votre réponse :</label><br>
           <textarea id="reponse" rows="5" placeholder="Votre réponse..."></textarea><br>
           <button onclick="validerEtape()">Valider</button>
-          ${currentStepIndex > 0 ? '<button onclick=```
+        `;
+        document.getElementById("etape-container").innerHTML = html;
+      } catch (err) {
+        showError(`Erreur étape : ${err.message}`);
+        addLog(`❌ Erreur chargement étape : ${err.message}`);
+      }
+    }
+
+    function showError(msg) {
+      const container = document.getElementById("etape-container");
+      container.innerHTML = `<p class="error">${msg}</p>`;
+    }
+
+    function addLog(msg) {
+      const logDiv = document.getElementById("log-content");
+      log.unshift(`🕓 ${new Date().toLocaleTimeString()} — ${msg}`);
+      logDiv.innerText = log.join("\n");
+    }
+
+    function exporterLog() {
+      const blob = new Blob([log.join("\n")], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'journal_prompt_ultime.txt';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function validerEtape() {
+      const reponse = document.getElementById("reponse")?.value?.trim();
+      if (reponse) {
+        addLog(`📝 Réponse enregistrée : ${reponse}`);
+        currentStepIndex++;
+        loadStep();
+      } else {
+        showError("Merci de renseigner une réponse avant de valider.");
+      }
+    }
+
+    function tirerLunettesEtPasser() {
+      addLog("🕶 Tirage symbolique fictif exécuté.");
+      currentStepIndex++;
+      loadStep();
+    }
+  </script>
+</body>
+</html>
 
