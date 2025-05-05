@@ -1,23 +1,37 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["masques"],
+  "required": [
+    "masques"
+  ],
   "properties": {
     "masques": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "nom", "description"],
+        "required": [
+          "id",
+          "nom",
+          "description"
+        ],
         "properties": {
-          "id": { "type": "string" },
-          "nom": { "type": "string" },
-          "description": { "type": "string" },
-          "citation": { "type": "string" },
-          "inspiration": { "type": "string" }
+          "id": {
+            "type": "string"
+          },
+          "nom": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "citation": {
+            "type": "string"
+          },
+          "inspiration": {
+            "type": "string"
+          }
         }
       }
     }
   },
   "additionalProperties": true
 }
-

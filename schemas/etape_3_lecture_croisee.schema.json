@@ -1,19 +1,30 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["titre_section", "structure_par_lunette"],
+  "required": [
+    "titre_section",
+    "structure_par_lunette"
+  ],
   "properties": {
-    "titre_section": { "type": "string" },
+    "titre_section": {
+      "type": "string"
+    },
     "structure_par_lunette": {
       "type": "object",
       "additionalProperties": {
         "type": "array",
         "items": {
           "type": "object",
-          "required": ["champ", "consigne"],
+          "required": [
+            "champ",
+            "consigne"
+          ],
           "properties": {
-            "champ": { "type": "string" },
-            "consigne": { "type": "string" }
+            "champ": {
+              "type": "string"
+            },
+            "consigne": {
+              "type": "string"
+            }
           }
         }
       }
@@ -21,4 +32,3 @@
   },
   "additionalProperties": true
 }
-

@@ -1,11 +1,16 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["mission_principale", "ton_attendu"],
+  "required": [
+    "mission_principale",
+    "ton_attendu"
+  ],
   "properties": {
-    "mission_principale": { "type": "string" },
-    "ton_attendu": { "type": "string" }
+    "mission_principale": {
+      "type": "string"
+    },
+    "ton_attendu": {
+      "type": "string"
+    }
   },
   "additionalProperties": true
 }
-

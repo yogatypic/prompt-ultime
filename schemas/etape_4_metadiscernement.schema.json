@@ -1,20 +1,33 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["titre_section", "questions_reflexives"],
+  "required": [
+    "titre_section",
+    "questions_reflexives"
+  ],
   "properties": {
-    "titre_section": { "type": "string" },
+    "titre_section": {
+      "type": "string"
+    },
     "questions_reflexives": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "question"],
+        "required": [
+          "id",
+          "question"
+        ],
         "properties": {
-          "id": { "type": "string" },
-          "question": { "type": "string" },
+          "id": {
+            "type": "string"
+          },
+          "question": {
+            "type": "string"
+          },
           "contextes_suggérés": {
             "type": "array",
-            "items": { "type": "string" }
+            "items": {
+              "type": "string"
+            }
           }
         }
       }
@@ -22,4 +35,3 @@
   },
   "additionalProperties": true
 }
-

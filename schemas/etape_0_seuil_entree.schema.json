@@ -1,14 +1,19 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["titre_section", "consignes"],
+  "required": [
+    "titre_section",
+    "consignes"
+  ],
   "properties": {
-    "titre_section": { "type": "string" },
+    "titre_section": {
+      "type": "string"
+    },
     "consignes": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": {
+        "type": "string"
+      }
     }
   },
   "additionalProperties": true
 }
-

@@ -1,13 +1,15 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["etapes"],
+  "required": [
+    "etapes"
+  ],
   "properties": {
     "etapes": {
       "type": "array",
-      "items": { "type": "string" }
+      "items": {
+        "type": "string"
+      }
     }
   },
   "additionalProperties": true
 }
-

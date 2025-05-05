@@ -1,25 +1,44 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["titre_section", "familles"],
+  "required": [
+    "titre_section",
+    "familles"
+  ],
   "properties": {
-    "titre_section": { "type": "string" },
+    "titre_section": {
+      "type": "string"
+    },
     "familles": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["nom", "lunettes"],
+        "required": [
+          "nom",
+          "lunettes"
+        ],
         "properties": {
-          "nom": { "type": "string" },
+          "nom": {
+            "type": "string"
+          },
           "lunettes": {
             "type": "array",
             "items": {
               "type": "object",
-              "required": ["id", "titre", "description"],
+              "required": [
+                "id",
+                "titre",
+                "description"
+              ],
               "properties": {
-                "id": { "type": "string" },
-                "titre": { "type": "string" },
-                "description": { "type": "string" }
+                "id": {
+                  "type": "string"
+                },
+                "titre": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
               }
             }
           }
@@ -29,4 +48,3 @@
   },
   "additionalProperties": true
 }
-
