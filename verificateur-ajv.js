@@ -3,15 +3,18 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
-import draft2020 from 'ajv/dist/refs/json-schema-2020-12/schema.json' assert { type: "json" }; // ✅ import corrigé
+import draft2020 from 'ajv/dist/refs/json-schema-2020-12/schema.json' assert { type: "json" }; // ✅ import JSON + assertion
 
 // Récupérer __dirname en ES Modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// ✅ Supprimer $id pour éviter la résolution de sous-références distantes (meta/core, etc.)
+delete draft2020.$id;
+
 // Initialiser AJV
 const ajv = new Ajv({ allErrors: true, strict: false });
-ajv.addMetaSchema(draft2020); // ✅ ajout du schéma standard
+ajv.addMetaSchema(draft2020);
 addFormats(ajv);
 
 // Répertoires
