@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "verifier": "node verificateur-ajv.js"
   },
   "keywords": [
     "openai",
@@ -26,6 +27,8 @@
   },
   "homepage": "https://github.com/yogatypic/prompt-ultime#readme",
   "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^2.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^4.18.2",

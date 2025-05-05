@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["titre_section", "champs"],
+  "properties": {
+    "titre_section": { "type": "string" },
+    "champs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["nom", "type"],
+        "properties": {
+          "nom": { "type": "string" },
+          "type": { "type": "string" },
+          "placeholder": { "type": "string" },
+          "description": { "type": "string" }
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}
+

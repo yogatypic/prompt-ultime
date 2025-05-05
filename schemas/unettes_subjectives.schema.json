@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["familles", "structure_lunette"],
+  "properties": {
+    "familles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["nom", "lunettes"],
+        "properties": {
+          "nom": { "type": "string" },
+          "lunettes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "titre", "description"],
+              "properties": {
+                "id": { "type": "string" },
+                "titre": { "type": "string" },
+                "description": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "structure_lunette": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["champ", "libelle"],
+        "properties": {
+          "champ": { "type": "string" },
+          "libelle": { "type": "string" }
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}
+
