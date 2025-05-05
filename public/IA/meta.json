@@ -22,6 +22,14 @@
     "🎭 Compagnons symboliques pour l’analyse douce et ironique.",
     "🌀 Passage dans un théâtre intérieur de lecture croisée (résonance, biais, humour).",
     "🧠 Étape finale de métadiscernement et de résonance personnelle."
+  ],
+  "etapes": [
+    "etape_0_seuil_entree",
+    "etape_1_observation",
+    "etape_2_lunettes",
+    "etape_3_lecture_croisee",
+    "etape_4_metadiscernement",
+    "etape_5_resonance_finale"
   ]
 }
 

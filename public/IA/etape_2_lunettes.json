@@ -11,23 +11,26 @@
   "sous_titre": "Trois filtres étranges pour décaler ton regard",
   "description": "Tu ne choisis pas les lunettes. Elles viennent à toi. Trois filtres seront tirés automatiquement : un biais cognitif, une croyance culturelle limitante, et une méta-posture.",
   "consigne_principale": "🎲 Laisse-toi surprendre par les trois lunettes subjectives : elles apparaîtront une par une.",
-  "familles": {
-    "biais_cognitifs": {
+  "familles": [
+    {
+      "cle": "biais_cognitifs",
       "icone": "🧠",
       "plage": "1–25",
       "description": "Automatismes mentaux : ton cerveau les active sans t’en parler. Ils colorent ta lecture sans prévenir."
     },
-    "croyances_culturelles": {
+    {
+      "cle": "croyances_culturelles",
       "icone": "🌀",
       "plage": "26–50",
       "description": "Mythes collectifs intégrés comme vérités. Ce sont les idées invisibles qui organisent le regard."
     },
-    "meta_postures": {
+    {
+      "cle": "meta_postures",
       "icone": "🔍",
       "plage": "51–54",
       "description": "Filtres qui observent… les filtres. Ils ajoutent du vertige, du recul ou de l’humour dans l’analyse."
     }
-  },
+  ],
   "structure_attendue": {
     "id": "Numéro de la lunette (1 à 54)",
     "nom": "Nom symbolique",
