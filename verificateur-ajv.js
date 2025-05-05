@@ -3,25 +3,24 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
-import draft2020 from 'ajv/dist/refs/json-schema-2020-12/schema.json' assert { type: "json" }; // ✅ import JSON + assertion
+import draft2020 from 'ajv/dist/refs/json-schema-2020-12/schema.json' assert { type: "json" };
 
-// Récupérer __dirname en ES Modules
+// 📍 __dirname pour compatibilité ESModules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// ✅ Supprimer $id pour éviter la résolution de sous-références distantes (meta/core, etc.)
+// 🔧 Supprimer l'$id' pour désactiver la résolution externe
 delete draft2020.$id;
 
-// Initialiser AJV
+// 🧠 Initialisation d’AJV avec le schéma 2020-12 intégré localement
 const ajv = new Ajv({ allErrors: true, strict: false });
 ajv.addMetaSchema(draft2020);
 addFormats(ajv);
 
-// Répertoires
+// 📂 Répertoires et mappage des fichiers JSON ↔ schémas
 const dossierIA = path.join(__dirname, 'public', 'IA');
 const dossierSchemas = path.join(__dirname, 'schemas');
 
-// Association : fichiers JSON ↔ fichiers de schéma
 const fichiers = {
   'meta.json': 'meta.schema.json',
   'structure.json': 'structure.schema.json',
@@ -42,6 +41,7 @@ let fichiersValides = {};
 
 console.log('🔍 Démarrage de la vérification AJV...\n');
 
+// 🧪 Validation fichier par fichier
 for (const [fichier, schemaNom] of Object.entries(fichiers)) {
   const cheminFichier = path.join(dossierIA, fichier);
   const cheminSchema = path.join(dossierSchemas, schemaNom);
@@ -78,7 +78,7 @@ for (const [fichier, schemaNom] of Object.entries(fichiers)) {
   }
 }
 
-// Vérifie la cohérence croisée avec structure.json
+// 🔗 Vérification de la cohérence des étapes définies dans structure.json
 function verifierStructure() {
   const structure = fichiersValides['structure.json'];
   if (!structure || !Array.isArray(structure.etapes)) {
