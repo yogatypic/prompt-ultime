@@ -1,6 +1,9 @@
+// ✅ VERSION CORRIGÉE DU SERVER.JS (ESM)
+
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import morgan from 'morgan';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -8,26 +11,31 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 10000;
 
-// 🔧 Middleware pour body parsing
+// 🔧 Middleware de log
+app.use(morgan('dev'));
+
+// 🔧 Middleware body-parser JSON
 app.use(express.json());
 
-// 📁 Sert les fichiers statiques du dossier 'public'
+// 📁 Sert les fichiers statiques depuis ./public
 app.use(express.static(path.join(__dirname, 'public')));
-const iaPath = path.join(__dirname, 'public', 'IA');
-console.log("📁 Dossier IA statique servi depuis :", iaPath);
 
-// 🏠 Sert index.html quand on accède à la racine
+// 🏠 Route GET racine
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// 🤖 API POST /api/chat (simulée pour test)
+// 🔄 Route pour structure.json (sécurité si besoin)
+app.get('/structure.json', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'structure.json'));
+});
+
+// 🤖 API POST simulée
 app.post('/api/chat', async (req, res) => {
   try {
     const { userMessage, contexte } = req.body;
     console.log("📩 Message reçu :", userMessage, "| Contexte :", contexte);
 
-    // Simulation de réponse IA
     const reply = `Voici une réponse simulée pour : "${userMessage}"`;
     res.json({ reply });
   } catch (err) {
@@ -36,14 +44,8 @@ app.post('/api/chat', async (req, res) => {
   }
 });
 
-// 🚀 Démarrage du serveur
+// 🚀 Lancement du serveur
 app.listen(PORT, () => {
   console.log(`✅ Serveur lancé sur http://localhost:${PORT}`);
 });
-const express = require('express');
-const morgan = require('morgan');
-const app = express();
-
-app.use(morgan('dev'));
-// ... autres configurations
 
