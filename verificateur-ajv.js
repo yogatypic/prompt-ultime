@@ -3,7 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
-import draft2020 from 'ajv/dist/refs/json-schema-2020-12/schema.json'; // ✅ schéma local
+import draft2020 from 'ajv/dist/refs/json-schema-2020-12/schema.json' assert { type: "json" }; // ✅ import corrigé
 
 // Récupérer __dirname en ES Modules
 const __filename = fileURLToPath(import.meta.url);
