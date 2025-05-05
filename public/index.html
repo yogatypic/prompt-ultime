@@ -92,6 +92,7 @@
     let log = [];
 
     async function initExperience() {
+      console.log("📡 Tentative de chargement de /IA/structure.json");
       const intro = document.getElementById("narration-intro");
       intro.classList.add("fade-out");
       setTimeout(() => { intro.style.display = "none"; }, 800);
@@ -100,11 +101,11 @@
       addLog(`Mode choisi : ${mode}`);
 
       try {
-        const structure = await fetch("IA/structure.json");
-        if (!structure.ok) throw new Error("structure.json introuvable");
+        const structure = await fetch("/IA/structure.json", { cache: "no-store" });
+        if (!structure.ok) throw new Error(`structure.json introuvable (HTTP ${structure.status})`);
         const data = await structure.json();
         steps = data.etapes;
-        if (!Array.isArray(steps) || steps.length === 0) throw new Error("Aucune étape détectée");
+        if (!Array.isArray(steps) || steps.length === 0) throw new Error("Aucune étape détectée dans structure.json");
         currentStepIndex = 0;
         loadStep();
       } catch (err) {
@@ -122,7 +123,7 @@
 
       const etapeFile = steps[currentStepIndex];
       try {
-        const res = await fetch("IA/" + etapeFile);
+        const res = await fetch(`/IA/${etapeFile}`);
         if (!res.ok) throw new Error(`Fichier introuvable : ${etapeFile}`);
         const etapeData = await res.json();
 
