@@ -8,15 +8,15 @@ import addFormats from 'ajv-formats';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// ✅ Initialisation simple d’AJV avec formats
-const ajv = new Ajv({ allErrors: true, strict: false });
-addFormats(ajv);
-
 // 📂 Répertoires
 const dossierIA = path.join(__dirname, 'public', 'IA');
 const dossierSchemas = path.join(__dirname, 'schemas');
 
-// 🗂️ Fichiers à valider
+// ✅ Initialisation d’AJV
+const ajv = new Ajv({ allErrors: true, strict: false });
+addFormats(ajv);
+
+// 🗂️ Définir les fichiers à valider
 const fichiers = {
   'meta.json': 'meta.schema.json',
   'structure.json': 'structure.schema.json',
@@ -34,9 +34,11 @@ const fichiers = {
 
 let erreursTrouvées = false;
 let fichiersValides = {};
+let totalValides = 0;
 
 console.log('🔍 Démarrage de la vérification AJV...\n');
 
+// 🔁 Validation de chaque fichier JSON
 for (const [fichier, schemaNom] of Object.entries(fichiers)) {
   const cheminFichier = path.join(dossierIA, fichier);
   const cheminSchema = path.join(dossierSchemas, schemaNom);
@@ -46,6 +48,7 @@ for (const [fichier, schemaNom] of Object.entries(fichiers)) {
     erreursTrouvées = true;
     continue;
   }
+
   if (!fs.existsSync(cheminSchema)) {
     console.error(`❌ Schéma manquant : ${schemaNom}`);
     erreursTrouvées = true;
@@ -62,46 +65,52 @@ for (const [fichier, schemaNom] of Object.entries(fichiers)) {
     if (valide) {
       console.log(`✅ Valide : ${fichier}`);
       fichiersValides[fichier] = data;
+      totalValides++;
     } else {
       console.error(`❌ Erreurs dans ${fichier} :`);
       console.error(validate.errors);
       erreursTrouvées = true;
     }
   } catch (e) {
-    console.error(`❌ Erreur dans ${fichier} : ${e.message}`);
+    console.error(`❌ Erreur de parsing dans ${fichier} : ${e.message}`);
     erreursTrouvées = true;
   }
 }
 
-// 🔗 Vérification de la cohérence des étapes dans structure.json
+// 🔗 Vérification cohérence des étapes référencées dans structure.json
 function verifierStructure() {
   const structure = fichiersValides['structure.json'];
   if (!structure || !Array.isArray(structure.etapes)) {
-    console.error('❌ structure.json est mal formé ou absent.');
+    console.error('❌ structure.json mal formé ou absent.');
     erreursTrouvées = true;
     return;
   }
 
   console.log('\n🔗 Vérification des étapes dans structure.json...\n');
 
-  structure.etapes.forEach(nom => {
-    const fichierEtape = `${nom}.json`;
-    const chemin = path.join(dossierIA, fichierEtape);
+  for (const etape of structure.etapes) {
+    // Correction automatique si double extension
+    const nomFichier = etape.endsWith('.json.json')
+      ? etape.replace('.json.json', '.json')
+      : etape.endsWith('.json') ? etape : etape + '.json';
+
+    const chemin = path.join(dossierIA, nomFichier);
     if (!fs.existsSync(chemin)) {
-      console.error(`❌ Étape référencée manquante : ${fichierEtape}`);
+      console.error(`❌ Étape référencée manquante : ${nomFichier}`);
       erreursTrouvées = true;
     } else {
-      console.log(`🔗 Étape présente : ${fichierEtape}`);
+      console.log(`🔗 Étape présente : ${nomFichier}`);
     }
-  });
+  }
 }
 
 verifierStructure();
 
+// 🧾 Résumé final
 console.log('\n📦 Résultat final :');
 if (!erreursTrouvées) {
-  console.log('✅ Tous les fichiers sont valides et cohérents.');
+  console.log(`✅ Tous les fichiers (${totalValides}) sont valides et cohérents.`);
 } else {
-  console.warn('⚠️ Des erreurs ont été détectées. Corrigez les fichiers JSON ou les schémas.');
+  console.warn(`⚠️ Des erreurs ont été détectées. Fichiers valides : ${totalValides}/${Object.keys(fichiers).length}`);
 }
 
