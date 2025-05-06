@@ -45,6 +45,7 @@ app.get('/api/scan', (req, res) => {
 
 // === API : Validation AJV ===
 app.post('/api/validate-ajv', (req, res) => {
+    console.log("Champs reçus dans jsonContent :", Object.keys(req.body.jsonContent));
   try {
     const { jsonContent, schemaContent } = req.body;
     const validate = ajv.compile(schemaContent);
