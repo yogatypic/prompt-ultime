@@ -127,5 +127,6 @@ app.get('/api/list-versions', (req, res) => {
 app.listen(PORT, () => {
   console.log(`🚀 Serveur lancé sur http://localhost:${PORT}`);
 });
-console.log("Champs reçus dans jsonContent :", Object.keys(jsonContent));
+console.log("Champs reçus dans jsonContent :", Object.keys(req.body.jsonContent));
+
 console.log("Schéma attendu :", Object.keys(schemaContent.properties));
