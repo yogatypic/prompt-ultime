@@ -4,9 +4,9 @@
   "note": "Tu n’as rien à choisir. Ces axes traversent l’ensemble du prompt, comme des lentilles implicites. Ce sont des sensibilités atypiques qui structurent le regard.",
   "axes": [
     {
+      "id": "axe1",
       "nom": "Sincérité radicale",
-      "description": "Explorer sans filtre les ressentis internes.",
-      "question": "Qu’est-ce qui sonne faux dans ce que tu viens de dire ?"
+      "description": "Explorer sans filtre les ressentis internes."
     }
   ],
   "rappel": "Ces axes ne sont pas des catégories. Ce sont des courants de perception. Tu n’as pas à ‘être autiste’ pour les ressentir. Mais ici, ils sont mis à l’honneur comme lentilles critiques fécondes."

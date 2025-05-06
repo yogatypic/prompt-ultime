@@ -11,8 +11,16 @@
   ],
   "structure_lunette": [
     {
-      "champ": "Type de regard",
-      "libelle": "exemple"
+      "champ": "Champ manquant",
+      "id": "Numéro de la lunette (entre 1 et 54)",
+      "nom": "Nom symbolique",
+      "famille": "🧠 / 🌀 / 🔍",
+      "clarte": "Ce que cette lunette éclaire, valorise ou rend plus lisible.",
+      "ombre": "Ce qu’elle déforme, simplifie, caricature ou oublie.",
+      "clown": "Une touche d’humour ou d’absurde pour souffler dans l’analyse.",
+      "invite": "Nom d’un penseur associé (philosophe, sociologue, psychologue, etc.) — optionnel.",
+      "citation": "Une phrase marquante qui incarne l’esprit de cette lunette.",
+      "concept": "Une explication simple et accessible du mécanisme, mythe ou angle de lecture visé."
     }
   ],
   "rappel": "Tu n’as pas à choisir. Trois lunettes sont tirées automatiquement au moment prévu dans le parcours. Elles viennent d’un tirage équilibré : 1 cognitive, 1 culturelle, 1 méta-posture. Elles structurent l’étape de lecture croisée."

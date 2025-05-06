@@ -9,7 +9,8 @@
   ],
   "champs": [
     {
-      "champ": "Résonance cognitive",
+      "id": "champ1",
+      "nom": "Résonance cognitive",
       "type": "texte"
     }
   ],
