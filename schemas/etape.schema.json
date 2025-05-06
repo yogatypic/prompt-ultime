@@ -1,0 +1,120 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Schéma générique d'une étape du Prompt Ultime",
+  "type": "object",
+  "properties": {
+    "nom": { "type": "string" },
+    "titre_section": { "type": "string" },
+    "sous_titre": { "type": "string" },
+    "description": { "type": "string" },
+    "accroche": { "type": "string" },
+    "note_methodologique": { "type": "string" },
+    "consigne": {
+      "type": "object",
+      "properties": {
+        "logique": { "type": "string" },
+        "creatif": { "type": "string" },
+        "mixte": { "type": "string" },
+        "default": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "consigne_principale": { "type": "string" },
+    "consignes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "champs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["champ", "type"],
+        "properties": {
+          "champ": { "type": "string" },
+          "type": { "type": "string" },
+          "aide": { "type": "string" },
+          "nom": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "exercice_complementaire": {
+      "type": "object",
+      "properties": {
+        "titre": { "type": "string" },
+        "consigne": { "type": "string" },
+        "versions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string" },
+              "description": { "type": "string" }
+            },
+            "required": ["type", "description"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": ["titre", "consigne", "versions"],
+      "additionalProperties": false
+    },
+    "questions_de_guidage": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "feedbacks_attendus": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "rappel_final": { "type": "string" },
+    "formulation_de_synthese": {
+      "type": "object",
+      "properties": {
+        "proposition": { "type": "string" },
+        "texte": { "type": "string" }
+      }
+    },
+    "objectifs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "questions_reflexives": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "question": { "type": "string" }
+        },
+        "required": ["id", "question"],
+        "additionalProperties": false
+      }
+    },
+    "integration_automatique": {
+      "type": "object"
+    },
+    "structure_par_lunette": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "champ": { "type": "string" },
+            "consigne": { "type": "string" }
+          },
+          "required": ["champ", "consigne"],
+          "additionalProperties": false
+        }
+      }
+    },
+    "rituels_cloture_possibles": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "conclusion": { "type": "string" }
+  },
+  "additionalProperties": false
+}
+

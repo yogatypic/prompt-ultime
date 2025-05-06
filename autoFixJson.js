@@ -1,79 +1,51 @@
 const fs = require('fs');
 const path = require('path');
 
-const files = {
-  'meta.json': {
-    etapes: [
-      "etape_0_seuil_entree",
-      "etape_1_observation",
-      "etape_2_lunettes",
-      "etape_3_lecture_croisee",
-      "etape_4_metadiscernement",
-      "etape_5_resonance_finale"
-    ]
+const corrections = {
+  'etape_0_seuil_entree.json': (data) => {
+    delete data.consigne_logique;
+    return data;
   },
-  'lunettes_subjectives.json': {
-    structure_lunette: [
-      {
-        champ: "Type de regard",
-        libelle: "exemple"
-      }
-    ]
-  },
-  'etape_0_seuil_entree.json': "REMOVE_ID",
-  'etape_2_lunettes.json': {
-    familles: [
-      {
-        id: "famille_exemple",
-        nom: "Famille Exemple",
-        lunettes: []
-      }
-    ]
-  },
-  'etape_3_lecture_croisee.json': {
-    structure_par_lunette: {
-      lunette_exemple: [
-        { champ: "exemple" }
-      ]
+
+  'etape_3_lecture_croisee.json': (data) => {
+    if (data.structure_par_lunette?.lunette_exemple?.[0]) {
+      data.structure_par_lunette.lunette_exemple[0].consigne ??= "Complète cette interprétation symbolique.";
     }
+    return data;
   },
-  'etape_4_metadiscernement.json': {
-    questions_reflexives: [
-      { question: "Comment ressentez-vous cette étape ?" }
-    ]
+
+  'etape_4_metadiscernement.json': (data) => {
+    if (data.questions_reflexives?.[0]) {
+      data.questions_reflexives[0].id ??= "q1";
+    }
+    return data;
   },
-  'etape_5_resonance_finale.json': {
-    champs: [
-      {
-        champ: "Résonance cognitive",
-        type: "texte"
-      }
-    ]
+
+  'etape_5_resonance_finale.json': (data) => {
+    if (data.champs?.[0]) {
+      data.champs[0].nom ??= data.champs[0].champ || "Résonance";
+    }
+    return data;
   },
-  'compagnons_symboliques.json': {
-    masques: [
-      {
-        nom: "Socrate",
-        style: "ironie maïeutique",
-        citation: "Connais-toi toi-même",
-        description: "Le questionneur par excellence."
-      }
-    ]
+
+  'compagnons_symboliques.json': (data) => {
+    if (data.masques?.[0]) {
+      data.masques[0].id ??= "socrate";
+    }
+    return data;
   },
-  'axes_autistiques.json': {
-    axes: [
-      {
-        nom: "Sincérité radicale",
-        description: "Explorer sans filtre les ressentis internes.",
-        question: "Qu’est-ce qui sonne faux dans ce que tu viens de dire ?"
-      }
-    ]
+
+  'axes_autistiques.json': (data) => {
+    if (data.axes?.[0]) {
+      data.axes[0].id ??= "axe1";
+    }
+    return data;
   }
 };
 
 const baseDir = path.join(__dirname, 'public');
 
-Object.entries(files).forEach(([fileName, correction]) => {
+Object.entries(corrections).forEach(([fileName, fixFn]) => {
   const filePath = path.join(baseDir, fileName);
   if (!fs.existsSync(filePath)) {
     console.warn(`❌ Fichier non trouvé : ${filePath}`);
@@ -82,25 +54,14 @@ Object.entries(files).forEach(([fileName, correction]) => {
 
   try {
     const original = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-
-    // sauvegarde backup
     const backupPath = filePath.replace(/\.json$/, `.bak.json`);
     fs.writeFileSync(backupPath, JSON.stringify(original, null, 2), 'utf8');
 
-    let updated = { ...original };
-
-    if (correction === "REMOVE_ID") {
-      delete updated.id;
-    } else {
-      for (const [key, value] of Object.entries(correction)) {
-        updated[key] = value;
-      }
-    }
-
-    fs.writeFileSync(filePath, JSON.stringify(updated, null, 2), 'utf8');
+    const fixed = fixFn({ ...original });
+    fs.writeFileSync(filePath, JSON.stringify(fixed, null, 2), 'utf8');
     console.log(`✅ Corrigé : ${fileName}`);
-  } catch (e) {
-    console.error(`❌ Erreur dans ${fileName} : ${e.message}`);
+  } catch (err) {
+    console.error(`❌ Erreur dans ${fileName} : ${err.message}`);
   }
 });
 

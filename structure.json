@@ -1,0 +1,31 @@
+{
+  "meta": "meta.json",
+  "introduction_et_mission": "introduction_et_mission.json",
+  "etapes": [
+    "etape_0_seuil_entree.json",
+    "etape_1_observation.json",
+    "etape_2_lunettes.json",
+    "etape_3_lecture_croisee.json",
+    "etape_4_metadiscernement.json",
+    "etape_5_resonance_finale.json"
+  ],
+  "lunettes": [
+    {
+      "famille": "🧠 Cognitifs",
+      "fichier": "lunettes_biais.json",
+      "nb": 12
+    },
+    {
+      "famille": "🎭 Rhétoriques",
+      "fichier": "lunettes_rhetorique.json",
+      "nb": 8
+    }
+  ],
+  "ressources": {
+    "compagnons_symboliques": "compagnons_symboliques.json",
+    "axes_autistiques": "axes_autistiques.json",
+    "lunettes_subjectives": "lunettes_subjectives.json",
+    "masques_symboliques": "masques_symboliques.json"
+  }
+}
+

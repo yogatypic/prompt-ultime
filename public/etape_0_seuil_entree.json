@@ -1,8 +1,13 @@
 {
-  "consigne_logique": "Lis attentivement ce préambule narratif. Aucun choix requis ici, seulement une ouverture symbolique à l’expérience.",
   "titre_section": "Seuil d’entrée — Changer le regard en douceur",
   "accroche": "🎬 Tu entres dans un jeu d’enquête inversée. Ici, ce sont les esprits atypiques qui observent les comportements 'normaux' comme des rituels étranges. On ne juge pas. On regarde autrement.",
   "presentation_symbolique": "Tu es un explorateur venu d’ailleurs. Tu découvres les habitudes humaines avec curiosité. Ce monde t’est familier… mais aussi étrange. Chaque geste banal peut cacher une vérité surprenante.",
+  "consigne": {
+    "logique": "Lis attentivement ce préambule narratif. Aucun choix requis ici, seulement une ouverture symbolique à l’expérience.",
+    "creatif": "Lis ce seuil comme un poème. Laisse les images t’ouvrir à une autre perception.",
+    "mixte": "Lis avec ton cœur et ta raison. Laisse-toi guider par l’étrangeté douce.",
+    "default": "Lis attentivement cette entrée. Ce n’est pas un test, c’est un seuil."
+  },
   "consignes": [
     "🌱 Observe avec douceur, sans chercher de vérité unique.",
     "🎭 Laisse les symboles, les masques et les compagnons t’accompagner dans l’analyse.",
@@ -17,3 +22,4 @@
     "presentation": "Elle établit le cadre narratif : un changement de posture, une inversion douce du regard, une bascule vers l’observation symbolique du normatif."
   }
 }
+
