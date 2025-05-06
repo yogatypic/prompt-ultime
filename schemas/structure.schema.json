@@ -1,15 +1,26 @@
 {
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "required": [
-    "etapes"
-  ],
+  "required": ["etapes"],
   "properties": {
     "etapes": {
       "type": "array",
+      "items": { "type": "string" }
+    },
+    "lunettes": {
+      "type": "array",
       "items": {
-        "type": "string"
+        "type": "object",
+        "required": ["famille", "fichier", "nb"],
+        "properties": {
+          "famille": { "type": "string" },
+          "fichier": { "type": "string" },
+          "nb": { "type": "integer", "minimum": 1 }
+        },
+        "additionalProperties": false
       }
     }
   },
   "additionalProperties": true
 }
+
