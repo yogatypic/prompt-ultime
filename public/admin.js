@@ -18,15 +18,62 @@ function scanFichiers() {
     });
 }
 
-// === 2. Validation AJV ===
-function validerTousFichiers() {
-  document.getElementById("erreursValidation").innerText = "🧪 Validation en cours...";
+// === 2. Validation AJV réelle via API ===
+async function validerTousFichiers() {
+  const erreursDiv = document.getElementById("erreursValidation");
+  erreursDiv.innerText = "🧪 Validation en cours...";
 
-  // TODO : Appel API AJV ou script Node
-  setTimeout(() => {
-    document.getElementById("erreursValidation").innerText = "✅ Tous les fichiers sont valides (exemple).";
-  }, 1000);
+  const fichiers = [
+    "structure",
+    "meta",
+    "introduction_et_mission",
+    "axes_autistiques",
+    "compagnons_symboliques",
+    "lunettes_subjectives",
+    "masques_symboliques",
+    "etape_0_seuil_entree",
+    "etape_1_observation",
+    "etape_2_lunettes",
+    "etape_3_lecture_croisee",
+    "etape_4_metadiscernement",
+    "etape_5_resonance_finale"
+  ];
+
+  let erreursTotales = [];
+
+  for (const nom of fichiers) {
+    try {
+      const [jsonRes, schemaRes] = await Promise.all([
+        fetch(`public/${nom}.json`).then(r => r.json()),
+        fetch(`schemas/${nom}.schema.json`).then(r => r.json())
+      ]);
+
+      const res = await fetch("/api/validate-ajv", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          jsonContent: jsonRes,
+          schemaContent: schemaRes
+        })
+      });
+
+      const result = await res.json();
+      if (!result.valid) {
+        erreursTotales.push(`❌ ${nom}.json invalide :\n` + JSON.stringify(result.errors, null, 2));
+      } else {
+        logJournal(`✅ ${nom}.json valide`);
+      }
+
+    } catch (err) {
+      erreursTotales.push(`❌ Erreur validation ${nom}.json : ${err.message}`);
+    }
+  }
+
+  erreursDiv.innerText = erreursTotales.length === 0
+    ? "✅ Tous les fichiers sont valides !"
+    : erreursTotales.join("\n\n");
 }
+
 
 // === 3. Enregistrement JSON modifié ===
 function enregistrerJson() {
