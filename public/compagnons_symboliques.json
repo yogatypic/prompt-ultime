@@ -49,6 +49,7 @@
   "rappel": "Ces compagnons ne donnent pas de réponses. Ils ouvrent des pistes. Ils sont des facettes de toi-même — ironiques, tendres ou lucides.",
   "masques": [
     {
+      "description": "Description manquante",
       "id": "socrate",
       "nom": "Socrate",
       "style": "ironie maïeutique",

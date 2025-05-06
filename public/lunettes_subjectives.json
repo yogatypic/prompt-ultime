@@ -11,6 +11,7 @@
   ],
   "structure_lunette": [
     {
+      "champ": "Champ manquant",
       "id": "Numéro de la lunette (entre 1 et 54)",
       "nom": "Nom symbolique",
       "famille": "🧠 / 🌀 / 🔍",

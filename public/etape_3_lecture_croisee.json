@@ -18,9 +18,11 @@
     }
   ],
   "structure_par_lunette": {
-    "lunette_exemple": {
-      "questions": []
-    }
+    "lunette_exemple": [
+      {
+        "questions": []
+      }
+    ]
   },
   "conseil_final": "🎭 Ici, il ne s’agit pas de vérité mais de friction. Ce n’est pas un verdict, mais une danse entre interprétations. Chaque filtre ouvre… et cache. Chaque lunette fait apparaître une facette du réel et en dissimule une autre.",
   "note_pedagogique": "Cet exercice affine ton métadiscernement : il t’aide à reconnaître les forces et les limites de chaque lecture. Et parfois, il éclaire aussi ton propre angle aveugle."
