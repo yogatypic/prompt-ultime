@@ -1,4 +1,4 @@
-// ✅ server.js – version propre, unique, ESM, modulaire
+// ✅ server.js – version complète avec API OpenAI, AJV, versioning, listing
 
 import express from 'express';
 import path from 'path';
@@ -7,6 +7,8 @@ import morgan from 'morgan';
 import fs from 'fs';
 import { spawn } from 'child_process';
 import Ajv from 'ajv';
+import OpenAI from 'openai';
+import 'dotenv/config'; // Pour accéder aux variables d’environnement
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,23 +16,19 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const jsonDir = path.join(__dirname, 'public');
+const versionDir = path.join(jsonDir, 'versions');
 const ajv = new Ajv();
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-// 🔧 Middlewares
 app.use(morgan('dev'));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(jsonDir));
 
 // === ROUTES FRONTEND ===
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-app.get('/admin', (req, res) => {
-  res.redirect('/admin.html');
-});
+app.get('/', (req, res) => res.sendFile(path.join(jsonDir, 'index.html')));
+app.get('/admin', (req, res) => res.redirect('/admin.html'));
 
-
-// === ROUTES API JSON ===
+// === API : Scan de fichiers JSON ===
 app.get('/api/scan', (req, res) => {
   try {
     const files = fs.readdirSync(jsonDir).filter(f => f.endsWith('.json'));
@@ -45,6 +43,7 @@ app.get('/api/scan', (req, res) => {
   }
 });
 
+// === API : Validation AJV ===
 app.post('/api/validate-ajv', (req, res) => {
   try {
     const { jsonContent, schemaContent } = req.body;
@@ -57,6 +56,7 @@ app.post('/api/validate-ajv', (req, res) => {
   }
 });
 
+// === API : Enregistrement JSON ===
 app.post('/api/save-json', (req, res) => {
   try {
     const { nomFichier, contenu } = req.body;
@@ -68,30 +68,37 @@ app.post('/api/save-json', (req, res) => {
   }
 });
 
+// === API : Versioning JSON ===
 app.post('/api/versioning', (req, res) => {
   try {
     const { nomFichier, contenu } = req.body;
     const horodatage = new Date().toISOString().replace(/[:.]/g, '-');
-    const sauvegardePath = path.join(jsonDir, 'versions', `${nomFichier}.${horodatage}.json`);
-    fs.mkdirSync(path.join(jsonDir, 'versions'), { recursive: true });
-    fs.writeFileSync(sauvegardePath, JSON.stringify(contenu, null, 2), 'utf8');
-    res.json({ status: 'ok', chemin: sauvegardePath });
+    const fichier = `${nomFichier}.${horodatage}.json`;
+    const chemin = path.join(versionDir, fichier);
+    fs.mkdirSync(versionDir, { recursive: true });
+    fs.writeFileSync(chemin, JSON.stringify(contenu, null, 2), 'utf8');
+    res.json({ status: 'ok', chemin });
   } catch (err) {
     res.status(500).json({ error: 'Erreur versioning : ' + err.message });
   }
 });
 
-app.post('/api/prompt-ia', (req, res) => {
+// ✅ API IA : Appel à OpenAI
+app.post('/api/prompt-ia', async (req, res) => {
   try {
     const { prompt } = req.body;
-    const simulatedResponse = `🤖 IA : réponse simulée à "${prompt}"`;
-    res.json({ reponse: simulatedResponse });
+    const completion = await openai.chat.completions.create({
+      model: 'gpt-3.5-turbo',
+      messages: [{ role: 'user', content: prompt }]
+    });
+    const reponse = completion.choices[0].message.content;
+    res.json({ reponse });
   } catch (err) {
-    res.status(500).json({ error: 'Erreur IA : ' + err.message });
+    res.status(500).json({ error: 'Erreur appel OpenAI : ' + err.message });
   }
 });
 
-// === ROUTE API EXÉCUTER PYTHON ===
+// === API : Exécution d’un script Python ===
 app.get('/api/import-json', (req, res) => {
   const process = spawn('python3', ['import_json.py']);
   let output = '';
@@ -103,7 +110,19 @@ app.get('/api/import-json', (req, res) => {
   });
 });
 
-// === DÉMARRAGE DU SERVEUR ===
+// ✅ API : Lister les fichiers de version IA (journal_ia.*.json)
+app.get('/api/list-versions', (req, res) => {
+  try {
+    if (!fs.existsSync(versionDir)) return res.json({ fichiers: [] });
+    const fichiers = fs.readdirSync(versionDir)
+      .filter(f => f.startsWith('journal_ia.') && f.endsWith('.json'));
+    res.json({ fichiers });
+  } catch (err) {
+    res.status(500).json({ error: 'Erreur lecture des versions : ' + err.message });
+  }
+});
+
+// === Lancement du serveur ===
 app.listen(PORT, () => {
   console.log(`🚀 Serveur lancé sur http://localhost:${PORT}`);
 });
