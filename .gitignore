@@ -6,7 +6,7 @@ API
 
 # Dossiers système
 __pycache__/
-node_modules/
+
 
 # Fichiers système
 .DS_Store
