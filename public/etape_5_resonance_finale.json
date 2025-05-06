@@ -1,7 +1,7 @@
 {
   "titre_section": "Étape 5 — Résonance intégrative",
   "sous_titre": "Ce que tu gardes, ce que tu laisses… et ce que tu offres au monde",
-  "description": "Tu arrives au bout de cette enquête. Ce n’est pas une conclusion, mais une résonance intérieure. Tu n’as pas trouvé LA vérité — mais peut-être un frisson, une image persistante, une posture nouvelle.",
+  "description": "Tu es arrivé·e au bout de cette enquête sensible. Tu n’as pas trouvé LA vérité — mais peut-être un décalage fécond, une image persistante, un frisson intérieur. Cette dernière étape te permet de faire le point. Doucement.",
   "intentions": [
     "🌱 Garder ce qui t’a nourri : une intuition, une posture, un mot juste.",
     "🕸️ Laisser ce qui reste flou : une question sans réponse, un doute encore en mouvement.",
@@ -10,15 +10,15 @@
   "champs": [
     {
       "champ": "🌱 Je garde…",
-      "aide": "Un élément marquant : une sensation, une phrase, une posture qui te reste."
+      "aide": "Un élément marquant : un apprentissage, une sensation, une phrase qui reste collée au cœur ou à l’esprit."
     },
     {
       "champ": "🕸️ Je laisse…",
-      "aide": "Ce que tu choisis de ne pas refermer trop vite. Un trouble, une hésitation, un espace de questionnement."
+      "aide": "Ce que tu choisis de ne pas refermer trop vite : un trouble, une hésitation, une question qui veut du temps."
     },
     {
       "champ": "🎁 J’offre…",
-      "aide": "Un geste symbolique : une parole intérieure, une offrande, une trace douce à déposer."
+      "aide": "Un geste symbolique : une parole intérieure, une dédicace muette, une offrande à plus vaste que toi."
     }
   ],
   "rituels_cloture_possibles": [

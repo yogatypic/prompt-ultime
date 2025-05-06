@@ -2,12 +2,21 @@
   "titre_section": "Étape 3 — Lecture croisée : théâtre intérieur du sens",
   "sous_titre": "Fais passer ton observation à travers les trois lunettes subjectives",
   "description": "Chaque lunette propose une interprétation partielle, poétique ou biaisée du comportement observé. À travers ce jeu de filtres, tu explores la plasticité du sens et le trouble fertile du regard multiple.",
-  "mode_demploi": [
-    "🟢 Résonance — Ce que la lunette révèle de pertinent ou d’éclairant.",
-    "🔴 Discordance — Ce qu’elle déforme, simplifie ou fige.",
-    "🤡 Clown — Une touche d’absurde pour faire respirer l’analyse."
-  ],
   "consigne_generale": "Pour chaque lunette (3 au total), remplis les trois rubriques ci-dessous. Tu peux t’appuyer sur la description fournie par le tirage, ou suivre ton intuition critique.",
+  "mode_demploi": [
+    {
+      "etiquette": "🟢 Résonance",
+      "description": "Ce que la lunette révèle de pertinent ou d’éclairant."
+    },
+    {
+      "etiquette": "🔴 Discordance",
+      "description": "Ce qu’elle déforme, simplifie ou fige."
+    },
+    {
+      "etiquette": "🤡 Clown",
+      "description": "Une touche d’absurde pour faire respirer l’analyse."
+    }
+  ],
   "structure_par_lunette": [
     {
       "champ": "🟢 Résonance",

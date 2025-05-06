@@ -9,6 +9,11 @@
     "📘 Ton rôle est d’être curieux, critique et bienveillant.",
     "🧭 Chaque étape éclaire un morceau du réel… et un bout de toi-même."
   ],
-  "invitation": "Prends une inspiration douce. L’aventure intérieure commence. Prépare-toi à voir autrement ce que tout le monde croit évident."
+  "invitation": "Prends une inspiration douce. L’aventure intérieure commence. Prépare-toi à voir autrement ce que tout le monde croit évident.",
+  "integration_automatique": {
+    "seuil_entree": true,
+    "deroulement": "Cette étape s'affiche automatiquement en début de partie, avant toute interaction.",
+    "presentation": "Elle établit le cadre narratif : un changement de posture, une inversion douce du regard, une bascule vers l’observation symbolique du normatif."
+  }
 }
 
