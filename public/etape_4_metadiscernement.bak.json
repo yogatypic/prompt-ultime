@@ -10,8 +10,7 @@
   ],
   "questions_reflexives": [
     {
-      "id": "q1",
-      "texte": "Comment ressentez-vous cette étape ?"
+      "question": "Comment ressentez-vous cette étape ?"
     }
   ],
   "formulation_de_synthese": {
