@@ -1,0 +1,28 @@
+{
+  "titre_section": "Étape 3 — Lecture croisée : théâtre intérieur du sens",
+  "sous_titre": "Fais passer ton observation à travers les trois lunettes subjectives",
+  "description": "Chaque lunette propose une interprétation partielle, poétique ou biaisée du comportement observé. À travers ce jeu de filtres, tu explores la plasticité du sens et le trouble fertile du regard multiple.",
+  "mode_demploi": [
+    "🟢 Résonance — Ce que la lunette révèle de pertinent ou d’éclairant.",
+    "🔴 Discordance — Ce qu’elle déforme, simplifie ou fige.",
+    "🤡 Clown — Une touche d’absurde pour faire respirer l’analyse."
+  ],
+  "consigne_generale": "Pour chaque lunette (3 au total), remplis les trois rubriques ci-dessous. Tu peux t’appuyer sur la description fournie par le tirage, ou suivre ton intuition critique.",
+  "structure_par_lunette": [
+    {
+      "champ": "🟢 Résonance",
+      "aide": "Quel éclairage cette lunette apporte-t-elle à la scène ? Quelle partie devient plus lisible, plus sensible ou plus étrange grâce à elle ?"
+    },
+    {
+      "champ": "🔴 Discordance",
+      "aide": "Quels aspects la lunette simplifie-t-elle ? Où tord-elle la scène ? Que laisse-t-elle dans l’ombre ou caricature-t-elle ?"
+    },
+    {
+      "champ": "🤡 Clown",
+      "aide": "Ajoute un clin d’œil : une image ironique, absurde ou poétiquement décalée pour alléger la gravité de l’analyse."
+    }
+  ],
+  "conseil_final": "🎭 Ici, il ne s’agit pas de vérité mais de friction. Ce n’est pas un verdict, mais une danse entre interprétations. Chaque filtre ouvre… et cache. Chaque lunette fait apparaître une facette du réel et en dissimule une autre.",
+  "note_pedagogique": "Cet exercice affine ton métadiscernement : il t’aide à reconnaître les forces et les limites de chaque lecture. Et parfois, il éclaire aussi ton propre angle aveugle."
+}
+
