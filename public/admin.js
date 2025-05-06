@@ -18,62 +18,51 @@ function scanFichiers() {
     });
 }
 
-// === 2. Validation AJV réelle via API ===
+// === 2. Validation AJV réelle ===
 async function validerTousFichiers() {
-  const erreursDiv = document.getElementById("erreursValidation");
-  erreursDiv.innerText = "🧪 Validation en cours...";
-
   const fichiers = [
     "structure",
     "meta",
-    "introduction_et_mission",
-    "axes_autistiques",
-    "compagnons_symboliques",
     "lunettes_subjectives",
-    "masques_symboliques",
+    "introduction_et_mission",
     "etape_0_seuil_entree",
     "etape_1_observation",
     "etape_2_lunettes",
     "etape_3_lecture_croisee",
     "etape_4_metadiscernement",
-    "etape_5_resonance_finale"
+    "etape_5_resonance_finale",
+    "compagnons_symboliques",
+    "axes_autistiques"
   ];
 
-  let erreursTotales = [];
+  const container = document.getElementById("erreursValidation");
+  container.innerHTML = "🧪 Validation en cours...<br>";
 
   for (const nom of fichiers) {
     try {
-      const [jsonRes, schemaRes] = await Promise.all([
-        fetch(`public/${nom}.json`).then(r => r.json()),
-        fetch(`schemas/${nom}.schema.json`).then(r => r.json())
-      ]);
+      const jsonData = await fetch(`/${nom}.json`).then(res => res.json());
+      const schemaData = await fetch(`/schemas/${nom}.schema.json`).then(res => res.json());
 
       const res = await fetch("/api/validate-ajv", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          jsonContent: jsonRes,
-          schemaContent: schemaRes
-        })
+        body: JSON.stringify({ jsonContent: jsonData, schemaContent: schemaData })
       });
 
-      const result = await res.json();
-      if (!result.valid) {
-        erreursTotales.push(`❌ ${nom}.json invalide :\n` + JSON.stringify(result.errors, null, 2));
+      if (res.ok) {
+        container.innerHTML += `✅ <b>${nom}.json</b> : Valide<br>`;
+        logJournal(`✅ ${nom}.json validé`);
       } else {
-        logJournal(`✅ ${nom}.json valide`);
+        const err = await res.json();
+        container.innerHTML += `❌ <b>${nom}.json</b> : Erreurs AJV<br><pre>${JSON.stringify(err.errors, null, 2)}</pre>`;
+        logJournal(`❌ ${nom}.json invalide`);
       }
-
     } catch (err) {
-      erreursTotales.push(`❌ Erreur validation ${nom}.json : ${err.message}`);
+      container.innerHTML += `❌ <b>${nom}.json</b> : Erreur de chargement ou validation<br>`;
+      logJournal(`❌ Erreur AJV ${nom}.json : ${err.message}`);
     }
   }
-
-  erreursDiv.innerText = erreursTotales.length === 0
-    ? "✅ Tous les fichiers sont valides !"
-    : erreursTotales.join("\n\n");
 }
-
 
 // === 3. Enregistrement JSON modifié ===
 function enregistrerJson() {
