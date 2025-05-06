@@ -29,9 +29,6 @@ app.get('/admin', (req, res) => {
   res.redirect('/admin.html');
 });
 
-app.get('/structure.json', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'structure.json'));
-});
 
 // === ROUTES API JSON ===
 app.get('/api/scan', (req, res) => {
