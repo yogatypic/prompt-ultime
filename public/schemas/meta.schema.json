@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "required": [
+    "etapes"
+  ],
+  "properties": {
+    "etapes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,62 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Schéma de l'étape 0 - Seuil d'entrée",
+  "type": "object",
+  "required": [
+    "titre_section",
+    "accroche",
+    "presentation_symbolique",
+    "consignes",
+    "invitation",
+    "integration_automatique"
+  ],
+  "properties": {
+    "titre_section": {
+      "type": "string",
+      "description": "Titre narratif affiché en tête de l’étape, avec intention symbolique claire."
+    },
+    "accroche": {
+      "type": "string",
+      "description": "Brève introduction immersive qui plante le décor du jeu inversé."
+    },
+    "presentation_symbolique": {
+      "type": "string",
+      "description": "Narration symbolique de l’observateur atypique découvrant les comportements normatifs."
+    },
+    "consignes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "description": "Liste de recommandations guidant l'attitude du joueur dans cette étape."
+    },
+    "invitation": {
+      "type": "string",
+      "description": "Phrase ou paragraphe de transition sensorielle et poétique pour entrer dans l’expérience."
+    },
+    "integration_automatique": {
+      "type": "object",
+      "required": ["seuil_entree", "deroulement", "presentation"],
+      "properties": {
+        "seuil_entree": {
+          "type": "boolean",
+          "const": true,
+          "description": "Doit être vrai : marque cette étape comme seuil d'entrée du jeu."
+        },
+        "deroulement": {
+          "type": "string",
+          "description": "Texte décrivant quand et comment cette étape se déclenche automatiquement."
+        },
+        "presentation": {
+          "type": "string",
+          "description": "Explication narrative de la fonction de cette étape dans le cadre global du jeu."
+        }
+      },
+      "additionalProperties": false,
+      "description": "Objet spécifiant les règles d’intégration automatique de cette étape dans le déroulement."
+    }
+  },
+  "additionalProperties": false
+}
+
