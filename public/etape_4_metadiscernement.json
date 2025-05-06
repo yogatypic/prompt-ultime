@@ -1,7 +1,14 @@
 {
+  "nom": "Métadiscernement réflexif et subjectif",
   "titre_section": "Étape 4 — Métadiscernement : observer le filtre qui regarde",
   "sous_titre": "Tu ne regardes plus la scène… tu regardes celui ou celle qui regarde.",
   "description": "Après avoir traversé les trois lunettes subjectives, cette étape t’invite à inverser le regard. Ce n’est plus le comportement observé que tu analyses, mais ton propre filtre. Ce que tu as vu, ce que tu n’as pas vu, ce que tu as eu envie de croire… tout cela parle aussi de toi.",
+  "consigne": {
+    "logique": "Observe ce que tes lunettes ont révélé de toi. Quelles émotions ou jugements ont émergé ?",
+    "creatif": "Imagine que c’est ton propre regard qui devient un personnage. Que dit-il de toi ?",
+    "mixte": "Fais parler ton filtre intérieur : ce qu’il voit, ce qu’il évite, ce qu’il invente. Avec douceur.",
+    "default": "Retourne le regard vers toi : qu’as-tu vu parce que tu voulais le voir ?"
+  },
   "objectifs": [
     "💡 Repérer les lunettes qui ont éveillé en toi une émotion forte ou un inconfort.",
     "🧭 Identifier ce que tu as projeté dans la scène, consciemment ou non.",
@@ -19,3 +26,4 @@
   },
   "note_pedagogique": "Le métadiscernement est une forme douce de lucidité. Il ne s’agit pas de te juger, mais d’apprendre à reconnaître comment tu construis du sens. Chaque regard contient déjà une interprétation. Et c’est en regardant le regard… qu’on découvre sa propre subjectivité."
 }
+

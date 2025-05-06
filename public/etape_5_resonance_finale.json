@@ -1,7 +1,14 @@
 {
+  "nom": "Résonance finale et clôture symbolique",
   "titre_section": "Étape 5 — Résonance intégrative",
   "sous_titre": "Ce que tu gardes, ce que tu laisses… et ce que tu offres au monde",
   "description": "Tu es arrivé·e au bout de cette enquête sensible. Tu n’as pas trouvé LA vérité — mais peut-être un décalage fécond, une image persistante, un frisson intérieur. Cette dernière étape te permet de faire le point. Doucement.",
+  "consigne": {
+    "logique": "Formule une phrase qui résume ce que tu retiens de l’expérience, sur le plan cognitif ou réflexif.",
+    "creatif": "Invente un petit rituel de clôture, ou écris une phrase étrange pour dire au revoir.",
+    "mixte": "Note une idée qui t’accompagne, et un geste symbolique pour clore doucement le parcours.",
+    "default": "Écris ce qui résonne encore en toi. Ce que tu gardes, ce que tu offres, ce que tu laisses."
+  },
   "intentions": [
     "🌱 Garder ce qui t’a nourri : une intuition, une posture, un mot juste.",
     "🕸️ Laisser ce qui reste flou : une question sans réponse, un doute encore en mouvement.",
@@ -21,3 +28,4 @@
   ],
   "conclusion": "Tu n’as pas fermé une histoire. Tu as entrouvert un autre regard. Cette scène, cette enquête, ce miroir... t’auront peut-être déplacé·e, même un peu. Et c’est déjà beaucoup."
 }
+
