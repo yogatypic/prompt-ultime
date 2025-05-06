@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Index des fichiers de lunettes",
+  "description": "Liste des fichiers JSON générés, chacun correspondant à une famille de lunettes symboliques.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["famille", "fichier", "nb"],
+    "properties": {
+      "famille": {
+        "type": "string",
+        "description": "Nom de la famille symbolique (ex: '🧠 Biais cognitifs')."
+      },
+      "fichier": {
+        "type": "string",
+        "description": "Chemin relatif vers le fichier JSON de lunettes correspondant à cette famille."
+      },
+      "nb": {
+        "type": "integer",
+        "minimum": 1,
+        "description": "Nombre d’éléments (lunettes) contenus dans ce fichier."
+      }
+    },
+    "additionalProperties": false,
+    "description": "Bloc représentant un fichier de lunettes d'une famille donnée."
+  }
+}
+

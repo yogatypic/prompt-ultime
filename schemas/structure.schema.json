@@ -1,26 +1,42 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
-  "required": ["etapes"],
+  "required": ["etapes", "lunettes"],
   "properties": {
     "etapes": {
       "type": "array",
-      "items": { "type": "string" }
+      "description": "Liste des fichiers d'étapes utilisés dans le système (ex. public/etape_1_observation.json).",
+      "items": {
+        "type": "string",
+        "description": "Chemin relatif vers un fichier d'étape (JSON)."
+      }
     },
     "lunettes": {
       "type": "array",
+      "description": "Index des groupes de lunettes disponibles, chacun représentant un fichier JSON contenant une famille de lunettes.",
       "items": {
         "type": "object",
         "required": ["famille", "fichier", "nb"],
         "properties": {
-          "famille": { "type": "string" },
-          "fichier": { "type": "string" },
-          "nb": { "type": "integer", "minimum": 1 }
+          "famille": {
+            "type": "string",
+            "description": "Nom de la famille (ex: 🧠 Biais cognitifs ou 🌀 Croyances culturelles limitantes)."
+          },
+          "fichier": {
+            "type": "string",
+            "description": "Chemin relatif vers le fichier JSON contenant les lunettes de cette famille."
+          },
+          "nb": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Nombre de lunettes présentes dans le fichier."
+          }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Entrée représentant un groupe de lunettes homogènes."
       }
     }
   },
-  "additionalProperties": true
+  "additionalProperties": true,
+  "description": "Structure principale du système Prompt Ultime. Ce fichier contient l’organisation des étapes et des lunettes."
 }
 
