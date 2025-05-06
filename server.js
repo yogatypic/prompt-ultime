@@ -26,8 +26,9 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 app.get('/admin', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'admin.html'));
+  res.redirect('/admin.html');
 });
+
 app.get('/structure.json', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'structure.json'));
 });
