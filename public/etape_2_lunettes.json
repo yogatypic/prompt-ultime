@@ -46,6 +46,12 @@
     "citation": "Phrase marquante liée au concept.",
     "concept": "Explication simple du mécanisme symbolique ou cognitif."
   },
-  "note_pedagogique": "Ces lunettes ne sont ni des preuves ni des dogmes. Ce sont des instruments de trouble fécond. Elles servent à explorer, pas à conclure. Elles déplacent le regard — pour mieux sentir ce qu’il masque et ce qu’il révèle."
+  "note_pedagogique": "Ces lunettes ne sont ni des preuves ni des dogmes. Ce sont des instruments de trouble fécond. Elles servent à explorer, pas à conclure. Elles déplacent le regard — pour mieux sentir ce qu’il masque et ce qu’il révèle.",
+  "familles": [
+    {
+      "id": "famille_exemple",
+      "nom": "Famille Exemple",
+      "lunettes": []
+    }
+  ]
 }
-

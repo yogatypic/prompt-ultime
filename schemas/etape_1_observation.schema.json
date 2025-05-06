@@ -1,0 +1,53 @@
+{
+  "type": "object",
+  "required": ["titre_section", "champs"],
+  "properties": {
+    "titre_section": { "type": "string" },
+    "sous_titre": { "type": "string" },
+    "description": { "type": "string" },
+    "consigne_principale": { "type": "string" },
+    "note_methodologique": { "type": "string" },
+    "champs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["champ", "type"],
+        "properties": {
+          "champ": { "type": "string" },
+          "type": { "type": "string" },
+          "aide": { "type": "string" }
+        }
+      }
+    },
+    "exercice_complementaire": {
+      "type": "object",
+      "required": ["titre", "consigne", "versions"],
+      "properties": {
+        "titre": { "type": "string" },
+        "consigne": { "type": "string" },
+        "versions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["type", "description"],
+            "properties": {
+              "type": { "type": "string" },
+              "description": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "questions_de_guidage": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "feedbacks_attendus": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "rappel_final": { "type": "string" }
+  },
+  "additionalProperties": false
+}
+

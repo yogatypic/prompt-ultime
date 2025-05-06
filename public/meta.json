@@ -34,6 +34,13 @@
       "rythme": "une question à la fois",
       "mémorisation": "système d’archivage automatique"
     }
-  }
+  },
+  "etapes": [
+    "etape_0_seuil_entree",
+    "etape_1_observation",
+    "etape_2_lunettes",
+    "etape_3_lecture_croisee",
+    "etape_4_metadiscernement",
+    "etape_5_resonance_finale"
+  ]
 }
-

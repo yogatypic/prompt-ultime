@@ -9,16 +9,9 @@
   ],
   "champs": [
     {
-      "champ": "🌱 Je garde…",
-      "aide": "Un élément marquant : un apprentissage, une sensation, une phrase qui reste collée au cœur ou à l’esprit."
-    },
-    {
-      "champ": "🕸️ Je laisse…",
-      "aide": "Ce que tu choisis de ne pas refermer trop vite : un trouble, une hésitation, une question qui veut du temps."
-    },
-    {
-      "champ": "🎁 J’offre…",
-      "aide": "Un geste symbolique : une parole intérieure, une dédicace muette, une offrande à plus vaste que toi."
+      "id": "champ1",
+      "nom": "Résonance cognitive",
+      "type": "texte"
     }
   ],
   "rituels_cloture_possibles": [
@@ -29,4 +22,3 @@
   ],
   "conclusion": "Tu n’as pas fermé une histoire. Tu as entrouvert un autre regard. Cette scène, cette enquête, ce miroir... t’auront peut-être déplacé·e, même un peu. Et c’est déjà beaucoup."
 }
-
