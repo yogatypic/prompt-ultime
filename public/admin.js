@@ -58,6 +58,7 @@ async function validerTousFichiers() {
         logJournal(`❌ ${nom}.json invalide`);
       }
     } catch (err) {
+      console.error(err); // Ajouté pour le diagnostic
       container.innerHTML += `❌ <b>${nom}.json</b> : Erreur de chargement ou validation<br>`;
       logJournal(`❌ Erreur AJV ${nom}.json : ${err.message}`);
     }
@@ -71,7 +72,7 @@ function enregistrerJson() {
   try {
     const obj = JSON.parse(contenu);
     alert("✅ JSON valide — enregistrement simulé.");
-    // TODO : Enregistrer vers un fichier, API, ou localStorage
+    // TODO : Enregistrement réel si nécessaire
   } catch (e) {
     alert("❌ Erreur : JSON invalide\n\n" + e.message);
   }
@@ -80,8 +81,6 @@ function enregistrerJson() {
 // === 4. Synchronisation API ===
 function envoyerAPI() {
   document.getElementById("logAPI").innerText = "🔄 Appel API simulé...";
-  
-  // TODO : Intégrer appel réel (ex : OpenAI, GitHub)
   setTimeout(() => {
     document.getElementById("logAPI").innerText = "✅ API contactée (test).";
   }, 1000);
@@ -105,24 +104,68 @@ function analyserFichierLibre(event) {
   lecteur.readAsText(fichier);
 }
 
-// === 7. Pilotage IA ===
+// === 7. Pilotage IA – Appel réel + enregistrement versionné ===
 function executerCommandeIA() {
-  const prompt = document.getElementById("promptIA").value;
+  const prompt = document.getElementById("promptIA").value.trim();
+  const resultat = document.getElementById("resultatIA");
 
-  if (!prompt.trim()) {
+  if (!prompt) {
     alert("⚠️ Merci d'écrire une commande IA.");
     return;
   }
 
-  // TODO : Envoyer vers une API OpenAI ou locale
-  document.getElementById("resultatIA").innerText = "🧠 Réponse simulée de l'IA : [à venir]";
+  resultat.innerText = "⏳ Appel à l'IA en cours...";
+  logJournal("📡 Envoi du prompt à l’IA : " + prompt);
+
+  fetch("/api/prompt-ia", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ prompt })
+  })
+    .then(res => {
+      if (!res.ok) throw new Error("Réponse non valide du serveur IA.");
+      return res.json();
+    })
+    .then(data => {
+      const reponse = data.reponse || "❌ Réponse vide.";
+      resultat.innerText = "🤖 " + reponse;
+      logJournal("✅ Réponse IA : " + reponse);
+
+      const contenu = {
+        prompt,
+        reponse,
+        timestamp: new Date().toISOString()
+      };
+
+      return fetch("/api/versioning", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nomFichier: "journal_ia.json",
+          contenu
+        })
+      });
+    })
+    .then(res => {
+      if (res && res.ok) {
+        logJournal("🗂️ Échange IA enregistré dans journal_ia.json");
+      } else if (res) {
+        logJournal("⚠️ Échec enregistrement journal IA.");
+      }
+    })
+    .catch(err => {
+      resultat.innerText = "❌ Erreur IA : " + err.message;
+      logJournal("❌ Échec appel IA : " + err.message);
+    });
 }
+
 // === 8. Journal technique ===
 function logJournal(message) {
   const journal = document.getElementById('journalTechnique');
   const timestamp = new Date().toLocaleTimeString();
   journal.textContent += `[${timestamp}] ${message}\n`;
 }
+
 // === 9. Lancer le script Python via l’API ===
 function lancerImportJson() {
   const log = document.getElementById("logImportJson");
@@ -137,6 +180,41 @@ function lancerImportJson() {
     .catch(err => {
       log.textContent = `❌ Erreur import : ${err.message}`;
       logJournal("❌ Échec import JSON : " + err.message);
+    });
+}
+
+// === 10. Historique IA – Lecture des versions de journal_ia.json ===
+function chargerHistoriqueIA() {
+  const historique = document.getElementById("historiqueIA");
+  historique.textContent = "📡 Chargement en cours...";
+
+  fetch("/api/list-versions")
+    .then(res => res.json())
+    .then(data => {
+      const fichiers = data.fichiers || [];
+      if (fichiers.length === 0) {
+        historique.textContent = "📭 Aucun journal IA trouvé.";
+        return;
+      }
+
+      const promesses = fichiers.map(f =>
+        fetch(`/versions/${f}`).then(res => res.json().catch(() => ({ erreur: "Fichier corrompu" })))
+      );
+
+      Promise.all(promesses).then(donnees => {
+        let rendu = "";
+        donnees.forEach((obj, idx) => {
+          if (obj.erreur) {
+            rendu += `❌ Erreur dans ${fichiers[idx]}\n`;
+          } else {
+            rendu += `🗂️ ${fichiers[idx]}\nPrompt : ${obj.prompt}\nRéponse : ${obj.reponse}\n---\n`;
+          }
+        });
+        historique.textContent = rendu;
+      });
+    })
+    .catch(err => {
+      historique.textContent = "❌ Erreur : " + err.message;
     });
 }
 
