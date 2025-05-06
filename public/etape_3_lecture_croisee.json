@@ -1,28 +1,28 @@
 {
   "titre_section": "Étape 3 — Lecture croisée : théâtre intérieur du sens",
-  "sous_titre": "Chaque lunette révèle un monde, mais masque un autre",
-  "description": "Tu vas relire la scène observée à travers trois filtres subjectifs. Chaque lunette propose une interprétation poétique, biaisée ou décalée. À travers elles, tu explores la plasticité du sens, la friction des regards et les résonances inattendues.",
+  "sous_titre": "Fais passer ton observation à travers les trois lunettes subjectives",
+  "description": "Chaque lunette propose une interprétation partielle, poétique ou biaisée du comportement observé. À travers ce jeu de filtres, tu explores la plasticité du sens et le trouble fertile du regard multiple.",
   "mode_demploi": [
-    "🟢 Résonance — Ce que la lunette éclaire, révèle ou rend sensible.",
-    "🔴 Discordance — Ce qu’elle simplifie, déforme ou laisse dans l’ombre.",
-    "🤡 Clown — Une touche d’absurde pour alléger l’analyse."
+    "🟢 Résonance — Ce que la lunette révèle de pertinent ou d’éclairant.",
+    "🔴 Discordance — Ce qu’elle déforme, simplifie ou fige.",
+    "🤡 Clown — Une touche d’absurde pour faire respirer l’analyse."
   ],
-  "consigne_principale": "Pour chaque lunette (elles apparaîtront une par une), complète les trois rubriques. Tu peux t’appuyer sur sa description, sa citation, ou ton propre ressenti.",
+  "consigne_generale": "Pour chaque lunette (3 au total), remplis les trois rubriques ci-dessous. Tu peux t’appuyer sur la description fournie par le tirage, ou suivre ton intuition critique.",
   "structure_par_lunette": [
     {
       "champ": "🟢 Résonance",
-      "aide": "Quel éclairage cette lunette apporte-t-elle ? Qu’est-ce qui devient plus lisible ou étrange ?"
+      "aide": "Quel éclairage cette lunette apporte-t-elle à la scène ? Quelle partie devient plus lisible, plus sensible ou plus étrange grâce à elle ?"
     },
     {
       "champ": "🔴 Discordance",
-      "aide": "Où la lunette déforme-t-elle le réel ? Quels angles morts produit-elle ?"
+      "aide": "Quels aspects la lunette simplifie-t-elle ? Où tord-elle la scène ? Que laisse-t-elle dans l’ombre ou caricature-t-elle ?"
     },
     {
       "champ": "🤡 Clown",
-      "aide": "Ajoute un clin d’œil absurde ou ironique. Cela soulage l’analyse et révèle autrement."
+      "aide": "Ajoute un clin d’œil : une image ironique, absurde ou poétiquement décalée pour alléger la gravité de l’analyse."
     }
   ],
-  "rappel": "Il ne s’agit pas de vérité. C’est une danse d’interprétations. Chaque filtre ouvre… et cache. C’est dans la friction qu’émerge ton discernement.",
-  "note_pedagogique": "Cette étape développe ton métadiscernement : tu apprends à observer comment tu observes, et à sentir les effets de chaque angle de vue."
+  "conseil_final": "🎭 Ici, il ne s’agit pas de vérité mais de friction. Ce n’est pas un verdict, mais une danse entre interprétations. Chaque filtre ouvre… et cache. Chaque lunette fait apparaître une facette du réel et en dissimule une autre.",
+  "note_pedagogique": "Cet exercice affine ton métadiscernement : il t’aide à reconnaître les forces et les limites de chaque lecture. Et parfois, il éclaire aussi ton propre angle aveugle."
 }
 

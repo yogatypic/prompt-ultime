@@ -22,6 +22,17 @@
     "🎭 Compagnons symboliques pour l’analyse douce et ironique.",
     "🌀 Passage dans un théâtre intérieur de lecture croisée (résonance, biais, humour).",
     "🧠 Étape finale de métadiscernement et de résonance personnelle."
-  ]
+  ],
+  "regles_interaction": {
+    "seuil_entree": "introduction immersive guidée avec masques symboliques",
+    "structure": {
+      "masques_symboliques": "déroulement automatique",
+      "tons_analyse": "déroulement automatique",
+      "compagnons_symboliques": "interventions successives",
+      "scenes": "choix guidé",
+      "rythme": "une question à la fois",
+      "mémorisation": "système d’archivage automatique"
+    }
+  }
 }
 

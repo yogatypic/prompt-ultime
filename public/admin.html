@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin – Prompt Ultime</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- =========================
+       INTERFACE ADMIN – PROMPT ULTIME
+       Version modulaire, pilotable via API
+  ========================== -->
+
+  <header>
+    <h1>🧠 Interface Admin — Prompt Ultime</h1>
+    <p>Maintenance, évolution et introspection IA du projet.</p>
+  </header>
+
+  <!-- === MODULE 1 : SCANNER LOCAL & SERVEUR === -->
+  <section id="scanner" class="module">
+    <h2>1. Scanner fichiers</h2>
+    <p>Analyse les fichiers JSON disponibles en local et sur le serveur distant (Render, GitHub...).</p>
+    
+    <!-- Déclenche une analyse avec récupération via API -->
+    <button onclick="scanFichiers()">📡 Scanner local & distant</button>
+    <div id="resultatsScan"></div>
+  </section>
+
+  <!-- === MODULE 2 : VÉRIFICATION STRUCTURELLE (AJV) === -->
+  <section id="validation" class="module">
+    <h2>2. Vérification JSON</h2>
+    <p>Vérifie les fichiers avec les schémas JSON (AJV), détecte les erreurs, propose des corrections IA.</p>
+    <button onclick="validerTousFichiers()">🧪 Lancer validation AJV</button>
+    <div id="erreursValidation"></div>
+  </section>
+
+  <!-- === MODULE 3 : ÉDITION JSON INTELLIGENTE === -->
+  <section id="editeur" class="module">
+    <h2>3. Éditeur de contenu</h2>
+    <p>Modifier, réparer ou enrichir un fichier JSON. Ajoute version automatique. IA disponible.</p>
+    
+    <input type="file" id="fileInput" />
+    <textarea id="jsonEditor" rows="20" cols="80" placeholder="Contenu JSON ici..."></textarea>
+    <br />
+    <button onclick="enregistrerJson()">💾 Enregistrer & versionner</button>
+  </section>
+
+  <!-- === MODULE 4 : SYNCHRONISATION API === -->
+  <section id="apiSync" class="module">
+    <h2>4. API & Synchronisation</h2>
+    <p>Gère les échanges avec les API : OpenAI, GitHub, Render… (en lecture et écriture).</p>
+    <button onclick="envoyerAPI()">🔄 Envoyer fichier vers API</button>
+    <div id="logAPI"></div>
+  </section>
+
+  <!-- === MODULE 5 : GESTION DES VERSIONS === -->
+  <section id="versions" class="module">
+    <h2>5. Historique & sauvegardes</h2>
+    <p>Liste et restaure les anciennes versions des fichiers modifiés.</p>
+    <ul id="listeVersions"></ul>
+    <button onclick="sauvegarderEtat()">📚 Créer un point de restauration</button>
+  </section>
+
+  <!-- === MODULE 6 : INGESTION D'UN FICHIER LIBRE === -->
+  <section id="analyseLibre" class="module">
+    <h2>6. Analyse libre de fichier</h2>
+    <p>Scanner, restructurer ou absorber un fichier libre comme IA1.json, même corrompu.</p>
+    <input type="file" onchange="analyserFichierLibre(event)" />
+    <div id="resultatAnalyseLibre"></div>
+  </section>
+
+  <!-- === MODULE 7 : COMMANDE IA D'ADMINISTRATION === -->
+  <section id="pilotageIA" class="module">
+    <h2>7. IA de pilotage</h2>
+    <p>Lancer des commandes IA pour analyser ou structurer des parties complexes (versioning, métadonnées, tri, fusion...).</p>
+    <textarea id="promptIA" rows="5" cols="80" placeholder="Commande à envoyer à l'IA..."></textarea>
+    <button onclick="executerCommandeIA()">🧠 Lancer commande IA</button>
+    <div id="resultatIA"></div>
+  </section>
+
+  <!-- === MODULE 8 : JOURNAL TECHNIQUE === -->
+  <section id="journal" class="module">
+    <h2>8. Journal technique</h2>
+    <p>Historique des actions, erreurs, synchronisations, dialogues API.</p>
+    <pre id="journalTechnique"></pre>
+  </section>
+<!-- === MODULE 9 : Import JSON via script Python === -->
+<section id="importJson" class="module">
+  <h2>9. Import JSON depuis script Python</h2>
+  <p>Lance le script Python `import_json.py` sur le serveur (API backend).</p>
+  <button onclick="lancerImportJson()">🐍 Lancer import JSON</button>
+  <pre id="logImportJson"></pre>
+</section>
+
+  <!-- Scripts -->
+  <script src="admin.js"></script>
+</body>
+</html>
+

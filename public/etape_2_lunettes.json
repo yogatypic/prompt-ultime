@@ -1,26 +1,41 @@
 {
   "titre_section": "Étape 2 — Tirage des lunettes subjectives",
-  "sous_titre": "Trois filtres étranges pour décaler ton regard",
-  "description": "Tu ne choisis pas les lunettes. Elles viennent à toi. Trois filtres seront tirés automatiquement : un biais cognitif, une croyance culturelle limitante, et une méta-posture. Ce sont des projecteurs symboliques pour relire ta scène autrement.",
+  "sous_titre": "Trois regards étranges pour décaler le sens",
+  "description": "Tu vas tirer trois filtres de lecture absurdes ou critiques pour relire le comportement observé. Ces ‘lunettes’ changent ton angle de vue. Elles te montrent une autre vérité… ou un autre mensonge.",
   "consigne_principale": "🎲 Laisse-toi surprendre par les trois lunettes subjectives : elles apparaîtront une par une.",
-  "familles": {
+  "accroche": "🎯 Tire trois filtres de lecture entre 1 et 54 (ou dis simplement : « Tire-moi trois lunettes »).",
+  "families": {
     "biais_cognitifs": {
-      "icone": "🧠",
+      "nom_affiche": "🧠 Biais cognitifs",
       "plage": "1–25",
       "description": "Automatismes mentaux : ton cerveau les active sans t’en parler. Ils colorent ta lecture sans prévenir."
     },
     "croyances_culturelles": {
-      "icone": "🌀",
+      "nom_affiche": "🌀 Croyances culturelles limitantes",
       "plage": "26–50",
       "description": "Mythes collectifs intégrés comme vérités. Ce sont les idées invisibles qui organisent le regard."
     },
     "meta_postures": {
-      "icone": "🔍",
+      "nom_affiche": "🔍 Méta-postures",
       "plage": "51–54",
       "description": "Filtres qui observent… les filtres. Ils ajoutent du vertige, du recul ou de l’humour dans l’analyse."
     }
   },
-  "structure_attendue": {
+  "rappel_utilisateur": "Aucune lunette ne dit toute la vérité. Chacune révèle un bout de sens… et en masque un autre. Ce sont des projecteurs, pas des preuves.",
+  "modes_tirage": [
+    {
+      "mode": "manuel",
+      "intitule": "🎯 Choix manuel",
+      "description": "Tu choisis 3 numéros entre 1 et 54. Un dans chaque famille si tu veux équilibrer."
+    },
+    {
+      "mode": "aleatoire",
+      "intitule": "🎲 Tirage aléatoire",
+      "description": "L’IA te propose 3 lunettes : 1 cognitive, 1 culturelle, 1 méta-posture. Surprise garantie."
+    }
+  ],
+  "utilisation_des_lunettes": "Tu vas utiliser ces lunettes dans l’étape suivante (lecture croisée). Garde bien en mémoire leur nom, numéro et famille.",
+  "structure_donnee_par_lunette": {
     "id": "Numéro de la lunette (1 à 54)",
     "nom": "Nom symbolique",
     "famille": "🧠 / 🌀 / 🔍",
@@ -31,6 +46,6 @@
     "citation": "Phrase marquante liée au concept.",
     "concept": "Explication simple du mécanisme symbolique ou cognitif."
   },
-  "note_pedagogique": "Aucune lunette ne dit ‘la vérité’. Chacune éclaire un angle… et en masque un autre. Ce sont des outils de déplacement, pas de jugement."
+  "note_pedagogique": "Ces lunettes ne sont ni des preuves ni des dogmes. Ce sont des instruments de trouble fécond. Elles servent à explorer, pas à conclure. Elles déplacent le regard — pour mieux sentir ce qu’il masque et ce qu’il révèle."
 }
 
