@@ -17,7 +17,7 @@
       border: 1px solid #ccc;
       margin-top: 2em;
       white-space: pre-wrap;
-      max-height: 400px;
+      max-height: 300px;
       overflow-y: auto;
     }
     #narration-intro {
@@ -83,9 +83,6 @@
     <h3>📘 Journal pédagogique</h3>
     <div id="log-content">Choisissez un mode pour démarrer.</div>
     <button onclick="exporterLog()">📅 Exporter le journal</button>
-    <hr>
-    <button onclick="testerStructureJSON()">🧪 Vérifier les fichiers de structure.json</button>
-    <div id="resultats-test-json" style="margin-top:1em; font-family:monospace;"></div>
   </div>
 
   <script>
@@ -138,13 +135,28 @@
         let html = `<h2>Étape ${currentStepIndex + 1} – ${etapeData.nom || 'Sans nom'}</h2>`;
         if (etapeData.intro) html += `<p><em>${etapeData.intro}</em></p>`;
         if (etapeData.objectif) html += `<p><strong>Objectif :</strong> ${etapeData.objectif}</p>`;
+        if (etapeData.accroche) html += `<p>${etapeData.accroche}</p>`;
+        if (etapeData.presentation_symbolique) html += `<p>${etapeData.presentation_symbolique}</p>`;
+        if (etapeData.invitation) html += `<p><em>${etapeData.invitation}</em></p>`;
+        if (Array.isArray(etapeData.consignes)) {
+          html += "<ul>";
+          for (const c of etapeData.consignes) html += `<li>${c}</li>`;
+          html += "</ul>";
+        }
+
         const consigne = etapeData.consigne?.[mode] || etapeData.consigne?.default || "Pas de consigne spécifique.";
         html += `<p><strong>Consigne (${mode}) :</strong> ${consigne}</p>`;
-        html += `
-          <label for="reponse">✍️ Votre réponse :</label><br>
-          <textarea id="reponse" rows="5" placeholder="Votre réponse..."></textarea><br>
-          <button onclick="validerEtape()">Valider</button>
-        `;
+
+        if (etapeData.reponse_attendue !== false) {
+          html += `
+            <label for="reponse">✍️ Votre réponse :</label><br>
+            <textarea id="reponse" rows="5" placeholder="Votre réponse..."></textarea><br>
+            <button onclick="validerEtape()">Valider</button>
+          `;
+        } else {
+          html += `<button onclick="validerEtape()">➡️ Continuer</button>`;
+        }
+
         document.getElementById("etape-container").innerHTML = html;
       } catch (err) {
         showError(`Erreur étape : ${err.message}`);
@@ -153,7 +165,8 @@
     }
 
     function showError(msg) {
-      document.getElementById("etape-container").innerHTML = `<p class="error">${msg}</p>`;
+      const container = document.getElementById("etape-container");
+      container.innerHTML = `<p class="error">${msg}</p>`;
     }
 
     function addLog(msg) {
@@ -174,8 +187,8 @@
 
     function validerEtape() {
       const reponse = document.getElementById("reponse")?.value?.trim();
-      if (reponse) {
-        addLog(`📝 Réponse enregistrée : ${reponse}`);
+      if (reponse || document.getElementById("reponse") === null) {
+        if (reponse) addLog(`📝 Réponse enregistrée : ${reponse}`);
         currentStepIndex++;
         loadStep();
       } else {
@@ -187,52 +200,6 @@
       addLog("🕶 Tirage symbolique fictif exécuté.");
       currentStepIndex++;
       loadStep();
-    }
-
-    async function testerStructureJSON() {
-      const affichage = document.getElementById("resultats-test-json");
-      affichage.innerHTML = "🔍 Vérification en cours...\n";
-      const fichiersTestés = new Set();
-
-      function logStatut(fichier, statut, erreur = "") {
-        const prefix = statut === "ok" ? "✅" : "❌";
-        const ligne = document.createElement("div");
-        ligne.textContent = `${prefix} ${fichier} ${erreur}`;
-        ligne.style.color = statut === "ok" ? "green" : "red";
-        affichage.appendChild(ligne);
-      }
-
-      async function testerFichier(fichier) {
-        if (fichiersTestés.has(fichier)) return;
-        fichiersTestés.add(fichier);
-        try {
-          const res = await fetch(fichier, { cache: "no-store" });
-          if (!res.ok) throw new Error(`HTTP ${res.status}`);
-          await res.json();
-          logStatut(fichier, "ok");
-        } catch (err) {
-          logStatut(fichier, "err", `→ ${err.message}`);
-        }
-      }
-
-      try {
-        const res = await fetch("structure.json", { cache: "no-store" });
-        if (!res.ok) throw new Error(`structure.json HTTP ${res.status}`);
-        const data = await res.json();
-
-        if (data.meta) await testerFichier(data.meta);
-        if (data.introduction_et_mission) await testerFichier(data.introduction_et_mission);
-        if (Array.isArray(data.etapes)) for (const e of data.etapes) await testerFichier(e);
-        if (Array.isArray(data.lunettes)) for (const l of data.lunettes) await testerFichier(l.fichier);
-        if (data.ressources) for (const fichier of Object.values(data.ressources)) await testerFichier(fichier);
-
-        const ligneFin = document.createElement("div");
-        ligneFin.textContent = "🎉 Vérification terminée.";
-        ligneFin.style.marginTop = "1em";
-        affichage.appendChild(ligneFin);
-      } catch (err) {
-        logStatut("structure.json", "err", `→ ${err.message}`);
-      }
     }
   </script>
 </body>
