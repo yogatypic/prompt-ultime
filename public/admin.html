@@ -22,8 +22,6 @@
   <section id="scanner" class="module">
     <h2>1. Scanner fichiers</h2>
     <p>Analyse les fichiers JSON disponibles en local et sur le serveur distant (Render, GitHub...).</p>
-    
-    <!-- Déclenche une analyse avec récupération via API -->
     <button onclick="scanFichiers()">📡 Scanner local & distant</button>
     <div id="resultatsScan"></div>
   </section>
@@ -40,7 +38,6 @@
   <section id="editeur" class="module">
     <h2>3. Éditeur de contenu</h2>
     <p>Modifier, réparer ou enrichir un fichier JSON. Ajoute version automatique. IA disponible.</p>
-    
     <input type="file" id="fileInput" />
     <textarea id="jsonEditor" rows="20" cols="80" placeholder="Contenu JSON ici..."></textarea>
     <br />
@@ -61,6 +58,9 @@
     <p>Liste et restaure les anciennes versions des fichiers modifiés.</p>
     <ul id="listeVersions"></ul>
     <button onclick="sauvegarderEtat()">📚 Créer un point de restauration</button>
+    <button onclick="chargerListeVersions()">🔎 Afficher les versions disponibles</button>
+    <select id="selectVersion"></select>
+    <button onclick="restaurerVersion()">♻️ Restaurer cette version</button>
   </section>
 
   <!-- === MODULE 6 : INGESTION D'UN FICHIER LIBRE === -->
@@ -86,27 +86,31 @@
     <p>Historique des actions, erreurs, synchronisations, dialogues API.</p>
     <pre id="journalTechnique"></pre>
   </section>
-<!-- === MODULE 9 : Import JSON via script Python === -->
-<section id="importJson" class="module">
-  <h2>9. Import JSON depuis script Python</h2>
-  <p>Lance le script Python `import_json.py` sur le serveur (API backend).</p>
-  <button onclick="lancerImportJson()">🐍 Lancer import JSON</button>
-  <pre id="logImportJson"></pre>
-</section>
-<hr>
-<h2>📚 Module 10 – Historique des échanges IA</h2>
-<button onclick="chargerHistoriqueIA()">🔍 Charger l’historique IA</button>
-<pre id="historiqueIA">📭 Aucun historique chargé.</pre>
-<!-- === MODULE 11 : Autogestion IA === -->
-<section id="autogestion" class="module">
-  <h2>11. Autogestion IA</h2>
-  <p>Déclenche un enchaînement intelligent (scan, validation, sauvegarde), prêt à évoluer avec des réparations automatiques.</p>
-  <button onclick="executerAutogestion('valider')">🛠️ Valider tous les fichiers</button>
-  <button onclick="executerAutogestion('réparer')">🩺 Réparer (future IA)</button>
-  <pre id="journalAutogestion">📭 Aucune opération lancée.</pre>
-</section>
 
-suite
+  <!-- === MODULE 9 : Import JSON via script Python === -->
+  <section id="importJson" class="module">
+    <h2>9. Import JSON depuis script Python</h2>
+    <p>Lance le script Python `import_json.py` sur le serveur (API backend).</p>
+    <button onclick="lancerImportJson()">🐍 Lancer import JSON</button>
+    <pre id="logImportJson"></pre>
+  </section>
+
+  <!-- === MODULE 10 : Historique IA === -->
+  <section class="module">
+    <h2>📚 Module 10 – Historique des échanges IA</h2>
+    <button onclick="chargerHistoriqueIA()">🔍 Charger l’historique IA</button>
+    <pre id="historiqueIA">📭 Aucun historique chargé.</pre>
+  </section>
+
+  <!-- === MODULE 11 : Autogestion IA === -->
+  <section id="autogestion" class="module">
+    <h2>11. Autogestion IA</h2>
+    <p>Déclenche un enchaînement intelligent (scan, validation, sauvegarde), prêt à évoluer avec des réparations automatiques.</p>
+    <button onclick="executerAutogestion('valider')">🛠️ Valider tous les fichiers</button>
+    <button onclick="executerAutogestion('réparer')">🩺 Réparer les fichiers</button>
+    <pre id="journalAutogestion">📭 Aucune opération lancée.</pre>
+  </section>
+
   <!-- Scripts -->
   <script src="admin.js"></script>
 </body>

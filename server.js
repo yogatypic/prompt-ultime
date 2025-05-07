@@ -24,13 +24,13 @@ const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 // === MIDDLEWARES ===
 app.use(morgan('dev'));
 app.use(express.json());
-app.use(express.static(jsonDir)); // Sert /admin.html et /schemas/*
+app.use(express.static(jsonDir));
 
 // === ROUTES FRONTEND ===
 app.get('/', (req, res) => res.sendFile(path.join(jsonDir, 'index.html')));
 app.get('/admin', (req, res) => res.redirect('/admin.html'));
 
-// === ROUTE API 1 : SCAN fichiers JSON ===
+// === API ROUTES ===
 app.get('/api/scan', (req, res) => {
   try {
     const files = fs.readdirSync(jsonDir).filter(f => f.endsWith('.json'));
@@ -44,12 +44,39 @@ app.get('/api/scan', (req, res) => {
   }
 });
 
-// Alias pour compatibilité admin.js
 app.get('/api/list-fichiers', (req, res) => {
   res.redirect('/api/scan');
 });
 
-// === ROUTE API 2 : VALIDATION AJV ===
+app.get('/api/list-versions', (req, res) => {
+  try {
+    if (!fs.existsSync(versionDir)) return res.json([]);
+    const fichiers = fs.readdirSync(versionDir)
+      .filter(f => f.endsWith('.json'))
+      .map(fichier => ({
+        nom: fichier,
+        chemin: path.join('versions', fichier),
+        taille: fs.statSync(path.join(versionDir, fichier)).size,
+        modif: fs.statSync(path.join(versionDir, fichier)).mtime
+      }));
+    res.json(fichiers);
+  } catch (err) {
+    res.status(500).json({ error: 'Erreur lecture versions : ' + err.message });
+  }
+});
+
+app.post('/api/restaurer-version', (req, res) => {
+  try {
+    const { nomVersion, cible } = req.body;
+    const source = path.join(versionDir, nomVersion);
+    const destination = path.join(jsonDir, cible);
+    fs.copyFileSync(source, destination);
+    res.json({ status: 'ok', message: `${cible} restauré depuis ${nomVersion}` });
+  } catch (err) {
+    res.status(500).json({ error: 'Erreur restauration : ' + err.message });
+  }
+});
+
 app.post('/api/validate-ajv', (req, res) => {
   try {
     const { jsonContent, schemaContent } = req.body;
@@ -62,7 +89,6 @@ app.post('/api/validate-ajv', (req, res) => {
   }
 });
 
-// === ROUTE API 3 : SAVE JSON ===
 app.post('/api/save-json', (req, res) => {
   try {
     const { nomFichier, contenu } = req.body;
@@ -74,7 +100,6 @@ app.post('/api/save-json', (req, res) => {
   }
 });
 
-// === ROUTE API 4 : VERSIONING ===
 app.post('/api/versioning', (req, res) => {
   try {
     const { nomFichier, contenu } = req.body;
@@ -89,150 +114,8 @@ app.post('/api/versioning', (req, res) => {
   }
 });
 
-// === ROUTE API 5 : SYNC API EXTERNE (ex. OpenAI / GitHub) ===
-app.post('/api/sync-api', (req, res) => {
-  try {
-    const payload = req.body;
-    console.log("📡 SYNC PAYLOAD :", payload);
-
-    // Ici tu pourrais appeler une vraie API (OpenAI, GitHub...)
-    const simulation = {
-      status: 'ok',
-      message: 'Synchronisation simulée avec succès.',
-      data: payload
-    };
-
-    res.json(simulation);
-  } catch (err) {
-    res.status(500).json({ error: 'Erreur de synchronisation : ' + err.message });
-  }
-});
-
-// === ROUTE API 6 : IMPORT JSON via script Python ===
-app.get('/api/import-json', (req, res) => {
-  const process = spawn('python3', ['import_json.py']);
-  let output = '';
-  process.stdout.on('data', data => output += data.toString());
-  process.stderr.on('data', data => output += data.toString());
-  process.on('close', code => {
-    if (code === 0) res.send(output);
-    else res.status(500).send(output);
-  });
-});
-
-// === ROUTE API 7 : APPEL IA (OpenAI) ===
-app.post('/api/prompt-ia', async (req, res) => {
-  try {
-    const { prompt } = req.body;
-    const completion = await openai.chat.completions.create({
-      model: 'gpt-3.5-turbo',
-      messages: [{ role: 'user', content: prompt }]
-    });
-    res.json({ reponse: completion.choices[0].message.content });
-  } catch (err) {
-    res.status(500).json({ error: 'Erreur appel OpenAI : ' + err.message });
-  }
-});
-
-// === ROUTE API 8 : Analyse libre d’un JSON ===
-app.post('/api/analyse-libre', (req, res) => {
-  try {
-    const { contenu } = req.body;
-    const resume = {
-      type: typeof contenu,
-      clefs: Object.keys(contenu || {}),
-      taille: JSON.stringify(contenu).length
-    };
-    res.json(resume);
-  } catch (err) {
-    res.status(500).json({ error: 'Erreur analyse libre : ' + err.message });
-  }
-});
-
-// === ROUTE API 9 : Historique IA ===
-app.get('/api/historique-ia', (req, res) => {
-  try {
-    if (!fs.existsSync(versionDir)) return res.json([]);
-    const fichiers = fs.readdirSync(versionDir)
-      .filter(f => f.startsWith('journal_ia.') && f.endsWith('.json'));
-
-    const historique = fichiers.map(fichier => {
-      const contenu = fs.readFileSync(path.join(versionDir, fichier), 'utf8');
-      return JSON.parse(contenu);
-    });
-
-    res.json(historique);
-  } catch (err) {
-    res.status(500).json({ error: 'Erreur lecture historique IA : ' + err.message });
-  }
-});
-
-// === LANCEMENT DU SERVEUR ===
+// === DÉMARRAGE SERVEUR ===
 app.listen(PORT, () => {
   console.log(`🚀 Serveur backend opérationnel : http://localhost:${PORT}`);
-});
-// === ROUTE API 10 : Autogestion intelligente (scan + validation) ===
-app.post('/api/autogestion', async (req, res) => {
-  const { action } = req.body;
-  const journal = [];
-
-  try {
-    // 1. Scan des fichiers
-    const fichiers = fs.readdirSync(jsonDir)
-      .filter(f => f.endsWith('.json') && !f.endsWith('.bak.json'))
-      .map(nom => {
-        const contenu = fs.readFileSync(path.join(jsonDir, nom), 'utf8');
-        return { nom, contenu };
-      });
-
-    journal.push({ étape: "scan", nbFichiers: fichiers.length });
-
-    if (action === 'valider' || action === 'réparer') {
-      const schema = JSON.parse(fs.readFileSync(path.join(schemasDir, 'etape.schema.json'), 'utf8'));
-
-      for (const fichier of fichiers) {
-        let json;
-        try {
-          json = JSON.parse(fichier.contenu);
-        } catch (e) {
-          journal.push({ fichier: fichier.nom, erreur: "JSON invalide", detail: e.message });
-          continue;
-        }
-
-        const validate = ajv.compile(schema);
-        const valid = validate(json);
-
-        if (!valid) {
-          journal.push({
-            fichier: fichier.nom,
-            valide: false,
-            erreurs: validate.errors
-          });
-
-          if (action === 'réparer') {
-            // 💡 ICI tu pourras ajouter une IA de correction
-            journal.push({
-              fichier: fichier.nom,
-              tentative: "Réparation IA non encore implémentée"
-            });
-          }
-
-        } else {
-          journal.push({ fichier: fichier.nom, valide: true });
-        }
-      }
-    }
-
-    // 3. Sauvegarde du journal dans versions/
-    const horodatage = new Date().toISOString().replace(/[:.]/g, '-');
-    const chemin = path.join(versionDir, `journal_autogestion.${horodatage}.json`);
-    fs.mkdirSync(versionDir, { recursive: true });
-    fs.writeFileSync(chemin, JSON.stringify(journal, null, 2), 'utf8');
-
-    res.json({ status: 'ok', action, journal });
-
-  } catch (err) {
-    res.status(500).json({ error: "Erreur autogestion : " + err.message });
-  }
 });
 

@@ -16,11 +16,18 @@ async function scanFichiers() {
     fichiers.forEach(fichier => {
       const ligne = document.createElement('li');
       ligne.dataset.nom = fichier.nom;
+
       const zone = document.createElement('textarea');
       zone.value = fichier.contenu || '';
       zone.rows = 10;
       zone.cols = 80;
       ligne.appendChild(zone);
+
+      const boutonReparer = document.createElement('button');
+      boutonReparer.textContent = "🛠️ Réparer ce fichier";
+      boutonReparer.onclick = () => reparerFichier(fichier.nom, zone);
+      ligne.appendChild(boutonReparer);
+
       resultatsScan.appendChild(ligne);
     });
   } catch (err) {
@@ -39,7 +46,20 @@ async function validerTousFichiers() {
   for (const ligne of lignes) {
     const nomFichier = ligne.dataset.nom;
     const contenuTexte = ligne.querySelector('textarea').value;
-    const fichierJson = JSON.parse(contenuTexte);
+    let fichierJson;
+
+    try {
+      fichierJson = JSON.parse(contenuTexte);
+    } catch (err) {
+      ligne.style.border = '2px solid orange';
+      const errBox = document.createElement('pre');
+      errBox.className = 'ajv-erreurs';
+      errBox.style.color = 'orange';
+      errBox.textContent = 'Erreur JSON : ' + err.message;
+      ligne.appendChild(errBox);
+      rapport.push({ nomFichier, valide: false, erreurs: [{ message: err.message }] });
+      continue;
+    }
 
     const resultat = { nomFichier };
     ligne.querySelectorAll('.ajv-erreurs').forEach(e => e.remove());
@@ -93,142 +113,83 @@ async function validerTousFichiers() {
   });
 }
 
-// 3. ÉDITION JSON
-async function enregistrerJson() {
-  const contenu = document.getElementById('jsonEditor').value;
-  try {
-    const jsonData = JSON.parse(contenu);
-    await fetch(`${API_BASE_URL}/api/save-json`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        nomFichier: 'edition.json',
-        contenu: jsonData
-      })
-    });
-    alert("💾 Fichier sauvegardé avec succès.");
-  } catch (err) {
-    alert("❌ Erreur JSON : " + err.message);
-  }
-}
-
-// 4. SYNCHRONISATION API
-async function envoyerAPI() {
-  const contenu = document.getElementById('jsonEditor').value;
-  try {
-    await fetch(`${API_BASE_URL}/api/sync-api`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: contenu
-    });
-    alert("✅ Fichier envoyé à l’API.");
-  } catch (err) {
-    alert("❌ Échec de la synchronisation : " + err.message);
-  }
-}
-
-// 5. VERSIONS
-async function sauvegarderEtat() {
-  await fetch(`${API_BASE_URL}/api/versioning`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      nomFichier: 'sauvegarde_automatique.json',
-      contenu: { date: new Date().toISOString(), message: "Sauvegarde d'état." }
-    })
-  });
-  alert("📚 Point de restauration créé.");
-}
-
-// 6. ANALYSE LIBRE
-async function analyserFichierLibre(event) {
-  const file = event.target.files[0];
-  const text = await file.text();
-  const parsed = JSON.parse(text);
-
-  const res = await fetch(`${API_BASE_URL}/api/analyse-libre`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ contenu: parsed })
-  });
-
-  const data = await res.json();
-  document.getElementById('resultatAnalyseLibre').textContent = JSON.stringify(data, null, 2);
-}
-
-// 7. IA DE PILOTAGE
-async function executerCommandeIA() {
-  const prompt = document.getElementById('promptIA').value.trim();
-  const resultatZone = document.getElementById('resultatIA');
-  const journalBloc = document.getElementById('journalTechnique');
-
-  if (!prompt) {
-    resultatZone.textContent = "⛔ Entrez un prompt.";
-    return;
-  }
+// 3. CHARGEMENT DES VERSIONS DISPONIBLES
+async function chargerListeVersions() {
+  const liste = document.getElementById('listeVersions');
+  liste.innerHTML = "⌛ Chargement des versions...";
 
   try {
-    const reponse = await fetch(`${API_BASE_URL}/api/prompt-ia`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ prompt })
+    const res = await fetch(`${API_BASE_URL}/api/list-versions`);
+    const fichiers = await res.json();
+    liste.innerHTML = '';
+
+    const select = document.createElement('select');
+    select.id = 'selectVersion';
+    fichiers.forEach(({ nom }) => {
+      const opt = document.createElement('option');
+      opt.value = nom;
+      opt.textContent = nom;
+      select.appendChild(opt);
     });
+    liste.appendChild(select);
 
-    const data = await reponse.json();
-    const horodatage = new Date().toISOString();
-    const resultat = data.reponse || `❌ Erreur : ${data.error || 'Inconnue'}`;
-
-    resultatZone.textContent = resultat;
-    journalBloc.textContent += `\n[${horodatage}] 📡 Prompt IA :\n${prompt}\n✅ Réponse :\n${resultat}\n`;
-
-    await fetch(`${API_BASE_URL}/api/versioning`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        nomFichier: `journal_ia.${horodatage}.json`,
-        contenu: { prompt, reponse: data.reponse || null, erreur: data.error || null, timestamp: horodatage }
-      })
-    });
+    const boutonRestaurer = document.createElement('button');
+    boutonRestaurer.textContent = '♻️ Restaurer cette version';
+    boutonRestaurer.onclick = restaurerVersion;
+    liste.appendChild(boutonRestaurer);
 
   } catch (err) {
-    resultatZone.textContent = "❌ Exception IA : " + err.message;
-    journalBloc.textContent += `\n[${new Date().toISOString()}] ❌ Exception IA : ${err.message}`;
+    liste.innerHTML = "❌ Erreur chargement versions : " + err.message;
   }
 }
 
-// 10. HISTORIQUE IA
-async function chargerHistoriqueIA() {
-  const res = await fetch(`${API_BASE_URL}/api/historique-ia`);
-  const historique = await res.json();
-  document.getElementById('historiqueIA').textContent = JSON.stringify(historique, null, 2);
+// 4. RESTAURER UNE VERSION
+async function restaurerVersion() {
+  const select = document.getElementById('selectVersion');
+  const nomVersion = select.value;
+  if (!nomVersion) return alert("Aucune version sélectionnée.");
+
+  const cible = nomVersion.split('.').slice(0, -3).join('.') + '.json';
+
+  try {
+    const res = await fetch(`${API_BASE_URL}/api/restaurer-version`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nomVersion, cible })
+    });
+
+    if (res.ok) {
+      alert("✅ Version restaurée avec succès.");
+    } else {
+      const err = await res.text();
+      alert("❌ Échec restauration : " + err);
+    }
+  } catch (err) {
+    alert("❌ Exception restauration : " + err.message);
+  }
 }
 
-// 9. IMPORT PYTHON
-async function lancerImportJson() {
-  const res = await fetch(`${API_BASE_URL}/api/import-json`);
-  const log = await res.text();
-  document.getElementById('logImportJson').textContent = log;
-}
-// 11. AUTOGESTION INTELLIGENTE
-async function executerAutogestion(action = 'valider') {
-  const zone = document.getElementById('journalAutogestion');
-  zone.textContent = `🔄 Lancement de l'action "${action}"...`;
+// 5. RÉPARATION IA D'UN FICHIER
+async function reparerFichier(nomFichier, textarea) {
+  const zone = textarea;
+  zone.style.border = '2px dashed blue';
 
   try {
     const res = await fetch(`${API_BASE_URL}/api/autogestion`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action })
+      body: JSON.stringify({ action: 'réparer', cible: nomFichier })
     });
-
     const data = await res.json();
-    if (res.ok) {
-      zone.textContent = `✅ Résultat de l'autogestion "${action}" :\n` + JSON.stringify(data.journal, null, 2);
+
+    if (res.ok && data.reparation) {
+      zone.value = data.reparation;
+      zone.style.border = '2px solid blue';
     } else {
-      zone.textContent = `❌ Erreur API : ${data.error || 'Erreur inconnue'}`;
+      alert("❌ Échec de la réparation IA.");
     }
   } catch (err) {
-    zone.textContent = `❌ Exception lors de l'appel : ${err.message}`;
+    alert("❌ Erreur IA : " + err.message);
   }
 }
 
