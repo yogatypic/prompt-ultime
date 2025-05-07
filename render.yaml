@@ -1,2 +1,19 @@
-build:
-  environment: node
+services:
+  - type: web_service
+    name: prompt-ultime-api
+    env: python
+    plan: free
+    rootDir: src                # dossier où se trouve pyproject.toml
+    buildCommand: |
+      if [ ! -x /opt/render/project/poetry/bin/poetry ]; then
+        curl -sSL https://install.python-poetry.org | python3 -
+      fi
+      export PATH="/opt/render/project/poetry/bin:$PATH"
+      poetry install --no-dev
+    startCommand: |
+      export PATH="/opt/render/project/poetry/bin:$PATH"
+      poetry run uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11"
+
