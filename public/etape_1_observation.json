@@ -2,9 +2,15 @@
   "nom": "Observation poétique d’un comportement normocentré",
   "titre_section": "Étape 1 — Observation de terrain neurotypique",
   "sous_titre": "Une scène anodine à regarder autrement",
-  "description": "Tu vas décrire une situation réelle ou banale. Un moment où un comportement social « normal » t’a semblé étrange, automatique ou absurde.",
-  "consigne_principale": "📌 Décris librement une scène qui t’a surpris·e : un geste, une parole, une habitude que tout le monde semble trouver normale… sauf toi.",
-  "note_methodologique": "🪞 Utilise des phrases simples. Imagine une photo ou une petite scène de théâtre. Reste concret·e, sensoriel·le, curieux·se. L’IA te proposera ensuite une fiche d’étonnement douce et critique.",
+  "objectif": "Tu vas décrire une situation réelle ou banale. Un moment où un comportement social « normal » t’a semblé étrange, automatique ou absurde.",
+  "accroche": "📌 Décris librement une scène qui t’a surpris·e : un geste, une parole, une habitude que tout le monde semble trouver normale… sauf toi.",
+  "presentation_symbolique": "🪞 Utilise des phrases simples. Imagine une photo ou une petite scène de théâtre. Reste concret·e, sensoriel·le, curieux·se. L’IA te proposera ensuite une fiche d’étonnement douce et critique.",
+  "consigne": {
+    "logique": "Décris la scène sans interprétation. Reste factuel·le.",
+    "creatif": "Décris cette scène comme un tableau surréaliste, étrange ou amusant.",
+    "mixte": "Commence par les faits, puis ajoute une touche symbolique à la fin.",
+    "default": "Décris librement une scène qui t’a surpris·e. Laisse-toi guider par l’étrangeté."
+  },
   "champs": [
     {
       "champ": "📍 Lieu d’observation",
@@ -14,22 +20,22 @@
     {
       "champ": "🧍‍♂️ Comportement observé",
       "type": "texte",
-      "aide": "Quel geste, parole ou habitude t’a interpellé·e ? (Exemple : dire « ça va ? » sans écouter la réponse, sortir son téléphone dès qu’il y a un silence…)."
+      "aide": "Quel geste, parole ou habitude t’a interpellé·e ?"
     },
     {
       "champ": "🔒 Fonction sociale apparente",
       "type": "texte",
-      "aide": "À quoi semble servir ce comportement dans le groupe ? (Exemple : éviter un malaise, créer un lien automatique, se conformer à une norme, meubler le vide…)."
+      "aide": "À quoi semble servir ce comportement dans le groupe ?"
     },
     {
       "champ": "💬 Émotion masquée",
       "type": "texte",
-      "aide": "Quelle émotion silencieuse semble se cacher derrière ce comportement ? (Exemple : gêne, ennui, solitude, peur de déranger, anxiété douce…)."
+      "aide": "Quelle émotion silencieuse semble se cacher derrière ce comportement ?"
     },
     {
       "champ": "🎭 Ton d’analyse préféré",
       "type": "texte",
-      "aide": "Dans quel ton aimerais-tu relire la scène ? (Exemple : ironie douce, poésie, simplicité FALC, regard d’ethnologue…)."
+      "aide": "Dans quel ton aimerais-tu relire la scène ?"
     }
   ],
   "exercice_complementaire": {
@@ -58,6 +64,6 @@
     "Une interprétation symbolique",
     "Une question finale qui dérange doucement"
   ],
-  "rappel_final": "Ce n’est pas une critique. C’est une exploration curieuse. Observe comme un·e ethnologue poétique : lucide, tendre, un peu à côté."
+  "rappel_final": "Ce n’est pas une critique. C’est une exploration curieuse. Observe comme un·e ethnologue poétique : lucide, tendre, un peu à côté.",
+  "reponse_attendue": true
 }
-
