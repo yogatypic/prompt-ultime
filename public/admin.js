@@ -209,4 +209,26 @@ async function lancerImportJson() {
   const log = await res.text();
   document.getElementById('logImportJson').textContent = log;
 }
+// 11. AUTOGESTION INTELLIGENTE
+async function executerAutogestion(action = 'valider') {
+  const zone = document.getElementById('journalAutogestion');
+  zone.textContent = `🔄 Lancement de l'action "${action}"...`;
+
+  try {
+    const res = await fetch(`${API_BASE_URL}/api/autogestion`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action })
+    });
+
+    const data = await res.json();
+    if (res.ok) {
+      zone.textContent = `✅ Résultat de l'autogestion "${action}" :\n` + JSON.stringify(data.journal, null, 2);
+    } else {
+      zone.textContent = `❌ Erreur API : ${data.error || 'Erreur inconnue'}`;
+    }
+  } catch (err) {
+    zone.textContent = `❌ Exception lors de l'appel : ${err.message}`;
+  }
+}
 

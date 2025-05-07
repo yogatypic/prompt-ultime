@@ -171,4 +171,68 @@ app.get('/api/historique-ia', (req, res) => {
 app.listen(PORT, () => {
   console.log(`🚀 Serveur backend opérationnel : http://localhost:${PORT}`);
 });
+// === ROUTE API 10 : Autogestion intelligente (scan + validation) ===
+app.post('/api/autogestion', async (req, res) => {
+  const { action } = req.body;
+  const journal = [];
+
+  try {
+    // 1. Scan des fichiers
+    const fichiers = fs.readdirSync(jsonDir)
+      .filter(f => f.endsWith('.json') && !f.endsWith('.bak.json'))
+      .map(nom => {
+        const contenu = fs.readFileSync(path.join(jsonDir, nom), 'utf8');
+        return { nom, contenu };
+      });
+
+    journal.push({ étape: "scan", nbFichiers: fichiers.length });
+
+    if (action === 'valider' || action === 'réparer') {
+      const schema = JSON.parse(fs.readFileSync(path.join(schemasDir, 'etape.schema.json'), 'utf8'));
+
+      for (const fichier of fichiers) {
+        let json;
+        try {
+          json = JSON.parse(fichier.contenu);
+        } catch (e) {
+          journal.push({ fichier: fichier.nom, erreur: "JSON invalide", detail: e.message });
+          continue;
+        }
+
+        const validate = ajv.compile(schema);
+        const valid = validate(json);
+
+        if (!valid) {
+          journal.push({
+            fichier: fichier.nom,
+            valide: false,
+            erreurs: validate.errors
+          });
+
+          if (action === 'réparer') {
+            // 💡 ICI tu pourras ajouter une IA de correction
+            journal.push({
+              fichier: fichier.nom,
+              tentative: "Réparation IA non encore implémentée"
+            });
+          }
+
+        } else {
+          journal.push({ fichier: fichier.nom, valide: true });
+        }
+      }
+    }
+
+    // 3. Sauvegarde du journal dans versions/
+    const horodatage = new Date().toISOString().replace(/[:.]/g, '-');
+    const chemin = path.join(versionDir, `journal_autogestion.${horodatage}.json`);
+    fs.mkdirSync(versionDir, { recursive: true });
+    fs.writeFileSync(chemin, JSON.stringify(journal, null, 2), 'utf8');
+
+    res.json({ status: 'ok', action, journal });
+
+  } catch (err) {
+    res.status(500).json({ error: "Erreur autogestion : " + err.message });
+  }
+});
 
