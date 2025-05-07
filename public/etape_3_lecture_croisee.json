@@ -2,7 +2,9 @@
   "nom": "Lecture croisée à travers les lunettes subjectives",
   "titre_section": "Étape 3 — Lecture croisée : théâtre intérieur du sens",
   "sous_titre": "Fais passer ton observation à travers les trois lunettes subjectives",
+  "objectif": "Explorer la scène observée à travers trois lunettes symboliques, pour révéler, contredire et ironiser sur le sens.",
   "description": "Chaque lunette propose une interprétation partielle, poétique ou biaisée du comportement observé. À travers ce jeu de filtres, tu explores la plasticité du sens et le trouble fertile du regard multiple.",
+  "accroche": "🎭 Tu vas regarder la même scène trois fois, à travers trois filtres symboliques. Chacun révèle, masque, ou distord à sa manière.",
   "consigne": {
     "logique": "Analyse chaque lunette selon ce qu’elle montre (résonance), ce qu’elle cache (discordance), et une touche d’humour (clown).",
     "creatif": "Imagine que chaque lunette transforme la scène. Décris ce qu’elle fait apparaître, disparaître, et invente une blague symbolique.",
@@ -26,18 +28,16 @@
   ],
   "structure_par_lunette": {
     "exemple": [
-      {
-        "champ": "🟢 Résonance"
-      },
-      {
-        "champ": "🔴 Discordance"
-      },
-      {
-        "champ": "🤡 Clown"
-      }
+      { "champ": "🟢 Résonance" },
+      { "champ": "🔴 Discordance" },
+      { "champ": "🤡 Clown" }
     ]
   },
-  "conseil_final": "🎭 Ici, il ne s’agit pas de vérité mais de friction. Ce n’est pas un verdict, mais une danse entre interprétations. Chaque filtre ouvre… et cache. Chaque lunette fait apparaître une facette du réel et en dissimule une autre.",
-  "note_pedagogique": "Cet exercice affine ton métadiscernement : il t’aide à reconnaître les forces et les limites de chaque lecture. Et parfois, il éclaire aussi ton propre angle aveugle."
+  "conseil_final": "🎭 Ici, il ne s’agit pas de vérité mais de friction. Ce n’est pas un verdict, mais une danse entre interprétations. Chaque filtre ouvre… et cache.",
+  "note_pedagogique": "Cet exercice affine ton métadiscernement : il t’aide à reconnaître les forces et les limites de chaque lecture. Et parfois, il éclaire aussi ton propre angle aveugle.",
+  "reponse_attendue": true,
+  "integration_automatique": {
+    "lecture_croisee": true,
+    "presentation": "Cette étape applique les lunettes tirées sur l’observation précédente. L’utilisateur entre trois séries d’interprétations guidées."
+  }
 }
-
