@@ -1,19 +1,21 @@
+```yaml
+# render.yaml à placer à la racine du dépôt (même niveau que package.json)
+# Définit 2 services : front (static site) et back (API Python)
+
 services:
-  - type: web_service
-    name: prompt-ultime-api
-    env: python
+  - type: static_site
+    name: literate-disco-front
+    env: node
     plan: free
-    rootDir: src                # dossier où se trouve pyproject.toml
-    buildCommand: |
-      if [ ! -x /opt/render/project/poetry/bin/poetry ]; then
-        curl -sSL https://install.python-poetry.org | python3 -
-      fi
-      export PATH="/opt/render/project/poetry/bin:$PATH"
-      poetry install --no-dev
-    startCommand: |
-      export PATH="/opt/render/project/poetry/bin:$PATH"
-      poetry run uvicorn main:app --host 0.0.0.0 --port $PORT
+    branch: main
+    repo: https://github.com/yogatypic/literate-disco
+    # Assurer que le build s'exécute à la racine où se trouve package.json
+    rootDir: .
+    rootDir: .
+    buildCommand: "npm install && npm run build"
+    staticPublishPath: build
     envVars:
-      - key: PYTHON_VERSION
-        value: "3.11"
+      - key: VITE_API_URL
+        value: "https://prompt-ultime.onrender.com"
+```
 
