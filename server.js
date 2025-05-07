@@ -1,5 +1,3 @@
-// ✅ server.js – version complète avec API OpenAI, AJV, versioning, listing
-
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -8,7 +6,7 @@ import fs from 'fs';
 import { spawn } from 'child_process';
 import Ajv from 'ajv';
 import OpenAI from 'openai';
-import 'dotenv/config'; // Pour accéder aux variables d’environnement
+import 'dotenv/config';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -43,9 +41,13 @@ app.get('/api/scan', (req, res) => {
   }
 });
 
+// ✅ Alias pour compatibilité admin.js
+app.get('/api/list-fichiers', (req, res) => {
+  res.redirect('/api/scan');
+});
+
 // === API : Validation AJV ===
 app.post('/api/validate-ajv', (req, res) => {
-    console.log("Champs reçus dans jsonContent :", Object.keys(req.body.jsonContent));
   try {
     const { jsonContent, schemaContent } = req.body;
     const validate = ajv.compile(schemaContent);
@@ -84,7 +86,7 @@ app.post('/api/versioning', (req, res) => {
   }
 });
 
-// ✅ API IA : Appel à OpenAI
+// === API IA : Appel à OpenAI ===
 app.post('/api/prompt-ia', async (req, res) => {
   try {
     const { prompt } = req.body;
@@ -111,7 +113,7 @@ app.get('/api/import-json', (req, res) => {
   });
 });
 
-// ✅ API : Lister les fichiers de version IA (journal_ia.*.json)
+// === API : Lister les fichiers journal_ia.*.json ===
 app.get('/api/list-versions', (req, res) => {
   try {
     if (!fs.existsSync(versionDir)) return res.json({ fichiers: [] });
@@ -120,6 +122,24 @@ app.get('/api/list-versions', (req, res) => {
     res.json({ fichiers });
   } catch (err) {
     res.status(500).json({ error: 'Erreur lecture des versions : ' + err.message });
+  }
+});
+
+// ✅ API : Contenu des fichiers journal_ia.*.json
+app.get('/api/historique-ia', (req, res) => {
+  try {
+    if (!fs.existsSync(versionDir)) return res.json([]);
+    const fichiers = fs.readdirSync(versionDir)
+      .filter(f => f.startsWith('journal_ia.') && f.endsWith('.json'));
+
+    const historique = fichiers.map(fichier => {
+      const contenu = fs.readFileSync(path.join(versionDir, fichier), 'utf8');
+      return JSON.parse(contenu);
+    });
+
+    res.json(historique);
+  } catch (err) {
+    res.status(500).json({ error: 'Erreur chargement historique : ' + err.message });
   }
 });
 
