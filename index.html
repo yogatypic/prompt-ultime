@@ -85,7 +85,6 @@
     <button onclick="exporterLog()">📅 Exporter le journal</button>
   </div>
 
-  <!-- SCRIPT DÉPLACÉ ICI POUR ASSURER L'INITIALISATION -->
   <script>
     let currentStepIndex = 0;
     let steps = [];
@@ -93,7 +92,6 @@
     let log = [];
 
     async function initExperience() {
-      console.log("📡 Tentative de chargement de structure.json");
       const intro = document.getElementById("narration-intro");
       intro.classList.add("fade-out");
       setTimeout(() => { intro.style.display = "none"; }, 800);
@@ -137,13 +135,28 @@
         let html = `<h2>Étape ${currentStepIndex + 1} – ${etapeData.nom || 'Sans nom'}</h2>`;
         if (etapeData.intro) html += `<p><em>${etapeData.intro}</em></p>`;
         if (etapeData.objectif) html += `<p><strong>Objectif :</strong> ${etapeData.objectif}</p>`;
+        if (etapeData.accroche) html += `<p>${etapeData.accroche}</p>`;
+        if (etapeData.presentation_symbolique) html += `<p>${etapeData.presentation_symbolique}</p>`;
+        if (etapeData.invitation) html += `<p><em>${etapeData.invitation}</em></p>`;
+        if (Array.isArray(etapeData.consignes)) {
+          html += "<ul>";
+          for (const c of etapeData.consignes) html += `<li>${c}</li>`;
+          html += "</ul>";
+        }
+
         const consigne = etapeData.consigne?.[mode] || etapeData.consigne?.default || "Pas de consigne spécifique.";
         html += `<p><strong>Consigne (${mode}) :</strong> ${consigne}</p>`;
-        html += `
-          <label for="reponse">✍️ Votre réponse :</label><br>
-          <textarea id="reponse" rows="5" placeholder="Votre réponse..."></textarea><br>
-          <button onclick="validerEtape()">Valider</button>
-        `;
+
+        if (etapeData.reponse_attendue !== false) {
+          html += `
+            <label for="reponse">✍️ Votre réponse :</label><br>
+            <textarea id="reponse" rows="5" placeholder="Votre réponse..."></textarea><br>
+            <button onclick="validerEtape()">Valider</button>
+          `;
+        } else {
+          html += `<button onclick="validerEtape()">➡️ Continuer</button>`;
+        }
+
         document.getElementById("etape-container").innerHTML = html;
       } catch (err) {
         showError(`Erreur étape : ${err.message}`);
@@ -174,8 +187,8 @@
 
     function validerEtape() {
       const reponse = document.getElementById("reponse")?.value?.trim();
-      if (reponse) {
-        addLog(`📝 Réponse enregistrée : ${reponse}`);
+      if (reponse || document.getElementById("reponse") === null) {
+        if (reponse) addLog(`📝 Réponse enregistrée : ${reponse}`);
         currentStepIndex++;
         loadStep();
       } else {
