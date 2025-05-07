@@ -19,7 +19,7 @@
         "mixte": { "type": "string" },
         "default": { "type": "string" }
       },
-      "additionalProperties": false
+      "additionalProperties": true
     },
     "consigne_principale": { "type": "string" },
     "consigne_generale": { "type": "string" },
@@ -38,7 +38,7 @@
           "aide": { "type": "string" },
           "nom": { "type": "string" }
         },
-        "additionalProperties": false
+        "additionalProperties": true
       }
     },
     "exercice_complementaire": {
@@ -60,7 +60,7 @@
         }
       },
       "required": ["titre", "consigne", "versions"],
-      "additionalProperties": false
+      "additionalProperties": true
     },
     "questions_de_guidage": {
       "type": "array",
@@ -90,8 +90,8 @@
           "id": { "type": "string" },
           "question": { "type": "string" }
         },
-        "required": ["id", "question"],
-        "additionalProperties": false
+        "required": ["question"],
+        "additionalProperties": true
       }
     },
     "integration_automatique": {
@@ -107,8 +107,8 @@
             "champ": { "type": "string" },
             "consigne": { "type": "string" }
           },
-          "required": ["champ", "consigne"],
-          "additionalProperties": false
+          "required": ["champ"],
+          "additionalProperties": true
         }
       }
     },
@@ -174,6 +174,6 @@
       "items": { "type": "string" }
     }
   },
-  "additionalProperties": false
+  "additionalProperties": true
 }
 
