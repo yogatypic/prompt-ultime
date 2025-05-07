@@ -1,11 +1,15 @@
-// admin.js — version complète, cohérente avec admin.html
+// admin.js — version dynamique API_BASE_URL
+
+const API_BASE_URL = window.location.hostname.includes("localhost")
+  ? "http://localhost:3000"
+  : "https://prompt-ultime.onrender.com";
 
 // 1. SCAN FICHIERS
 async function scanFichiers() {
   const resultatsScan = document.getElementById('resultatsScan');
   resultatsScan.innerHTML = "🔄 Chargement des fichiers...";
   try {
-    const res = await fetch('/api/list-fichiers');
+    const res = await fetch(`${API_BASE_URL}/api/list-fichiers`);
     const fichiers = await res.json();
 
     resultatsScan.innerHTML = "";
@@ -24,13 +28,13 @@ async function scanFichiers() {
   }
 }
 
-// 2. VALIDATION AJV (déjà enrichie)
+// 2. VALIDATION AJV
 async function validerTousFichiers() {
   const liste = document.getElementById('resultatsScan');
   const lignes = liste.querySelectorAll('li');
   const rapport = [];
 
-  const schemaContent = await fetch('/schemas/etape.schema.json').then(res => res.json());
+  const schemaContent = await fetch(`${API_BASE_URL}/schemas/etape.schema.json`).then(res => res.json());
 
   for (const ligne of lignes) {
     const nomFichier = ligne.dataset.nom;
@@ -41,7 +45,7 @@ async function validerTousFichiers() {
     ligne.querySelectorAll('.ajv-erreurs').forEach(e => e.remove());
 
     try {
-      const reponse = await fetch('/api/validate-ajv', {
+      const reponse = await fetch(`${API_BASE_URL}/api/validate-ajv`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ jsonContent: fichierJson, schemaContent })
@@ -79,7 +83,7 @@ async function validerTousFichiers() {
 
   console.log('📊 Rapport AJV :', rapport);
 
-  await fetch('/api/versioning', {
+  await fetch(`${API_BASE_URL}/api/versioning`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -94,7 +98,7 @@ async function enregistrerJson() {
   const contenu = document.getElementById('jsonEditor').value;
   try {
     const jsonData = JSON.parse(contenu);
-    await fetch('/api/save-json', {
+    await fetch(`${API_BASE_URL}/api/save-json`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -112,7 +116,7 @@ async function enregistrerJson() {
 async function envoyerAPI() {
   const contenu = document.getElementById('jsonEditor').value;
   try {
-    await fetch('/api/sync-api', {
+    await fetch(`${API_BASE_URL}/api/sync-api`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: contenu
@@ -125,7 +129,7 @@ async function envoyerAPI() {
 
 // 5. VERSIONS
 async function sauvegarderEtat() {
-  await fetch('/api/versioning', {
+  await fetch(`${API_BASE_URL}/api/versioning`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -142,7 +146,7 @@ async function analyserFichierLibre(event) {
   const text = await file.text();
   const parsed = JSON.parse(text);
 
-  const res = await fetch('/api/analyse-libre', {
+  const res = await fetch(`${API_BASE_URL}/api/analyse-libre`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ contenu: parsed })
@@ -152,7 +156,7 @@ async function analyserFichierLibre(event) {
   document.getElementById('resultatAnalyseLibre').textContent = JSON.stringify(data, null, 2);
 }
 
-// 7. IA DE PILOTAGE (déjà fourni)
+// 7. IA DE PILOTAGE
 async function executerCommandeIA() {
   const prompt = document.getElementById('promptIA').value.trim();
   const resultatZone = document.getElementById('resultatIA');
@@ -164,7 +168,7 @@ async function executerCommandeIA() {
   }
 
   try {
-    const reponse = await fetch('/api/prompt-ia', {
+    const reponse = await fetch(`${API_BASE_URL}/api/prompt-ia`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ prompt })
@@ -177,7 +181,7 @@ async function executerCommandeIA() {
     resultatZone.textContent = resultat;
     journalBloc.textContent += `\n[${horodatage}] 📡 Prompt IA :\n${prompt}\n✅ Réponse :\n${resultat}\n`;
 
-    await fetch('/api/versioning', {
+    await fetch(`${API_BASE_URL}/api/versioning`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -194,14 +198,14 @@ async function executerCommandeIA() {
 
 // 10. HISTORIQUE IA
 async function chargerHistoriqueIA() {
-  const res = await fetch('/api/historique-ia');
+  const res = await fetch(`${API_BASE_URL}/api/historique-ia`);
   const historique = await res.json();
   document.getElementById('historiqueIA').textContent = JSON.stringify(historique, null, 2);
 }
 
 // 9. IMPORT PYTHON
 async function lancerImportJson() {
-  const res = await fetch('/api/import-json');
+  const res = await fetch(`${API_BASE_URL}/api/import-json`);
   const log = await res.text();
   document.getElementById('logImportJson').textContent = log;
 }
