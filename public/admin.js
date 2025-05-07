@@ -1,11 +1,35 @@
-// admin.js
+// admin.js — version complète, cohérente avec admin.html
 
-document.getElementById('btnValiderAJV').addEventListener('click', async () => {
-  const liste = document.getElementById('resultatScan');
+// 1. SCAN FICHIERS
+async function scanFichiers() {
+  const resultatsScan = document.getElementById('resultatsScan');
+  resultatsScan.innerHTML = "🔄 Chargement des fichiers...";
+  try {
+    const res = await fetch('/api/list-fichiers');
+    const fichiers = await res.json();
+
+    resultatsScan.innerHTML = "";
+    fichiers.forEach(fichier => {
+      const ligne = document.createElement('li');
+      ligne.dataset.nom = fichier.nom;
+      const zone = document.createElement('textarea');
+      zone.value = fichier.contenu || '';
+      zone.rows = 10;
+      zone.cols = 80;
+      ligne.appendChild(zone);
+      resultatsScan.appendChild(ligne);
+    });
+  } catch (err) {
+    resultatsScan.innerHTML = "❌ Erreur lors du scan : " + err.message;
+  }
+}
+
+// 2. VALIDATION AJV (déjà enrichie)
+async function validerTousFichiers() {
+  const liste = document.getElementById('resultatsScan');
   const lignes = liste.querySelectorAll('li');
   const rapport = [];
 
-  // 🧠 Charger le schéma AJV unifié une seule fois
   const schemaContent = await fetch('/schemas/etape.schema.json').then(res => res.json());
 
   for (const ligne of lignes) {
@@ -14,12 +38,13 @@ document.getElementById('btnValiderAJV').addEventListener('click', async () => {
     const fichierJson = JSON.parse(contenuTexte);
 
     const resultat = { nomFichier };
+    ligne.querySelectorAll('.ajv-erreurs').forEach(e => e.remove());
 
     try {
       const reponse = await fetch('/api/validate-ajv', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ jsonContent: fichierJson, schemaContent }) // ✅ schéma générique
+        body: JSON.stringify({ jsonContent: fichierJson, schemaContent })
       });
 
       const data = await reponse.json();
@@ -30,16 +55,154 @@ document.getElementById('btnValiderAJV').addEventListener('click', async () => {
         ligne.style.border = '2px solid red';
         resultat.valide = false;
         resultat.erreurs = data.errors;
+
+        const err = document.createElement('pre');
+        err.className = 'ajv-erreurs';
+        err.style.color = 'red';
+        err.textContent = JSON.stringify(data.errors, null, 2);
+        ligne.appendChild(err);
       }
     } catch (err) {
       ligne.style.border = '2px solid orange';
       resultat.valide = false;
       resultat.erreurs = [{ message: err.message }];
+
+      const errBox = document.createElement('pre');
+      errBox.className = 'ajv-erreurs';
+      errBox.style.color = 'orange';
+      errBox.textContent = err.message;
+      ligne.appendChild(errBox);
     }
 
     rapport.push(resultat);
   }
 
   console.log('📊 Rapport AJV :', rapport);
-});
+
+  await fetch('/api/versioning', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      nomFichier: 'rapport_validation.json',
+      contenu: rapport
+    })
+  });
+}
+
+// 3. ÉDITION JSON
+async function enregistrerJson() {
+  const contenu = document.getElementById('jsonEditor').value;
+  try {
+    const jsonData = JSON.parse(contenu);
+    await fetch('/api/save-json', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        nomFichier: 'edition.json',
+        contenu: jsonData
+      })
+    });
+    alert("💾 Fichier sauvegardé avec succès.");
+  } catch (err) {
+    alert("❌ Erreur JSON : " + err.message);
+  }
+}
+
+// 4. SYNCHRONISATION API
+async function envoyerAPI() {
+  const contenu = document.getElementById('jsonEditor').value;
+  try {
+    await fetch('/api/sync-api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: contenu
+    });
+    alert("✅ Fichier envoyé à l’API.");
+  } catch (err) {
+    alert("❌ Échec de la synchronisation : " + err.message);
+  }
+}
+
+// 5. VERSIONS
+async function sauvegarderEtat() {
+  await fetch('/api/versioning', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      nomFichier: 'sauvegarde_automatique.json',
+      contenu: { date: new Date().toISOString(), message: "Sauvegarde d'état." }
+    })
+  });
+  alert("📚 Point de restauration créé.");
+}
+
+// 6. ANALYSE LIBRE
+async function analyserFichierLibre(event) {
+  const file = event.target.files[0];
+  const text = await file.text();
+  const parsed = JSON.parse(text);
+
+  const res = await fetch('/api/analyse-libre', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ contenu: parsed })
+  });
+
+  const data = await res.json();
+  document.getElementById('resultatAnalyseLibre').textContent = JSON.stringify(data, null, 2);
+}
+
+// 7. IA DE PILOTAGE (déjà fourni)
+async function executerCommandeIA() {
+  const prompt = document.getElementById('promptIA').value.trim();
+  const resultatZone = document.getElementById('resultatIA');
+  const journalBloc = document.getElementById('journalTechnique');
+
+  if (!prompt) {
+    resultatZone.textContent = "⛔ Entrez un prompt.";
+    return;
+  }
+
+  try {
+    const reponse = await fetch('/api/prompt-ia', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt })
+    });
+
+    const data = await reponse.json();
+    const horodatage = new Date().toISOString();
+    const resultat = data.reponse || `❌ Erreur : ${data.error || 'Inconnue'}`;
+
+    resultatZone.textContent = resultat;
+    journalBloc.textContent += `\n[${horodatage}] 📡 Prompt IA :\n${prompt}\n✅ Réponse :\n${resultat}\n`;
+
+    await fetch('/api/versioning', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        nomFichier: `journal_ia.${horodatage}.json`,
+        contenu: { prompt, reponse: data.reponse || null, erreur: data.error || null, timestamp: horodatage }
+      })
+    });
+
+  } catch (err) {
+    resultatZone.textContent = "❌ Exception IA : " + err.message;
+    journalBloc.textContent += `\n[${new Date().toISOString()}] ❌ Exception IA : ${err.message}`;
+  }
+}
+
+// 10. HISTORIQUE IA
+async function chargerHistoriqueIA() {
+  const res = await fetch('/api/historique-ia');
+  const historique = await res.json();
+  document.getElementById('historiqueIA').textContent = JSON.stringify(historique, null, 2);
+}
+
+// 9. IMPORT PYTHON
+async function lancerImportJson() {
+  const res = await fetch('/api/import-json');
+  const log = await res.text();
+  document.getElementById('logImportJson').textContent = log;
+}
 

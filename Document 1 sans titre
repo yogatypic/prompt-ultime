@@ -1,0 +1,104 @@
+const fs = require('fs');
+const path = require('path');
+
+// Fichiers à corriger
+const files = {
+  'meta.json': {
+    etapes: [
+      "etape_0_seuil_entree",
+      "etape_1_observation",
+      "etape_2_lunettes",
+      "etape_3_lecture_croisee",
+      "etape_4_metadiscernement",
+      "etape_5_resonance_finale"
+    ]
+  },
+  'lunettes_subjectives.json': {
+    familles: [
+      {
+        id: "subjectivite",
+        nom: "Subjectivité",
+        lunettes: []
+      }
+    ]
+  },
+  'etape_0_seuil_entree.json': "REMOVE_ID",
+  'etape_2_lunettes.json': {
+    familles: [
+      {
+        id: "famille_exemple",
+        nom: "Famille Exemple",
+        lunettes: []
+      }
+    ]
+  },
+  'etape_3_lecture_croisee.json': {
+    structure_par_lunette: {
+      lunette_exemple: {
+        questions: []
+      }
+    }
+  },
+  'etape_4_metadiscernement.json': {
+    questions_reflexives: [
+      { id: "q1", texte: "Comment ressentez-vous cette étape ?" }
+    ]
+  },
+  'etape_5_resonance_finale.json': {
+    champs: [
+      {
+        id: "champ1",
+        nom: "Résonance cognitive",
+        type: "texte"
+      }
+    ]
+  },
+  'compagnons_symboliques.json': {
+    masques: [
+      {
+        id: "socrate",
+        nom: "Socrate",
+        style: "ironie maïeutique",
+        citation: "Connais-toi toi-même"
+      }
+    ]
+  },
+  'axes_autistiques.json': {
+    axes: [
+      {
+        id: "axe1",
+        nom: "Sincérité radicale",
+        description: "Explorer sans filtre les ressentis internes."
+      }
+    ]
+  }
+};
+
+// Répertoire source (modifie selon ton projet)
+const baseDir = path.join(__dirname, 'public');
+
+Object.entries(files).forEach(([fileName, correction]) => {
+  const filePath = path.join(baseDir, fileName);
+  if (!fs.existsSync(filePath)) {
+    console.warn(`❌ Fichier non trouvé : ${filePath}`);
+    return;
+  }
+
+  try {
+    const content = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+
+    if (correction === "REMOVE_ID") {
+      delete content.id;
+    } else {
+      Object.entries(correction).forEach(([key, value]) => {
+        content[key] = value;
+      });
+    }
+
+    fs.writeFileSync(filePath, JSON.stringify(content, null, 2), 'utf8');
+    console.log(`✅ Corrigé : ${fileName}`);
+  } catch (e) {
+    console.error(`❌ Erreur dans ${fileName} : ${e.message}`);
+  }
+});
+
