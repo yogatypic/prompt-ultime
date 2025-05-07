@@ -8,6 +8,7 @@ import Ajv from 'ajv';
 import OpenAI from 'openai';
 import 'dotenv/config';
 
+// === INIT PATHS ET EXPRESS ===
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const app = express();
@@ -15,38 +16,40 @@ const PORT = process.env.PORT || 3000;
 
 const jsonDir = path.join(__dirname, 'public');
 const versionDir = path.join(jsonDir, 'versions');
+const schemasDir = path.join(jsonDir, 'schemas');
+
 const ajv = new Ajv();
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
+// === MIDDLEWARES ===
 app.use(morgan('dev'));
 app.use(express.json());
-app.use(express.static(jsonDir));
+app.use(express.static(jsonDir)); // Sert /admin.html et /schemas/*
 
 // === ROUTES FRONTEND ===
 app.get('/', (req, res) => res.sendFile(path.join(jsonDir, 'index.html')));
 app.get('/admin', (req, res) => res.redirect('/admin.html'));
 
-// === API : Scan de fichiers JSON ===
+// === ROUTE API 1 : SCAN fichiers JSON ===
 app.get('/api/scan', (req, res) => {
   try {
     const files = fs.readdirSync(jsonDir).filter(f => f.endsWith('.json'));
-    const resultats = {};
-    for (const file of files) {
-      const content = fs.readFileSync(path.join(jsonDir, file), 'utf8');
-      resultats[file] = JSON.parse(content);
-    }
-    res.json({ status: 'ok', fichiers: resultats });
+    const resultats = files.map(file => ({
+      nom: file,
+      contenu: fs.readFileSync(path.join(jsonDir, file), 'utf8')
+    }));
+    res.json(resultats);
   } catch (err) {
     res.status(500).json({ error: 'Erreur lecture fichiers : ' + err.message });
   }
 });
 
-// ✅ Alias pour compatibilité admin.js
+// Alias pour compatibilité admin.js
 app.get('/api/list-fichiers', (req, res) => {
   res.redirect('/api/scan');
 });
 
-// === API : Validation AJV ===
+// === ROUTE API 2 : VALIDATION AJV ===
 app.post('/api/validate-ajv', (req, res) => {
   try {
     const { jsonContent, schemaContent } = req.body;
@@ -59,7 +62,7 @@ app.post('/api/validate-ajv', (req, res) => {
   }
 });
 
-// === API : Enregistrement JSON ===
+// === ROUTE API 3 : SAVE JSON ===
 app.post('/api/save-json', (req, res) => {
   try {
     const { nomFichier, contenu } = req.body;
@@ -71,7 +74,7 @@ app.post('/api/save-json', (req, res) => {
   }
 });
 
-// === API : Versioning JSON ===
+// === ROUTE API 4 : VERSIONING ===
 app.post('/api/versioning', (req, res) => {
   try {
     const { nomFichier, contenu } = req.body;
@@ -86,7 +89,38 @@ app.post('/api/versioning', (req, res) => {
   }
 });
 
-// === API IA : Appel à OpenAI ===
+// === ROUTE API 5 : SYNC API EXTERNE (ex. OpenAI / GitHub) ===
+app.post('/api/sync-api', (req, res) => {
+  try {
+    const payload = req.body;
+    console.log("📡 SYNC PAYLOAD :", payload);
+
+    // Ici tu pourrais appeler une vraie API (OpenAI, GitHub...)
+    const simulation = {
+      status: 'ok',
+      message: 'Synchronisation simulée avec succès.',
+      data: payload
+    };
+
+    res.json(simulation);
+  } catch (err) {
+    res.status(500).json({ error: 'Erreur de synchronisation : ' + err.message });
+  }
+});
+
+// === ROUTE API 6 : IMPORT JSON via script Python ===
+app.get('/api/import-json', (req, res) => {
+  const process = spawn('python3', ['import_json.py']);
+  let output = '';
+  process.stdout.on('data', data => output += data.toString());
+  process.stderr.on('data', data => output += data.toString());
+  process.on('close', code => {
+    if (code === 0) res.send(output);
+    else res.status(500).send(output);
+  });
+});
+
+// === ROUTE API 7 : APPEL IA (OpenAI) ===
 app.post('/api/prompt-ia', async (req, res) => {
   try {
     const { prompt } = req.body;
@@ -94,38 +128,28 @@ app.post('/api/prompt-ia', async (req, res) => {
       model: 'gpt-3.5-turbo',
       messages: [{ role: 'user', content: prompt }]
     });
-    const reponse = completion.choices[0].message.content;
-    res.json({ reponse });
+    res.json({ reponse: completion.choices[0].message.content });
   } catch (err) {
     res.status(500).json({ error: 'Erreur appel OpenAI : ' + err.message });
   }
 });
 
-// === API : Exécution d’un script Python ===
-app.get('/api/import-json', (req, res) => {
-  const process = spawn('python3', ['import_json.py']);
-  let output = '';
-  process.stdout.on('data', data => output += data.toString());
-  process.stderr.on('data', data => output += data.toString());
-  process.on('close', code => {
-    if (code === 0) res.send({ status: 'success', log: output });
-    else res.status(500).send({ status: 'error', log: output });
-  });
-});
-
-// === API : Lister les fichiers journal_ia.*.json ===
-app.get('/api/list-versions', (req, res) => {
+// === ROUTE API 8 : Analyse libre d’un JSON ===
+app.post('/api/analyse-libre', (req, res) => {
   try {
-    if (!fs.existsSync(versionDir)) return res.json({ fichiers: [] });
-    const fichiers = fs.readdirSync(versionDir)
-      .filter(f => f.startsWith('journal_ia.') && f.endsWith('.json'));
-    res.json({ fichiers });
+    const { contenu } = req.body;
+    const resume = {
+      type: typeof contenu,
+      clefs: Object.keys(contenu || {}),
+      taille: JSON.stringify(contenu).length
+    };
+    res.json(resume);
   } catch (err) {
-    res.status(500).json({ error: 'Erreur lecture des versions : ' + err.message });
+    res.status(500).json({ error: 'Erreur analyse libre : ' + err.message });
   }
 });
 
-// ✅ API : Contenu des fichiers journal_ia.*.json
+// === ROUTE API 9 : Historique IA ===
 app.get('/api/historique-ia', (req, res) => {
   try {
     if (!fs.existsSync(versionDir)) return res.json([]);
@@ -139,12 +163,12 @@ app.get('/api/historique-ia', (req, res) => {
 
     res.json(historique);
   } catch (err) {
-    res.status(500).json({ error: 'Erreur chargement historique : ' + err.message });
+    res.status(500).json({ error: 'Erreur lecture historique IA : ' + err.message });
   }
 });
 
-// === Lancement du serveur ===
+// === LANCEMENT DU SERVEUR ===
 app.listen(PORT, () => {
-  console.log(`🚀 Serveur lancé sur http://localhost:${PORT}`);
+  console.log(`🚀 Serveur backend opérationnel : http://localhost:${PORT}`);
 });
 

@@ -1,12 +1,24 @@
 {
   "name": "prompt-ultime",
   "version": "1.0.0",
-  "main": "server.js",
+  "description": "Interface admin et backend pour le projet Prompt Ultime",
   "type": "module",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
+  "keywords": [
+    "prompt",
+    "openai",
+    "ajv",
+    "express",
+    "admin",
+    "json",
+    "zététique"
+  ],
+  "author": "Pragyan",
+  "license": "MIT",
   "dependencies": {
     "ajv": "^8.12.0",
     "commander": "^13.1.0",
@@ -15,5 +27,9 @@
     "morgan": "^1.10.0",
     "node-fetch": "^3.3.2",
     "openai": "^4.27.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
   }
 }
+
