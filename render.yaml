@@ -12,7 +12,7 @@ services:
       - key: VITE_API_URL
         value: "https://prompt-ultime.onrender.com"
 
-  - type: web_service
+  - type: web             # ← corrigé ici
     name: prompt-ultime-api
     env: python
     plan: free
@@ -27,3 +27,4 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: "3.11"
+
