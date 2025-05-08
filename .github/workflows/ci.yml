@@ -7,14 +7,17 @@ on:
     branches: [ main, next ]
 
 jobs:
-  test:
+  # ──────────────────────────────────────────────────────────────────────────
+  # 1. Tests Python : migrations Alembic + Pytest
+  # ──────────────────────────────────────────────────────────────────────────
+  test-python:
     runs-on: ubuntu-latest
     services:
       postgres:
         image: postgres:16
         env:
           POSTGRES_USER: base1_7xzt_user
-          POSTGRES_PASSWORD: K6NlRmGVR4v4B2MlgawqeT2HBpJVC30W  # mot de passe de test en CI
+          POSTGRES_PASSWORD: K6NlRmGVR4v4B2MlgawqeT2HBpJVC30W
           POSTGRES_DB: base1_7xzt
         ports:
           - 5432:5432
@@ -25,31 +28,55 @@ jobs:
           --health-retries 5
 
     steps:
-      - uses: actions/checkout@v4
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
 
-      - name: Setup Python
+      - name: 🐍 Setup Python 3.12
         uses: actions/setup-python@v4
         with:
           python-version: "3.12"
 
-      - name: Install dependencies
+      - name: 🔧 Install Python deps
         run: |
           python -m venv .venv
           source .venv/bin/activate
-          pip install fastapi uvicorn sqlmodel alembic psycopg2-binary pytest
+          pip install fastapi uvicorn[standard] sqlmodel alembic psycopg2-binary pytest black flake8
 
-      - name: Run migrations
+      - name: 🛠 Run Alembic migrations
         run: |
           source .venv/bin/activate
           alembic upgrade head
 
-      - name: Run Pytest
+      - name: 🧪 Run Pytest
         run: |
           source .venv/bin/activate
           pytest --maxfail=1 --disable-warnings -q
 
-      - name: Validate JSON schemas
+      - name: 🔍 Lint Python code
         run: |
-          npm install -g ajv-cli
-          ajv validate -s src/schemas/structure.json -d src/schemas/*.json
+          source .venv/bin/activate
+          black --check src
+          flake8 src
+
+  # ──────────────────────────────────────────────────────────────────────────
+  # 2. Audit JSON structure
+  # ──────────────────────────────────────────────────────────────────────────
+  audit-json:
+    needs: test-python         # ne tourne qu’après test-python
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: 📦 Install NPM deps
+        run: npm install
+
+      - name: 🧪 Run JSON audit
+        run: node audit_structure.js
 
