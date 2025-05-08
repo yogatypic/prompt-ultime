@@ -2,204 +2,264 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Prototype Prompt Ultime</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prompt-Ultime V3 – Immersion Inversée</title>
   <style>
     body {
       font-family: sans-serif;
-      margin: 2em;
-      background: #fefefe;
+      margin: 0;
+      padding: 0;
+      background: #fdfdfd;
       color: #222;
-      transition: all 0.5s ease;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      transition: background 0.5s ease;
     }
-    #log {
-      background: #f4f4f4;
+    header {
+      background: #88f;
+      color: #fff;
+      text-align: center;
+      padding: 1.5em 1em;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.8em;
+    }
+    header p.subtitle {
+      margin: 0.5em 0 0;
+      font-size: 1em;
+      opacity: 0.9;
+    }
+    main {
+      flex: 1;
       padding: 1em;
-      border: 1px solid #ccc;
-      margin-top: 2em;
-      white-space: pre-wrap;
-      max-height: 300px;
-      overflow-y: auto;
+      max-width: 800px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .button {
+      display: inline-block;
+      padding: 0.6em 1.2em;
+      background: #88f;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    section {
+      margin-bottom: 2em;
     }
     #narration-intro {
       background: #eef;
-      padding: 1em;
       border-left: 5px solid #88f;
-      margin-bottom: 2em;
-      animation: fadeIn 1s ease-in-out;
-    }
-    textarea {
-      width: 100%;
-      max-width: 600px;
-    }
-    button {
-      margin: 1em 0.5em;
-      padding: 0.5em 1em;
-    }
-    .error {
-      color: red;
+      padding: 1em;
+      animation: fadeIn 0.8s ease-in-out;
     }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .fade-out {
-      opacity: 0;
-      transition: opacity 0.8s ease-in-out;
-      pointer-events: none;
+    #subject-selector .grid,
+    #subject-selector-custom .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1em;
     }
+    .tile {
+      padding: 1em;
+      background: #f4f4f4;
+      border-radius: 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .tile:hover { transform: translateY(-2px); background: #e8e8e8; }
+    #stepper {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1em;
+      flex-wrap: wrap;
+    }
+    .step {
+      flex: 1;
+      text-align: center;
+      font-size: 0.8em;
+      padding: 0.3em;
+      color: #888;
+    }
+    .step.active {
+      font-weight: bold;
+      color: #88f;
+    }
+    #step-content h2 { margin-top: 0; }
+    textarea {
+      width: 100%;
+      min-height: 120px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 0.5em;
+      margin-top: 0.5em;
+      resize: vertical;
+    }
+    button.nav {
+      margin: 1em 0.5em;
+      padding: 0.5em 1em;
+      background: #88f;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #log {
+      background: #f9f9f9;
+      padding: 1em;
+      border-top: 1px solid #ddd;
+      font-size: 0.85em;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    .hidden { display: none; }
   </style>
 </head>
 <body>
-  <h1>🧪 Prototype Prompt Ultime – Version immersive</h1>
+  <header>
+    <h1>🧪 Prompt-Ultime V3 – Immersion Inversée</h1>
+    <p class="subtitle">Transformez le banal en mythe, le quotidien en objet d’étude critique</p>
+  </header>
 
-  <div id="narration-intro">
-    <h2>Seuil d’entrée — Immersion inversée</h2>
-    <p>🔬 Interface d’observation inversée : ici, les comportements considérés comme normaux deviennent les objets d’étude. Les “étranges” regardent les “standards” avec une curiosité tendre et une ironie éveillée.</p>
-    <ul>
-      <li>🌀 Mission douce : initiation ironique à l’étude du neurotypique standard.</li>
-      <li>🎭 Enquête poétique : observer les rituels du quotidien avec des lunettes décalées.</li>
-      <li>📘 Ce n’est pas un test ni une vérité objective. C’est un jeu de regard, un miroir tendu aux évidences sociales.</li>
-      <li>🔍 Ton rôle : observer, interpréter avec délicatesse, et laisser parler les symboles.</li>
-    </ul>
-    <p><strong>Mission :</strong> Observer un comportement normocentré d’un sujet neurotypique dans son habitat social. Puis l’interpréter à travers un filtre symbolique — masque d’observation, compagnon imaginaire ou lunette cognitive.</p>
-    <p><em>Curieux, délicat, parfois drôle ou critique, mais jamais moqueur ni condescendant.</em></p>
+  <main>
+    <!-- Introduction -->
+    <section id="narration-intro">
+      <h2>Seuil d’entrée</h2>
+      <p>🔬 Ici, les comportements ordinaires deviennent étranges : les neurotypiques se laissent dévisager par vous, explorateur·rice ironique.</p>
+      <ul>
+        <li>🌀 Mission douce : initiez-vous à l’observation du « normocentré » avec tendresse et ironie.</li>
+        <li>🎭 Enquête poétique : munissez-vous de masques, totems et lunettes pour détourner le quotidien.</li>
+        <li>📘 Ce n’est ni un test ni un diagnostic : c’est un jeu de regard, un miroir tendre aux évidences sociales.</li>
+      </ul>
+      <p><em>Curieux·se, délicat·e, jamais condescendant·e.</em></p>
+      <button id="startBtn" class="button" onclick="initExperience()">🚀 Commencer l’Expérience</button>
+    </section>
 
-    <p><label for="mode">🎛️ Choisissez votre mode :</label>
-      <select id="mode">
-        <option value="logique">Logique / Littéral</option>
-        <option value="creatif">Créatif / Métaphorique</option>
-        <option value="mixte">Mixte guidé</option>
-      </select>
-    </p>
+    <!-- Choix du sujet -->
+    <section id="subject-selector" class="hidden">
+      <h2>Étape 0 – Choisissez un rituel</h2>
+      <div class="grid">
+        <div class="tile" onclick="selectSubject('Pause café')">☕ Pause café</div>
+        <div class="tile" onclick="selectSubject('Vérification des mails')">📧 Mails</div>
+        <div class="tile" onclick="selectSubject('Trajet métro')">🚇 Métro</div>
+        <div class="tile" onclick="customSubject()">✍️ Autre...</div>
+      </div>
+    </section>
 
-    <div style="margin-top: 1.5em;">
-      <button onclick="initExperience()" style="font-size: 1.1em;">🚀 Commencer</button>
-    </div>
-  </div>
+    <!-- Stepper -->
+    <section id="stepper" class="hidden">
+      <div class="step">1. Observation</div>
+      <div class="step">2. Filtre</div>
+      <div class="step">3. Lecture</div>
+      <div class="step">4. Hack</div>
+      <div class="step">5. Scène</div>
+      <div class="step">6. Réflexion</div>
+      <div class="step">7. Restitution</div>
+    </section>
 
-  <div id="etape-container"></div>
+    <!-- Contenu dynamique des étapes -->
+    <section id="step-content"></section>
+  </main>
 
-  <div id="log">
+  <!-- Journal pédagogique -->
+  <section id="log">
     <h3>📘 Journal pédagogique</h3>
-    <div id="log-content">Choisissez un mode pour démarrer.</div>
-    <button onclick="exporterLog()">📅 Exporter le journal</button>
-  </div>
+    <div id="log-content">En attente du démarrage...</div>
+  </section>
 
   <script>
-    let currentStepIndex = 0;
+    let currentStepIndex = -1;
     let steps = [];
-    let mode = "";
-    let log = [];
+    let subject = '';
+    let mode = 'mixte';
 
     async function initExperience() {
-      const intro = document.getElementById("narration-intro");
-      intro.classList.add("fade-out");
-      setTimeout(() => { intro.style.display = "none"; }, 800);
-      mode = document.getElementById("mode").value;
-      log = [];
-      addLog(`Mode choisi : ${mode}`);
-
+      document.getElementById('narration-intro').classList.add('hidden');
+      document.getElementById('subject-selector').classList.remove('hidden');
+      log('🔑 Début de l’expérience');
+      // Charger la structure dynamique
       try {
-        const structure = await fetch("structure.json", { cache: "no-store" });
-        if (!structure.ok) throw new Error(`structure.json introuvable (HTTP ${structure.status})`);
-        const data = await structure.json();
+        const resp = await fetch('structure.json', { cache: 'no-store' });
+        if (!resp.ok) throw new Error(`structure.json non trouvé (HTTP ${resp.status})`);
+        const data = await resp.json();
         steps = data.etapes;
-        if (!Array.isArray(steps) || steps.length === 0) throw new Error("Aucune étape détectée dans structure.json");
-        currentStepIndex = 0;
-        loadStep();
-      } catch (err) {
-        showError(`Erreur : ${err.message}`);
-        addLog(`❌ Erreur lors du démarrage : ${err.message}`);
+      } catch (e) {
+        log(`❌ Erreur chargement structure: ${e.message}`);
+        steps = ['Observation','Filtre','Lecture','Hack','Scène','Réflexion','Restitution'];
       }
     }
 
-    async function loadStep() {
-      if (currentStepIndex >= steps.length) {
-        document.getElementById("etape-container").innerHTML = '<p>✅ Expérience terminée.</p>';
-        addLog("Fin de l'expérience. Merci !");
-        return;
-      }
+    function selectSubject(name) {
+      subject = name;
+      log(`Sujet: ${name}`);
+      document.getElementById('subject-selector').classList.add('hidden');
+      startStep(0);
+    }
 
-      const etapeFile = steps[currentStepIndex];
+    function customSubject() {
+      const txt = prompt('Décrivez votre rituel :');
+      if (txt) selectSubject(txt);
+    }
+
+    function startStep(index) {
+      currentStepIndex = index;
+      document.getElementById('stepper').classList.remove('hidden');
+      showStep();
+    }
+
+    async function showStep() {
+      updateStepper();
+      const container = document.getElementById('step-content');
+      const file = steps[currentStepIndex];
+      let content = { nom: `Étape ${currentStepIndex+1}` };
       try {
-        const res = await fetch(`${etapeFile}`);
-        if (!res.ok) throw new Error(`Fichier introuvable : ${etapeFile}`);
-        const etapeData = await res.json();
+        const r = await fetch(file);
+        if (r.ok) content = await r.json();
+      } catch {}
 
-        if (etapeData.titre_section?.includes("Tirage des lunettes")) {
-          addLog("🎲 Étape 2 détectée : tirage automatique des lunettes.");
-          tirerLunettesEtPasser();
-          return;
-        }
-
-        let html = `<h2>Étape ${currentStepIndex + 1} – ${etapeData.nom || 'Sans nom'}</h2>`;
-        if (etapeData.intro) html += `<p><em>${etapeData.intro}</em></p>`;
-        if (etapeData.objectif) html += `<p><strong>Objectif :</strong> ${etapeData.objectif}</p>`;
-        if (etapeData.accroche) html += `<p>${etapeData.accroche}</p>`;
-        if (etapeData.presentation_symbolique) html += `<p>${etapeData.presentation_symbolique}</p>`;
-        if (etapeData.invitation) html += `<p><em>${etapeData.invitation}</em></p>`;
-        if (Array.isArray(etapeData.consignes)) {
-          html += "<ul>";
-          for (const c of etapeData.consignes) html += `<li>${c}</li>`;
-          html += "</ul>";
-        }
-
-        const consigne = etapeData.consigne?.[mode] || etapeData.consigne?.default || "Pas de consigne spécifique.";
-        html += `<p><strong>Consigne (${mode}) :</strong> ${consigne}</p>`;
-
-        if (etapeData.reponse_attendue !== false) {
-          html += `
-            <label for="reponse">✍️ Votre réponse :</label><br>
-            <textarea id="reponse" rows="5" placeholder="Votre réponse..."></textarea><br>
-            <button onclick="validerEtape()">Valider</button>
-          `;
-        } else {
-          html += `<button onclick="validerEtape()">➡️ Continuer</button>`;
-        }
-
-        document.getElementById("etape-container").innerHTML = html;
-      } catch (err) {
-        showError(`Erreur étape : ${err.message}`);
-        addLog(`❌ Erreur chargement étape : ${err.message}`);
+      let html = `<h2>${content.nom || 'Sans titre'}</h2>`;
+      if (content.intro) html += `<p><em>${content.intro}</em></p>`;
+      if (content.objectif) html += `<p><strong>Objectif:</strong> ${content.objectif}</p>`;
+      if (content.consignes) {
+        html += '<ul>' + content.consignes.map(c => `<li>${c}</li>`).join('') + '</ul>';
       }
-    }
-
-    function showError(msg) {
-      const container = document.getElementById("etape-container");
-      container.innerHTML = `<p class="error">${msg}</p>`;
-    }
-
-    function addLog(msg) {
-      const logDiv = document.getElementById("log-content");
-      log.unshift(`🕓 ${new Date().toLocaleTimeString()} — ${msg}`);
-      logDiv.innerText = log.join("\n");
-    }
-
-    function exporterLog() {
-      const blob = new Blob([log.join("\n")], { type: 'text/plain' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'journal_prompt_ultime.txt';
-      a.click();
-      URL.revokeObjectURL(url);
-    }
-
-    function validerEtape() {
-      const reponse = document.getElementById("reponse")?.value?.trim();
-      if (reponse || document.getElementById("reponse") === null) {
-        if (reponse) addLog(`📝 Réponse enregistrée : ${reponse}`);
-        currentStepIndex++;
-        loadStep();
+      if (currentStepIndex < steps.length -1) {
+        html += `<label>Votre retour (<em>${subject}</em>):</label><textarea id="ans"></textarea>`;
+        html += `<button class="nav" onclick="nextStep()">Suivant</button>`;
       } else {
-        showError("Merci de renseigner une réponse avant de valider.");
+        html += `<p>✅ Fin de l’expérience !</p><button class="nav" onclick="restart()">Rejouer</button>`;
       }
+      container.innerHTML = html;
     }
 
-    function tirerLunettesEtPasser() {
-      addLog("🕶 Tirage symbolique fictif exécuté.");
-      currentStepIndex++;
-      loadStep();
+    function updateStepper() {
+      document.querySelectorAll('#stepper .step').forEach((el,i) => {
+        el.classList.toggle('active', i===currentStepIndex);
+      });
+    }
+
+    function nextStep() {
+      const ansEl = document.getElementById('ans');
+      const ans = ansEl ? ansEl.value.trim() : '';
+      if (currentStepIndex < steps.length -1 && !ans) { alert('Veuillez compléter votre réponse'); return; }
+      log(`Étape ${currentStepIndex+1}: ${ans}`);
+      startStep(currentStepIndex+1);
+    }
+
+    function restart() { location.reload(); }
+
+    function log(msg) {
+      const el = document.getElementById('log-content');
+      const time = new Date().toLocaleTimeString('fr-FR');
+      el.textContent = `${time} – ${msg}\n${el.textContent}`;
     }
   </script>
 </body>

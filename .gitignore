@@ -44,4 +44,3 @@ lunettes_brutes.txt   # Source brute lunettes (temporaire)
 public/IA/            # Archive IA brute (générée ou migrée)
 API/                  # Dossier API si non stable
 
-.venv/
