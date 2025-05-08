@@ -1,24 +1,46 @@
-.env
-token
-API
-# Logs
-*.log
+# =======================
+# ENVIRONNEMENTS ET DEPENDANCES
+# =======================
 
-# Dossiers système
-__pycache__/
+.venv/                # Environnement virtuel Python
+venv/
+node_modules/         # Dépendances Node.js
+.env                  # Fichier d'environnement sensible
+token                # Clés API ou secrets
 
+# =======================
+# FICHIERS TEMPORAIRES ET SYSTÈME
+# =======================
 
-# Fichiers système
-.DS_Store
-Thumbs.db
+*.log                 # Fichiers de log
+__pycache__/          # Cache Python
+*.pyc                 # Fichiers compilés Python
+.DS_Store             # macOS
+Thumbs.db             # Windows
 
-# Sauvegardes ou versions locales
-*.bak
+# =======================
+# FICHIERS SOURCES NON VERSIONNABLES
+# =======================
+
+*.bak                 # Sauvegardes
 *.old
 *.tmp
+*.docx                # Fichiers Word (versions locales)
 
-# Dossiers spécifiques à ton projet
-public/IA/
-lunettes/
-lunettes_brutes.txt
+# =======================
+# FICHIERS GÉNÉRÉS PAR LE SYSTÈME DE JEU
+# =======================
+
+public/journal_ia/    # Journaux IA (horodatés, non versionnables)
+public/meta-prompt*.json  # Meta prompts générés automatiquement
+public/restitutions/
+public/versions/
+lunettes_brutes.txt   # Source brute lunettes (temporaire)
+
+# =======================
+# STRUCTURES NON STABLES OU EXPÉRIMENTALES
+# =======================
+
+public/IA/            # Archive IA brute (générée ou migrée)
+API/                  # Dossier API si non stable
 
