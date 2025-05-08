@@ -2,9 +2,7 @@
   "nom": "Résonance finale et clôture symbolique",
   "titre_section": "Étape 5 — Résonance intégrative",
   "sous_titre": "Ce que tu gardes, ce que tu laisses… et ce que tu offres au monde",
-  "objectif": "Clore le parcours avec une trace personnelle, symbolique ou poétique. Intégrer l’expérience à sa manière.",
   "description": "Tu es arrivé·e au bout de cette enquête sensible. Tu n’as pas trouvé LA vérité — mais peut-être un décalage fécond, une image persistante, un frisson intérieur. Cette dernière étape te permet de faire le point. Doucement.",
-  "accroche": "🌀 Une dernière boucle. Une dernière phrase. Une offrande.",
   "consigne": {
     "logique": "Formule une phrase qui résume ce que tu retiens de l’expérience, sur le plan cognitif ou réflexif.",
     "creatif": "Invente un petit rituel de clôture, ou écris une phrase étrange pour dire au revoir.",
@@ -28,10 +26,6 @@
     "🎶 Fredonne trois notes absurdes, et laisse-les s’évaporer.",
     "🙃 Lève un sourcil intérieur, juste pour honorer l’étrangeté douce de ce parcours."
   ],
-  "invitation": "Tu n’as pas fermé une histoire. Tu as entrouvert un autre regard. Cette scène, cette enquête, ce miroir... t’auront peut-être déplacé·e, même un peu. Et c’est déjà beaucoup.",
-  "reponse_attendue": true,
-  "integration_automatique": {
-    "cloture": true,
-    "presentation": "Cette dernière étape invite à formuler une résonance personnelle pour clore l’expérience de manière symbolique."
-  }
+  "conclusion": "Tu n’as pas fermé une histoire. Tu as entrouvert un autre regard. Cette scène, cette enquête, ce miroir... t’auront peut-être déplacé·e, même un peu. Et c’est déjà beaucoup."
 }
+

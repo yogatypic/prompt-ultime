@@ -192,4 +192,24 @@ async function reparerFichier(nomFichier, textarea) {
     alert("❌ Erreur IA : " + err.message);
   }
 }
+<script>
+function genererMetaPrompt() {
+  fetch("/api/generer-meta-prompt", {
+    method: "POST"
+  })
+  .then(response => response.json())
+  .then(data => {
+    const journal = document.getElementById("journalMetaPrompt");
+    if (data.status === "ok") {
+      journal.innerHTML = `<p style="color:green;">✅ ${data.message}</p><pre>${data.stdout || ''}</pre>`;
+    } else {
+      journal.innerHTML = `<p style="color:red;">❌ ${data.message}</p><pre>${data.stderr || ''}</pre>`;
+    }
+  })
+  .catch(err => {
+    document.getElementById("journalMetaPrompt").innerHTML =
+      `<p style="color:red;">❌ Erreur réseau ou serveur : ${err}</p>`;
+  });
+}
+</script>
 

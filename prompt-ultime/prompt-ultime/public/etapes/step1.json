@@ -1,0 +1,8 @@
+{
+  "nom": "Immersion inversée",
+  "intro": "Prends une inspiration douce.",
+  "objectif": "Observer un geste banal comme un rituel.",
+  "accroche": "Vous surprenez un cercle silencieux.",
+  "consignes": ["Regarder la vapeur", "Écouter le silence", "Noter les regards"],
+  "reponse_attendue": true
+}

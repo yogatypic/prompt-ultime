@@ -1,45 +1,46 @@
 // src/app/api/translate/route.ts
-import { NextRequest } from "next/server";
-import { OpenAI } from "openai";
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! });
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+// Ajustez le chemin d’import si votre buildPrompt est ailleurs
+import { buildPrompt } from "@/lib/buildPrompt";
 
-function buildPrompt({ text, direction, mode }: any) {
-  const header =
-    mode === "immersive"
-      ? `Tu es le Traducteur Inversé. Quand direction=NT2A, tu traduis le message en dialecte Atypique
-         (humour, hyper-précision sensorielle). Quand direction=A2NT, tu simplifies et normativises.
-         Garde la structure conversationnelle.`
-      : "";
-  return `${header}\n\nMessage: «${text}»\nDirection: ${direction}\nRéponse:`;
-}
+export async function POST(request: NextRequest) {
+  // 1. On récupère le body JSON et on renomme la prop initialMode en mode interne
+  const { text, direction, initialMode } = await request.json();
+  const mode = initialMode; 
 
-export async function POST(req: NextRequest) {
-  const { text, direction, mode } = await req.json();
-  const prompt = buildPrompt({ text, direction, mode });
+  // 2. On construit le prompt selon le mode ("immersive" ou "simple")
+  const prompt = buildPrompt(text, direction, mode);
 
-  const completion = await openai.chat.completions.create({
-    model: "gpt-4o-mini",
-    stream: true,
-    messages: [{ role: "user", content: prompt }],
-  });
-
-  // renvoi en stream SSE
-  const stream = new ReadableStream({
-    async start(controller) {
-      for await (const part of completion) {
-        controller.enqueue(
-          `data: ${part.choices[0]?.delta?.content || ""}\n\n`
-        );
-      }
-      controller.close();
+  // 3. On appelle l’API OpenAI en mode streaming SSE
+  const aiResponse = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
     },
+    body: JSON.stringify({
+      model: "gpt-4o-mini",
+      messages: [{ role: "user", content: prompt }],
+      stream: true,
+    }),
   });
 
-  return new Response(stream, {
+  // 4. En cas d’erreur réseau / API, on renvoie un statut 500
+  if (!aiResponse.ok) {
+    return NextResponse.json(
+      { error: `OpenAI API error: ${aiResponse.status}` },
+      { status: 500 }
+    );
+  }
+
+  // 5. On renvoie directement le corps du stream SSE au client
+  return new NextResponse(aiResponse.body, {
     headers: {
       "Content-Type": "text/event-stream",
-      "Cache-Control": "no-cache",
+      // facultatif : désactiver le buffering côté client
+      "Cache-Control": "no-cache, no-transform",
     },
   });
 }

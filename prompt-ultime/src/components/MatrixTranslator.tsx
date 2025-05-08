@@ -1,51 +1,43 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Terminal } from "lucide-react";
+// src/components/MatrixTranslator.tsx
+
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { fetchStep1, createSession } from '../api/api';
 
 export default function MatrixTranslator() {
-  const [input, setInput] = useState("");
-  const [stream, setStream] = useState("");
+  const [introText, setIntroText] = useState<string>('');
+  const navigate = useNavigate();
 
-  async function handleAsk(direction: "NT2A" | "A2NT") {
-    setStream("");
-    const res = await fetch("/api/translate", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text: input, direction, mode: "immersive" }),
-    });
+  useEffect(() => {
+    fetchStep1()
+      .then(setIntroText)
+      .catch(() => setIntroText('<p>Erreur de chargement.</p>'));
+  }, []);
 
-    const reader = res.body!.getReader();
-    const decoder = new TextDecoder("utf-8");
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-      setStream((prev) => prev + decoder.decode(value));
+  const startGame = async (mode: 'immersive' | 'simple') => {
+    const session = await createSession(mode === 'immersive' ? 'Atypique' : 'NT');
+    if (session.sessionId) {
+      // on utilise la concaténation, pas de backtick
+      navigate('/game/' + session.sessionId);
     }
-  }
+  };
+
+  if (!introText) return <div>Chargement du jeu…</div>;
 
   return (
-    <div className="flex flex-col items-center gap-4 p-6">
-      <h1 className="text-3xl font-mono">Matrix Translator</h1>
-
-      <textarea
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        className="w-full max-w-xl h-32 p-2 border rounded bg-black/60 text-green-400 font-mono"
-        placeholder="Tape ton message ici…"
+    <div className="home-container">
+      <div
+        className="home-intro"
+        dangerouslySetInnerHTML={{ __html: introText }}
       />
-
-      <div className="flex gap-4">
-        <Button onClick={() => handleAsk("NT2A")} variant="secondary">
-          💊 Pilule rouge (NT ➜ Atypique)
-        </Button>
-        <Button onClick={() => handleAsk("A2NT")} variant="outline">
-          💊 Pilule bleue (Atypique ➜ NT)
-        </Button>
+      <div className="buttons">
+        <button onClick={() => startGame('immersive')}>
+          Pilule rouge (immersif)
+        </button>
+        <button onClick={() => startGame('simple')}>
+          Pilule bleue (simple)
+        </button>
       </div>
-
-      <pre className="w-full max-w-xl h-60 overflow-auto bg-black/90 text-green-400 p-3 rounded font-mono">
-        {stream || "<…la réponse s’affichera en direct…>"}
-      </pre>
     </div>
   );
 }

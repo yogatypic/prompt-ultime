@@ -1,0 +1,225 @@
+.
+├── API
+├── audit-etapes.js
+├── audit_structure.js
+├── auto_fix_index.sh
+├── autoFixJson.cjs
+├── autoFixJson.js
+├── build.js
+├── check-json-validity.js
+├── compareTrees.cjs
+├── compareTrees.js
+├── corriger.cjs
+├── corriger-et-pusher.sh
+├── corriger-index-structure.cjs
+├── corriger.js
+├── corriger_tout.sh
+├── deplacer_json_public.sh
+├── deplacer_schemas_et_commit.sh
+├── deplacer_schemas.sh
+├── deploy.sh
+├── diagnose_render.sh
+├── Document 1 sans titre
+├── .env
+├── fix_and_deploy.sh
+├── fix-render.sh
+├── generateLunettes.js
+├── .github
+│   └── workflows
+│       └── audit.yml
+├── .gitignore
+├── index.html
+├── json
+├── lunettes
+│   ├── lunettes_biais_cognitifs_1.json
+│   └── lunettes_croyances_culturelles_limitantes_2.json
+├── lunettes_brutes.txt
+├── lunettes.json
+├── nettoyeur-schemas.js
+├── .node-version
+├── package.json
+├── package-lock.json
+├── prompt-ultime
+│   ├── one-shot.sh
+│   ├── prompt-ultime
+│   │   ├── build
+│   │   │   ├── asset-manifest.json
+│   │   │   ├── etapes
+│   │   │   │   └── step1.json
+│   │   │   ├── favicon.ico
+│   │   │   ├── index.html
+│   │   │   ├── logo192.png
+│   │   │   ├── logo512.png
+│   │   │   ├── manifest.json
+│   │   │   ├── robots.txt
+│   │   │   ├── static
+│   │   │   │   └── js
+│   │   │   │       ├── main.4ffbd734.js
+│   │   │   │       ├── main.4ffbd734.js.LICENSE.txt
+│   │   │   │       └── main.4ffbd734.js.map
+│   │   │   └── structure.json
+│   │   ├── .gitignore
+│   │   ├── package.json
+│   │   ├── package-lock.json
+│   │   ├── public
+│   │   │   ├── etapes
+│   │   │   │   └── step1.json
+│   │   │   ├── favicon.ico
+│   │   │   ├── index.html
+│   │   │   ├── logo192.png
+│   │   │   ├── logo512.png
+│   │   │   ├── manifest.json
+│   │   │   ├── robots.txt
+│   │   │   └── structure.json
+│   │   ├── README.md
+│   │   ├── src
+│   │   │   ├── api
+│   │   │   │   └── api.ts
+│   │   │   ├── App.css
+│   │   │   ├── App.test.tsx
+│   │   │   ├── App.tsx
+│   │   │   ├── components
+│   │   │   │   ├── Game.tsx
+│   │   │   │   ├── MatrixTranslator.tsx
+│   │   │   │   └── StepView.tsx
+│   │   │   ├── index.css
+│   │   │   ├── index.tsx
+│   │   │   ├── logo.svg
+│   │   │   ├── react-app-env.d.ts
+│   │   │   ├── reportWebVitals.ts
+│   │   │   └── setupTests.ts
+│   │   └── tsconfig.json
+│   ├── prompt-ultime-backend
+│   │   ├── package.json
+│   │   ├── package-lock.json
+│   │   ├── src
+│   │   │   ├── index.js
+│   │   │   └── routes
+│   │   │       └── prompts.js
+│   │   ├── tree_local.json
+│   │   └── tree_remote.json
+│   ├── setup2.sh
+│   ├── setup3.sh
+│   ├── setup4.sh
+│   ├── setup.sh
+│   └── src
+│       ├── api
+│       │   ├── api.ts
+│       │   └── fix_api.sh
+│       ├── app
+│       │   ├── api
+│       │   │   └── translate
+│       │   │       └── route.ts
+│       │   └── page.tsx
+│       ├── App.tsx
+│       ├── components
+│       │   ├── Game.tsx
+│       │   └── MatrixTranslator.tsx
+│       └── index.tsx
+├── prompt-ultime_tree.txt
+├── public
+│   ├── admin.html
+│   ├── admin.js
+│   ├── axes_autistiques.bak.json
+│   ├── axes_autistiques.json
+│   ├── check-json-validity.js
+│   ├── compagnons_symboliques.bak.json
+│   ├── compagnons_symboliques.json
+│   ├── comparer_json.py
+│   ├── etape_0_seuil_entree.bak.json
+│   ├── etape_0_seuil_entree.json
+│   ├── etape_1_observation.json
+│   ├── etape_2_lunettes.bak.json
+│   ├── etape_2_lunettes.json
+│   ├── etape_3_lecture_croisee.bak.json
+│   ├── etape_3_lecture_croisee.json
+│   ├── etape_4_metadiscernement.bak.json
+│   ├── etape_4_metadiscernement.json
+│   ├── etape_5_resonance_finale.bak.json
+│   ├── etape_5_resonance_finale.json
+│   ├── IA
+│   │   ├── axes_autistiques.json
+│   │   ├── compagnons_symboliques.json
+│   │   ├── etape_0_seuil_entree.json
+│   │   ├── etape_1_observation.json
+│   │   ├── etape_2_lunettes.json
+│   │   ├── etape_3_lecture_croisee.json
+│   │   ├── etape_4_metadiscernement.json
+│   │   ├── etape_5_resonance_finale.json
+│   │   ├── IA1.json
+│   │   ├── introduction_et_mission.json
+│   │   ├── lunettes_subjectives.json
+│   │   ├── masques_symboliques.json
+│   │   ├── meta.json
+│   │   ├── package.json
+│   │   └── package-lock.json
+│   ├── IA1.json
+│   ├── import json
+│   ├── import_json.py
+│   ├── index.html
+│   ├── introduction_et_mission.json
+│   ├── lunettes_subjectives.bak.json
+│   ├── lunettes_subjectives.json
+│   ├── maj_structure.sh
+│   ├── masques_symboliques.json
+│   ├── meta.bak.json
+│   ├── meta.json
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── schemas
+│   │   ├── axes_autistiques.schema.json
+│   │   ├── compagnons_symboliques.schema.json
+│   │   ├── etape_0_seuil_entree.schema.json
+│   │   ├── etape_1_observation.schema.json
+│   │   ├── etape_2_lunettes.schema.json
+│   │   ├── etape_3_lecture_croisee.schema.json
+│   │   ├── etape_4_metadiscernement.schema.json
+│   │   ├── etape_5_resonance_finale.schema.json
+│   │   ├── etape.schema.json
+│   │   ├── introduction_et_mission.schema.json
+│   │   ├── lunettes.schema.json
+│   │   ├── lunettes_subjectives.schema.json
+│   │   ├── meta.schema.json
+│   │   └── structure.schema.json
+│   ├── structure.json
+│   ├── test.html
+│   └── test.json
+├── README.md
+├── reconstruire_depuis_IA1.py
+├── recuperer_json.sh
+├── .render.yaml
+├── render.yaml
+├── reparer_et_extraire_IA1_v2.py
+├── reparer_IA1.py
+├── restaure_json.sh
+├── scanner_fichiers_etapes.sh
+├── schemas
+│   ├── etape_1_observation.schema.json
+│   └── etape.schema.json
+├── scripts
+│   ├── api_openai_autogen.js
+│   ├── extraire_json_depuis_IA1.py
+│   ├── generateLunettes.js
+│   ├── generateSchemas.js
+│   ├── reconstruire_fichiers_json.py
+│   └── reparer_et_extraire_IA1.py
+├── server.js
+├── setup2.sh
+├── setup.sh
+├── structure.json
+├── suggestions
+│   └── auto_001.js
+├── sync-blueprint.sh
+├── token
+├── tree_local.json
+├── tree_remote.err
+├── tree_remote.json
+├── validateAllEtapes.js
+├── validateEtape.js
+├── verificateur-ajv.js
+├── verifier-et-deployer.sh
+├── verifier-fichiers-web.cjs
+├── verifier-gitignore.sh
+└── verif_json.sh
+
+31 directories, 192 files

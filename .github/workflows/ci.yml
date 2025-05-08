@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, next ]
+  pull_request:
+    branches: [ main, next ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: base1_7xzt_user
+          POSTGRES_PASSWORD: K6NlRmGVR4v4B2MlgawqeT2HBpJVC30W  # mot de passe de test en CI
+          POSTGRES_DB: base1_7xzt
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U base1_7xzt_user -d base1_7xzt"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+          pip install fastapi uvicorn sqlmodel alembic psycopg2-binary pytest
+
+      - name: Run migrations
+        run: |
+          source .venv/bin/activate
+          alembic upgrade head
+
+      - name: Run Pytest
+        run: |
+          source .venv/bin/activate
+          pytest --maxfail=1 --disable-warnings -q
+
+      - name: Validate JSON schemas
+        run: |
+          npm install -g ajv-cli
+          ajv validate -s src/schemas/structure.json -d src/schemas/*.json
+
