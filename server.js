@@ -113,6 +113,20 @@ app.post('/api/versioning', (req, res) => {
     res.status(500).json({ error: 'Erreur versioning : ' + err.message });
   }
 });
+// === CHARGEMENT DYNAMIQUE D'UNE ÉTAPE DU JEU ===
+app.get('/api/load-etape/:id', (req, res) => {
+  try {
+    const id = req.params.id;
+    const chemin = path.join(jsonDir, 'IA', `${id}.json`);
+    if (!fs.existsSync(chemin)) {
+      return res.status(404).json({ error: `Fichier ${id}.json introuvable.` });
+    }
+    const contenu = fs.readFileSync(chemin, 'utf8');
+    res.json(JSON.parse(contenu));
+  } catch (err) {
+    res.status(500).json({ error: 'Erreur lecture fichier : ' + err.message });
+  }
+});
 
 // === DÉMARRAGE SERVEUR ===
 app.listen(PORT, () => {

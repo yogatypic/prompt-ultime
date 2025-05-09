@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "prompt-ultime-api"
+version = "0.1.0"
+description = "API du système Prompt-Ultime V2"
+authors = ["yogatypic <alexandre.feron76@gmail.com>"]
+license = "CC-BY-NC-SA-4.0"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.13"
+fastapi = "^0.110.0"
+uvicorn = "^0.29.0"
+python-docx = "^1.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+

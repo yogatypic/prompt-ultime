@@ -1,15 +1,26 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": [
-    "etapes"
-  ],
+  "required": ["titre", "version", "chapitres"],
   "properties": {
-    "etapes": {
+    "titre": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "chapitres": {
       "type": "array",
       "items": {
-        "type": "string"
+        "type": "object",
+        "required": ["titre", "contenu"],
+        "properties": {
+          "titre": { "type": "string" },
+          "contenu": { "type": "string" }
+        }
       }
     }
   },
-  "additionalProperties": true
+  "additionalProperties": false
 }
+
