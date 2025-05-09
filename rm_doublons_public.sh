@@ -1,0 +1,19 @@
+rm public/etape_0_seuil_entree.json
+rm public/etape_1_observation.json
+rm public/etape_2_lunettes.json
+rm public/etape_3_lecture_croisee.json
+rm public/etape_4_metadiscernement.json
+rm public/etape_5_resonance_finale.json
+rm public/etape_6_restitution.json
+rm public/axes_autistiques.json
+rm public/lunettes_subjectives.json
+rm public/lunettes_subjectives.bak.json
+rm public/compagnons_symboliques.json
+rm public/compagnons_symboliques.bak.json
+rm public/meta.json
+rm public/meta.bak.json
+rm public/meta-prompt.json
+rm public/introduction_et_mission.json
+rm public/structure.json
+rm public/test.json
+
