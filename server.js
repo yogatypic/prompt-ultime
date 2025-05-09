@@ -144,4 +144,19 @@ app.get('/api/load-etape/:id', (req, res) => {
 app.listen(PORT, () => {
   console.log(`🚀 Serveur backend opérationnel sur : http://localhost:${PORT}`);
 });
+app.get('/api/scan/IA', (req, res) => {
+  const iaDir = path.join(jsonDir, 'IA');
+  console.log("🟢 Route /api/scan/IA appelée");
+  try {
+    const files = fs.readdirSync(iaDir).filter(f => f.endsWith('.json'));
+    const resultats = files.map(file => ({
+      nom: file,
+      contenu: fs.readFileSync(path.join(iaDir, file), 'utf8')
+    }));
+    res.json(resultats);
+  } catch (err) {
+    res.status(500).json({ error: 'Erreur lecture fichiers IA : ' + err.message });
+  }
+});
+
 

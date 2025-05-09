@@ -45,3 +45,8 @@ public/IA/            # Archive IA brute (générée ou migrée)
 API/                  # Dossier API si non stable
 
 node_modules/
+# .gitignore (ajoute tout en bas)
+
+# Autoriser les JSON du dossier public/
+!public/*.json
+
