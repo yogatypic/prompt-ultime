@@ -1,3 +1,4 @@
+import cors from 'cors';
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -12,6 +13,8 @@ import 'dotenv/config';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const app = express();
+app.use(cors()); // Active CORS pour accepter les appels du frontend
+
 const PORT = process.env.PORT || 3000;
 
 const jsonDir = path.join(__dirname, 'public');
@@ -19,7 +22,15 @@ const versionDir = path.join(jsonDir, 'versions');
 const schemasDir = path.join(jsonDir, 'schemas');
 
 const ajv = new Ajv();
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+// 🔐 OpenAI : seulement si clé fournie
+let openai = null;
+if (process.env.OPENAI_API_KEY) {
+  openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  console.log("🔐 Clé OpenAI détectée et chargée.");
+} else {
+  console.warn("⚠️ Aucune clé OPENAI_API_KEY détectée. Les fonctions IA sont désactivées.");
+}
 
 // === MIDDLEWARES ===
 app.use(morgan('dev'));
@@ -113,7 +124,7 @@ app.post('/api/versioning', (req, res) => {
     res.status(500).json({ error: 'Erreur versioning : ' + err.message });
   }
 });
-// === CHARGEMENT DYNAMIQUE D'UNE ÉTAPE DU JEU ===
+
 app.get('/api/load-etape/:id', (req, res) => {
   try {
     const id = req.params.id;
