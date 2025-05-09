@@ -17,6 +17,7 @@ services:
     env: node
     plan: free
     branch: main
+    repo: https://github.com/yogatypic/prompt-ultime  # ✅ corrigé ici
     rootDir: .
     buildCommand: npm install
     startCommand: node server.js
