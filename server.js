@@ -13,7 +13,7 @@ import 'dotenv/config';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const app = express();
-app.use(cors()); // Active CORS pour accepter les appels du frontend
+app.use(cors());
 
 const PORT = process.env.PORT || 3000;
 
@@ -43,6 +43,7 @@ app.get('/admin', (req, res) => res.redirect('/admin.html'));
 
 // === API ROUTES ===
 app.get('/api/scan', (req, res) => {
+  console.log("🟢 Route /api/scan appelée");
   try {
     const files = fs.readdirSync(jsonDir).filter(f => f.endsWith('.json'));
     const resultats = files.map(file => ({
@@ -141,6 +142,6 @@ app.get('/api/load-etape/:id', (req, res) => {
 
 // === DÉMARRAGE SERVEUR ===
 app.listen(PORT, () => {
-  console.log(`🚀 Serveur backend opérationnel : http://localhost:${PORT}`);
+  console.log(`🚀 Serveur backend opérationnel sur : http://localhost:${PORT}`);
 });
 
