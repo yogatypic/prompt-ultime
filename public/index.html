@@ -16,21 +16,25 @@
       min-height: 100vh;
       transition: background 0.5s ease;
     }
+
     header {
       background: #88f;
       color: #fff;
       text-align: center;
       padding: 1.5em 1em;
     }
+
     header h1 {
       margin: 0;
       font-size: 1.8em;
     }
+
     header p.subtitle {
       margin: 0.5em 0 0;
       font-size: 1em;
       opacity: 0.9;
     }
+
     main {
       flex: 1;
       padding: 1em;
@@ -38,6 +42,7 @@
       margin: 0 auto;
       width: 100%;
     }
+
     .button {
       display: inline-block;
       padding: 0.6em 1.2em;
@@ -48,220 +53,105 @@
       cursor: pointer;
       font-size: 1em;
     }
+
     section {
       margin-bottom: 2em;
     }
+
     #narration-intro {
       background: #eef;
       border-left: 5px solid #88f;
       padding: 1em;
       animation: fadeIn 0.8s ease-in-out;
     }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    #subject-selector .grid,
-    #subject-selector-custom .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 1em;
-    }
-    .tile {
-      padding: 1em;
-      background: #f4f4f4;
-      border-radius: 8px;
-      text-align: center;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-    .tile:hover { transform: translateY(-2px); background: #e8e8e8; }
-    #stepper {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 1em;
-      flex-wrap: wrap;
-    }
-    .step {
-      flex: 1;
-      text-align: center;
-      font-size: 0.8em;
-      padding: 0.3em;
-      color: #888;
-    }
-    .step.active {
-      font-weight: bold;
-      color: #88f;
-    }
-    #step-content h2 { margin-top: 0; }
-    textarea {
-      width: 100%;
-      min-height: 120px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      padding: 0.5em;
-      margin-top: 0.5em;
-      resize: vertical;
-    }
-    button.nav {
-      margin: 1em 0.5em;
-      padding: 0.5em 1em;
-      background: #88f;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    #log {
-      background: #f9f9f9;
-      padding: 1em;
-      border-top: 1px solid #ddd;
-      font-size: 0.85em;
-      max-height: 200px;
-      overflow-y: auto;
-    }
-    .hidden { display: none; }
   </style>
 </head>
 <body>
-  <header>
-    <h1>🧪 Prompt-Ultime V3 – Immersion Inversée</h1>
-    <p class="subtitle">Transformez le banal en mythe, le quotidien en objet d’étude critique</p>
-  </header>
 
-  <main>
-    <!-- Introduction -->
-    <section id="narration-intro">
-      <h2>Seuil d’entrée</h2>
-      <p>🔬 Ici, les comportements ordinaires deviennent étranges : les neurotypiques se laissent dévisager par vous, explorateur·rice ironique.</p>
-      <ul>
-        <li>🌀 Mission douce : initiez-vous à l’observation du « normocentré » avec tendresse et ironie.</li>
-        <li>🎭 Enquête poétique : munissez-vous de masques, totems et lunettes pour détourner le quotidien.</li>
-        <li>📘 Ce n’est ni un test ni un diagnostic : c’est un jeu de regard, un miroir tendre aux évidences sociales.</li>
-      </ul>
-      <p><em>Curieux·se, délicat·e, jamais condescendant·e.</em></p>
-      <button id="startBtn" class="button" onclick="initExperience()">🚀 Commencer l’Expérience</button>
-    </section>
-
-    <!-- Choix du sujet -->
-    <section id="subject-selector" class="hidden">
-      <h2>Étape 0 – Choisissez un rituel</h2>
-      <div class="grid">
-        <div class="tile" onclick="selectSubject('Pause café')">☕ Pause café</div>
-        <div class="tile" onclick="selectSubject('Vérification des mails')">📧 Mails</div>
-        <div class="tile" onclick="selectSubject('Trajet métro')">🚇 Métro</div>
-        <div class="tile" onclick="customSubject()">✍️ Autre...</div>
-      </div>
-    </section>
-
-    <!-- Stepper -->
-    <section id="stepper" class="hidden">
-      <div class="step">1. Observation</div>
-      <div class="step">2. Filtre</div>
-      <div class="step">3. Lecture</div>
-      <div class="step">4. Hack</div>
-      <div class="step">5. Scène</div>
-      <div class="step">6. Réflexion</div>
-      <div class="step">7. Restitution</div>
-    </section>
-
-    <!-- Contenu dynamique des étapes -->
-    <section id="step-content"></section>
-  </main>
-
-  <!-- Journal pédagogique -->
-  <section id="log">
-    <h3>📘 Journal pédagogique</h3>
-    <div id="log-content">En attente du démarrage...</div>
+  <!-- Introduction dynamique -->
+  <section id="narration-intro">
+    <h2>Seuil d’entrée — Immersion inversée</h2>
+    <div id="intro-content">🔄 Chargement de l’introduction...</div>
+    <button id="startBtn" class="button" onclick="initExperience()">🚀 Commencer l’Expérience</button>
   </section>
 
+  <!-- Script de chargement d’introduction -->
   <script>
-    let currentStepIndex = -1;
-    let steps = [];
-    let subject = '';
-    let mode = 'mixte';
+    window.addEventListener('DOMContentLoaded', chargerIntroduction);
 
-    async function initExperience() {
-      document.getElementById('narration-intro').classList.add('hidden');
-      document.getElementById('subject-selector').classList.remove('hidden');
-      log('🔑 Début de l’expérience');
-      // Charger la structure dynamique
+    async function chargerIntroduction() {
       try {
-        const resp = await fetch('structure.json', { cache: 'no-store' });
-        if (!resp.ok) throw new Error(`structure.json non trouvé (HTTP ${resp.status})`);
+        const resp = await fetch('introduction_et_mission.json');
+        if (!resp.ok) throw new Error('introduction_et_mission.json non trouvé');
         const data = await resp.json();
-        steps = data.etapes;
+        let html = `<p>${data.presentation}</p><ul>`;
+        (data.objectifs_pedagogiques || []).forEach(obj => {
+          html += `<li>${obj}</li>`;
+        });
+        html += `</ul><p><em>${data.ton || "Curieux, délicat, jamais moqueur."}</em></p>`;
+        document.getElementById('intro-content').innerHTML = html;
       } catch (e) {
-        log(`❌ Erreur chargement structure: ${e.message}`);
-        steps = ['Observation','Filtre','Lecture','Hack','Scène','Réflexion','Restitution'];
+        document.getElementById('intro-content').innerHTML =
+          `<p>⚠️ Erreur lors du chargement : ${e.message}</p>`;
       }
-    }
-
-    function selectSubject(name) {
-      subject = name;
-      log(`Sujet: ${name}`);
-      document.getElementById('subject-selector').classList.add('hidden');
-      startStep(0);
-    }
-
-    function customSubject() {
-      const txt = prompt('Décrivez votre rituel :');
-      if (txt) selectSubject(txt);
-    }
-
-    function startStep(index) {
-      currentStepIndex = index;
-      document.getElementById('stepper').classList.remove('hidden');
-      showStep();
-    }
-
-    async function showStep() {
-      updateStepper();
-      const container = document.getElementById('step-content');
-      const file = steps[currentStepIndex];
-      let content = { nom: `Étape ${currentStepIndex+1}` };
-      try {
-        const r = await fetch(file);
-        if (r.ok) content = await r.json();
-      } catch {}
-
-      let html = `<h2>${content.nom || 'Sans titre'}</h2>`;
-      if (content.intro) html += `<p><em>${content.intro}</em></p>`;
-      if (content.objectif) html += `<p><strong>Objectif:</strong> ${content.objectif}</p>`;
-      if (content.consignes) {
-        html += '<ul>' + content.consignes.map(c => `<li>${c}</li>`).join('') + '</ul>';
-      }
-      if (currentStepIndex < steps.length -1) {
-        html += `<label>Votre retour (<em>${subject}</em>):</label><textarea id="ans"></textarea>`;
-        html += `<button class="nav" onclick="nextStep()">Suivant</button>`;
-      } else {
-        html += `<p>✅ Fin de l’expérience !</p><button class="nav" onclick="restart()">Rejouer</button>`;
-      }
-      container.innerHTML = html;
-    }
-
-    function updateStepper() {
-      document.querySelectorAll('#stepper .step').forEach((el,i) => {
-        el.classList.toggle('active', i===currentStepIndex);
-      });
-    }
-
-    function nextStep() {
-      const ansEl = document.getElementById('ans');
-      const ans = ansEl ? ansEl.value.trim() : '';
-      if (currentStepIndex < steps.length -1 && !ans) { alert('Veuillez compléter votre réponse'); return; }
-      log(`Étape ${currentStepIndex+1}: ${ans}`);
-      startStep(currentStepIndex+1);
-    }
-
-    function restart() { location.reload(); }
-
-    function log(msg) {
-      const el = document.getElementById('log-content');
-      const time = new Date().toLocaleTimeString('fr-FR');
-      el.textContent = `${time} – ${msg}\n${el.textContent}`;
     }
   </script>
+  <!-- Choix du sujet -->
+  <section id="subject-selector" class="hidden">
+    <h2>Étape 0 – Choisissez un rituel</h2>
+    <div class="grid">
+      <div class="tile" onclick="selectSubject('Pause café')">☕ Pause café</div>
+      <div class="tile" onclick="selectSubject('Vérification des mails')">📧 Mails</div>
+      <div class="tile" onclick="selectSubject('Trajet métro')">🚇 Métro</div>
+      <div class="tile" onclick="customSubject()">✍️ Autre...</div>
+    </div>
+  </section>
+
+  <!-- Stepper narratif -->
+  <section id="stepper" class="hidden">
+    <div class="step">1. Observation</div>
+    <div class="step">2. Lunette Symbolique</div>
+    <div class="step">3. Lecture Croisée</div>
+    <div class="step">4. Hack Interdiscursif</div>
+    <div class="step">5. Scène Fictionnelle</div>
+    <div class="step">6. Réflexivité Collective</div>
+    <div class="step">7. Restitution</div>
+  </section>
+
+  <!-- Contenu dynamique des étapes -->
+  <section id="step-content"></section>
+  <script>
+  async function initExperience() {
+    try {
+      const res = await fetch('/api/load-etape/etape_0_seuil_entree');
+      if (!res.ok) throw new Error('Fichier d’étape non trouvé');
+
+      const etape = await res.json();
+
+      // Cacher l’intro, afficher les éléments suivants
+      document.getElementById('narration-intro').style.display = 'none';
+      document.getElementById('subject-selector').classList.remove('hidden');
+      document.getElementById('stepper').classList.remove('hidden');
+
+      // Injecter le contenu dynamique
+      document.getElementById('step-content').innerHTML = `
+        <h2>${etape.titre || "Étape 0 – Seuil d’entrée"}</h2>
+        <p><strong>${etape.accroche || "Bienvenue dans l’expérience inversée."}</strong></p>
+        <p>${etape.presentation || "Vous allez explorer un rituel quotidien à travers une nouvelle grille de lecture."}</p>
+        <pre style="background:#eee;padding:1em;border-radius:6px">${JSON.stringify(etape, null, 2)}</pre>
+      `;
+    } catch (e) {
+      document.getElementById('intro-content').innerHTML =
+        `<p>❌ Erreur : ${e.message}</p>`;
+    }
+  }
+</script>
 </body>
 </html>
+
 
