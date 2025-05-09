@@ -111,4 +111,61 @@ Le déploiement sur Render est piloté par `render.yaml`, avec :
 
 ```
 ```
+# 🧠 Prompt-Ultime V3 — Plateforme de médiation neurodivergente
+
+Bienvenue dans le projet **Prompt-Ultime V3**, une plateforme poético-critique de transformation du réel par des rituels d'observation inversée. Ce dépôt contient le backend Node.js Express, les fichiers JSON du jeu, ainsi qu’un `.render.yaml` pour déploiement.
+
+---
+
+## 🚀 Déploiement manuel sur Render (2 services à créer)
+
+Suite à un bug d’interface Render Blueprint, suivez ces étapes pour un déploiement **manuel mais 100 % fonctionnel** :
+
+---
+
+### 1. 🌐 Service `prompt-ultime-node-api` (Backend)
+
+- **Type** : Web Service
+- **Nom** : `prompt-ultime-node-api`
+- **Runtime** : Node.js
+- **Dépôt** : [`yogatypic/prompt-ultime`](https://github.com/yogatypic/prompt-ultime)
+- **Branche** : `main`
+- **Root directory** : `.`
+
+#### ⚙️ Configuration :
+
+| Paramètre         | Valeur                    |
+|-------------------|---------------------------|
+| Build Command     | `npm install`             |
+| Start Command     | `node server.js`          |
+| Port              | Automatique (3000 par défaut) |
+| Environment Vars  | `NODE_ENV=production`     |
+| (optionnel)       | `OPENAI_API_KEY=...`      |
+
+---
+
+### 2. 🎨 Service `literate-disco-front` (Frontend Vite/React)
+
+- **Type** : Static Site
+- **Nom** : `literate-disco-front`
+- **Dépôt** : [`yogatypic/literate-disco`](https://github.com/yogatypic/literate-disco)
+- **Branche** : `main`
+- **Root directory** : `.`
+
+#### ⚙️ Configuration :
+
+| Paramètre             | Valeur                                               |
+|-----------------------|------------------------------------------------------|
+| Build Command         | `npm install && npm run build`                      |
+| Publish Directory     | `build`                                              |
+| Environment Vars      | `VITE_API_URL=https://prompt-ultime-node-api.onrender.com` |
+
+---
+
+## 🔎 API de test rapide
+
+Dès que le backend est en ligne, testez :
+
+```bash
+GET https://prompt-ultime-node-api.onrender.com/api/scan
 
