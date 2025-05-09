@@ -1,11 +1,25 @@
 services:
-  - type: web
-    name: prompt-ultime
+  - type: static
+    name: literate-disco-front
     env: node
-    plan: starter
+    plan: free
+    branch: main
+    repo: https://github.com/yogatypic/literate-disco
+    rootDir: .
+    buildCommand: "npm install && npm run build"
+    staticPublishPath: build
+    envVars:
+      - key: VITE_API_URL
+        value: "https://prompt-ultime-node-api.onrender.com"
+
+  - type: web
+    name: prompt-ultime-node-api
+    env: node
+    plan: free
+    branch: main
+    rootDir: .
     buildCommand: npm install
     startCommand: node server.js
-    branch: main
     envVars:
       - key: NODE_ENV
         value: production
