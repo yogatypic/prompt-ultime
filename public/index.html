@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Prompt-Ultime V3 – Immersion Inversée</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <style>
     body {
       font-family: sans-serif;
@@ -16,25 +17,21 @@
       min-height: 100vh;
       transition: background 0.5s ease;
     }
-
     header {
       background: #88f;
       color: #fff;
       text-align: center;
       padding: 1.5em 1em;
     }
-
     header h1 {
       margin: 0;
       font-size: 1.8em;
     }
-
     header p.subtitle {
       margin: 0.5em 0 0;
       font-size: 1em;
       opacity: 0.9;
     }
-
     main {
       flex: 1;
       padding: 1em;
@@ -42,7 +39,6 @@
       margin: 0 auto;
       width: 100%;
     }
-
     .button {
       display: inline-block;
       padding: 0.6em 1.2em;
@@ -53,21 +49,37 @@
       cursor: pointer;
       font-size: 1em;
     }
-
     section {
       margin-bottom: 2em;
     }
-
     #narration-intro {
       background: #eef;
       border-left: 5px solid #88f;
       padding: 1em;
       animation: fadeIn 0.8s ease-in-out;
     }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1em;
+    }
+    .tile {
+      flex: 1 1 45%;
+      padding: 1em;
+      background: #ddd;
+      text-align: center;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+    .tile:hover {
+      background: #ccc;
+    }
+    .hidden {
+      display: none;
     }
   </style>
 </head>
@@ -101,15 +113,21 @@
       }
     }
   </script>
-  <!-- Choix du sujet -->
+
+  <!-- Choix du rituel -->
   <section id="subject-selector" class="hidden">
     <h2>Étape 0 – Choisissez un rituel</h2>
     <div class="grid">
-      <div class="tile" onclick="selectSubject('Pause café')">☕ Pause café</div>
-      <div class="tile" onclick="selectSubject('Vérification des mails')">📧 Mails</div>
-      <div class="tile" onclick="selectSubject('Trajet métro')">🚇 Métro</div>
-      <div class="tile" onclick="customSubject()">✍️ Autre...</div>
+      <div class="tile" data-rituel="pause_cafe">☕ Pause café</div>
+      <div class="tile" data-rituel="mails">📧 Mails</div>
+      <div class="tile" data-rituel="metro">🚇 Métro</div>
+      <div class="tile" data-rituel="autre">✍️ Autre...</div>
     </div>
+  </section>
+
+  <!-- Narration générée dynamiquement -->
+  <section id="narrationRituel" style="background:#f4f4ff; margin: 1em 0; padding: 1em; border-left: 5px solid #88f; display: none;">
+    <p>🧠 Narration contextuelle en cours...</p>
   </section>
 
   <!-- Stepper narratif -->
@@ -125,33 +143,30 @@
 
   <!-- Contenu dynamique des étapes -->
   <section id="step-content"></section>
+
+  <!-- Script de lancement -->
   <script>
-  async function initExperience() {
-    try {
-      const res = await fetch('/api/load-etape/etape_0_seuil_entree');
-      if (!res.ok) throw new Error('Fichier d’étape non trouvé');
-
-      const etape = await res.json();
-
-      // Cacher l’intro, afficher les éléments suivants
-      document.getElementById('narration-intro').style.display = 'none';
-      document.getElementById('subject-selector').classList.remove('hidden');
-      document.getElementById('stepper').classList.remove('hidden');
-
-      // Injecter le contenu dynamique
-      document.getElementById('step-content').innerHTML = `
-        <h2>${etape.titre || "Étape 0 – Seuil d’entrée"}</h2>
-        <p><strong>${etape.accroche || "Bienvenue dans l’expérience inversée."}</strong></p>
-        <p>${etape.presentation || "Vous allez explorer un rituel quotidien à travers une nouvelle grille de lecture."}</p>
-        <pre style="background:#eee;padding:1em;border-radius:6px">${JSON.stringify(etape, null, 2)}</pre>
-      `;
-    } catch (e) {
-      document.getElementById('intro-content').innerHTML =
-        `<p>❌ Erreur : ${e.message}</p>`;
+    async function initExperience() {
+      try {
+        const res = await fetch('/api/load-etape/etape_0_seuil_entree');
+        if (!res.ok) throw new Error('Fichier d’étape non trouvé');
+        const etape = await res.json();
+        document.getElementById('narration-intro').style.display = 'none';
+        document.getElementById('subject-selector').classList.remove('hidden');
+        document.getElementById('stepper').classList.remove('hidden');
+        document.getElementById('step-content').innerHTML = `
+          <h2>${etape.titre || "Étape 0 – Seuil d’entrée"}</h2>
+          <p><strong>${etape.accroche || "Bienvenue dans l’expérience inversée."}</strong></p>
+          <p>${etape.presentation || "Vous allez explorer un rituel quotidien à travers une nouvelle grille de lecture."}</p>
+        `;
+      } catch (e) {
+        document.getElementById('intro-content').innerHTML = `<p>❌ Erreur : ${e.message}</p>`;
+      }
     }
-  }
-</script>
+  </script>
+
+  <!-- Chargement JS dynamique -->
+  <script src="index.js"></script>
 </body>
 </html>
-
 

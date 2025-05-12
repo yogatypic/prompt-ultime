@@ -139,6 +139,23 @@ app.get('/api/load-etape/:id', (req, res) => {
     res.status(500).json({ error: 'Erreur lecture fichier : ' + err.message });
   }
 });
+import fs from 'fs';
+import path from 'path';
+
+// Route pour contextualiser un rituel
+app.post('/api/rituel-contextualise', express.json(), (req, res) => {
+  const { rituel } = req.body;
+  const filePath = path.join(__dirname, 'public', 'rituels.json');
+
+  fs.readFile(filePath, 'utf-8', (err, data) => {
+    if (err) return res.status(500).json({ error: "Erreur lecture rituels.json" });
+
+    const rituels = JSON.parse(data);
+    const result = rituels[rituel] || rituels['autre'];
+
+    res.json({ rituel, ...result });
+  });
+});
 
 // === DÉMARRAGE SERVEUR ===
 app.listen(PORT, () => {
