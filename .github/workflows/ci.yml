@@ -36,25 +36,19 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: 🔧 Install Python deps
+      - name: 🔧 Install Python dependencies
         run: |
-          python -m venv .venv
-          source .venv/bin/activate
+          pip install --upgrade pip
           pip install fastapi uvicorn[standard] sqlmodel alembic psycopg2-binary pytest black flake8
 
       - name: 🛠 Run Alembic migrations
-        run: |
-          source .venv/bin/activate
-          alembic upgrade head
+        run: alembic upgrade head
 
       - name: 🧪 Run Pytest
-        run: |
-          source .venv/bin/activate
-          pytest --maxfail=1 --disable-warnings -q
+        run: pytest --maxfail=1 --disable-warnings -q
 
       - name: 🔍 Lint Python code
         run: |
-          source .venv/bin/activate
           black --check src
           flake8 src
 
@@ -62,7 +56,7 @@ jobs:
   # 2. Audit JSON structure
   # ──────────────────────────────────────────────────────────────────────────
   audit-json:
-    needs: test-python         # ne tourne qu’après test-python
+    needs: test-python
     runs-on: ubuntu-latest
 
     steps:
@@ -74,7 +68,7 @@ jobs:
         with:
           node-version: '18'
 
-      - name: 📦 Install NPM deps
+      - name: 📦 Install NPM dependencies
         run: npm install
 
       - name: 🧪 Run JSON audit
