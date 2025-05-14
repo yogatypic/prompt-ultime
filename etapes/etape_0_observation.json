@@ -1,0 +1,28 @@
+{
+  "titre": "Étape 0 — Observation",
+  "type": "etape",
+  "description": "Première immersion dans une situation du monde neurotypique à observer sans jugement.",
+  "accroche": "Regarde, ressens, note : que se passe-t-il ici ?",
+  "objectif": "Déclencher une observation active d’un cadre normatif ou d’une situation implicite.",
+  "exemples": [
+    "Une salle d’attente avec des affiches et des comportements codifiés.",
+    "Une interaction en classe entre enseignant et élève.",
+    "Une procédure administrative dans une mairie."
+  ],
+  "consignes": {
+    "observation": "Décris ce que tu vois, entends, ressens dans la scène.",
+    "attention": "Note les détails qui te semblent étranges, répétitifs ou passés sous silence."
+  },
+  "format_restitution": "Texte libre, sous forme de carnet de terrain ou journal d’exploration.",
+  "meta": {
+    "ordre": 0,
+    "code": "E0",
+    "categorie": "observation",
+    "recommandations": [
+      "Ne pas interpréter, juste décrire.",
+      "Utiliser des phrases simples.",
+      "Ne pas corriger les formulations spontanées."
+    ]
+  }
+}
+
